@@ -116,9 +116,9 @@ export default function Hero() {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=130%',
+          end: '+=100%',
           pin: true,
-          scrub: 0.6,
+          scrub: 0.3,
           onLeaveBack: () => {
             gsap.set([logo, headline, subhead, cta, tagline], { opacity: 1, y: 0 });
             gsap.set(bg, { scale: 1, y: 0 });
