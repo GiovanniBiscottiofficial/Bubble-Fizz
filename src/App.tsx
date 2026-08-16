@@ -19,6 +19,7 @@ import Newsletter from './sections/Newsletter';
 import FinalCTA from './sections/FinalCTA';
 import Contact from './sections/Contact';
 import ChampagneBubbles from './components/ChampagneBubbles';
+import LoadingScreen from './components/LoadingScreen';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,6 +76,9 @@ function App() {
 
   return (
     <div className="relative bg-lux-black min-h-screen">
+      {/* Loading Screen */}
+      <LoadingScreen />
+
       {/* Champagne Bubbles Animation */}
       <ChampagneBubbles />
       
