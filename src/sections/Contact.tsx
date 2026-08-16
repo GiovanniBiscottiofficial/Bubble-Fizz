@@ -90,35 +90,36 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      // Using Formspree - replace with your actual form endpoint
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('https://formsubmit.co/ajax/bubble_fizzbar@yahoo.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify({
           ...formData,
           _subject: `New Booking Inquiry from ${formData.name}`,
           _replyto: formData.email,
+          _template: 'table',
+          _captcha: false,
         }),
       });
 
       if (response.ok) {
         setIsSubmitted(true);
-        setFormData({ 
-          name: '', 
-          email: '', 
+        setFormData({
+          name: '',
+          email: '',
           phone: '',
-          eventDate: '', 
-          guestCount: '', 
+          eventDate: '',
+          guestCount: '',
           eventType: '',
-          message: '' 
+          message: '',
         });
       } else {
-        alert('Something went wrong. Please try again or call Mercedes directly.');
+        throw new Error('Form submission failed');
       }
     } catch (error) {
-      // Fallback: Open email client with pre-filled message
       const subject = `Booking Inquiry from ${formData.name}`;
       const body = `
 Name: ${formData.name}
