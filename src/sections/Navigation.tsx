@@ -58,7 +58,8 @@ export default function Navigation() {
 
   return (
     <>
-      <nav 
+      <nav
+        aria-label="Main navigation"
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
           isScrolled 
             ? 'bg-lux-blacker/95 backdrop-blur-xl border-b border-lux-purple/20' 
@@ -112,6 +113,9 @@ export default function Navigation() {
 
             {/* Mobile Menu Button */}
             <button
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden w-12 h-12 flex items-center justify-center text-lux-white rounded-xl border border-lux-purple/30 bg-lux-purple/10 hover:bg-lux-pink/20 transition-all duration-300"
             >
@@ -119,11 +123,13 @@ export default function Navigation() {
                 className={`w-6 h-6 transition-all duration-300 ${
                   isMobileMenuOpen ? 'opacity-0 rotate-180 scale-90' : 'opacity-100 rotate-0 scale-100'
                 }`}
+                aria-hidden="true"
               />
               <X 
                 className={`absolute w-6 h-6 transition-all duration-300 ${
                   isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-90'
                 }`}
+                aria-hidden="true"
               />
             </button>
           </div>
@@ -131,7 +137,11 @@ export default function Navigation() {
       </nav>
 
       {/* Mobile Menu */}
-      <div 
+      <div
+        id="mobile-menu"
+        role="dialog"
+        aria-label="Mobile navigation"
+        aria-hidden={!isMobileMenuOpen}
         onClick={() => setIsMobileMenuOpen(false)}
         className={`fixed inset-0 z-[99] bg-lux-blacker/95 backdrop-blur-xl transition-opacity duration-500 lg:hidden ${
           isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
@@ -163,7 +173,7 @@ export default function Navigation() {
               onClick={(e) => handleLinkClick(e, link.href)}
               className={`font-display text-2xl text-lux-white hover:text-lux-pink transition-all duration-500 ${
                 isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
-              }}`}
+              }`}
               style={{ transitionDelay: `${200 + index * 80}ms` }}
             >
               {link.label}
@@ -174,7 +184,7 @@ export default function Navigation() {
             onClick={() => setIsMobileMenuOpen(false)}
             className={`flex items-center gap-2 text-lux-purple mt-4 transition-all duration-500 ${
               isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-            }}`}
+            }`}
             style={{ transitionDelay: '200ms' }}
           >
             <Phone className="w-5 h-5" />
@@ -184,7 +194,7 @@ export default function Navigation() {
             onClick={scrollToContact}
             className={`lux-button-primary mt-4 transition-all duration-500 ${
               isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-            }}`}
+            }`}
             style={{ transitionDelay: '280ms' }}
           >
             Book Now
@@ -194,4 +204,3 @@ export default function Navigation() {
     </>
   );
 }
-
