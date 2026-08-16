@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "bubble-fizz-app-42",
     "public": "dist",
     "ignore": [
       "firebase.json",
