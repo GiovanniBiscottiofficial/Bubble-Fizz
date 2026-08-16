@@ -1,0 +1,428 @@
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Mail, Phone, MapPin, Send, Instagram, Facebook, Calendar, Loader2, CheckCircle } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    eventDate: '',
+    guestCount: '',
+    eventType: '',
+    message: '',
+  });
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const form = formRef.current;
+    const info = infoRef.current;
+    const footer = footerRef.current;
+
+    if (!section || !form || !info || !footer) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(form,
+        { x: '-6vw', opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            end: 'top 55%',
+            scrub: 0.5,
+          }
+        }
+      );
+
+      gsap.fromTo(info,
+        { x: '6vw', opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 75%',
+            end: 'top 50%',
+            scrub: 0.5,
+          }
+        }
+      );
+
+      gsap.fromTo(footer,
+        { y: '3vh', opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: footer,
+            start: 'top 90%',
+            end: 'top 70%',
+            scrub: 0.5,
+          }
+        }
+      );
+
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Using Formspree - replace with your actual form endpoint
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `New Booking Inquiry from ${formData.name}`,
+          _replyto: formData.email,
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({ 
+          name: '', 
+          email: '', 
+          phone: '',
+          eventDate: '', 
+          guestCount: '', 
+          eventType: '',
+          message: '' 
+        });
+      } else {
+        alert('Something went wrong. Please try again or call Mercedes directly.');
+      }
+    } catch (error) {
+      // Fallback: Open email client with pre-filled message
+      const subject = `Booking Inquiry from ${formData.name}`;
+      const body = `
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone || 'Not provided'}
+Event Type: ${formData.eventType || 'Not specified'}
+Event Date: ${formData.eventDate || 'Not specified'}
+Guest Count: ${formData.guestCount || 'Not specified'}
+
+Message:
+${formData.message || 'No additional message'}
+      `;
+      window.location.href = `mailto:bubble_fizzbar@yahoo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <section 
+      ref={sectionRef}
+      id="contact"
+      className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-90 bg-lux-black"
+    >
+      {/* Pink glow */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-lux-pink/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-lux-purple/10 rounded-full blur-[150px] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto relative">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <span className="section-label">BOOK US FOR ANY AND ALL EVENTS</span>
+          <h2 
+            className="mt-4 font-display text-lux-white font-semibold leading-[1.0]"
+            style={{ fontSize: 'clamp(34px, 3.6vw, 52px)' }}
+          >
+            Let's plan your <span className="text-lux-pink">pour</span>.
+          </h2>
+          <p className="mt-6 text-lux-muted text-lg leading-relaxed max-w-2xl mx-auto">
+            Tell us your date, location, and vibe. Mercedes will reply within 24 hours.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
+          {/* Left Column - Form */}
+          <div ref={formRef}>
+            {!isSubmitted ? (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-lux-muted text-sm mb-2">Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-lux-muted text-sm mb-2">Email *</label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-lux-muted text-sm mb-2">Phone</label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
+                      placeholder="(555) 000-0000"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-lux-muted text-sm mb-2">Event Type</label>
+                    <select
+                      value={formData.eventType}
+                      onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
+                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white focus:border-lux-purple focus:outline-none transition-colors"
+                    >
+                      <option value="" className="bg-lux-blacklift">Select event type</option>
+                      <option value="wedding" className="bg-lux-blacklift">Wedding</option>
+                      <option value="birthday" className="bg-lux-blacklift">Birthday Party</option>
+                      <option value="corporate" className="bg-lux-blacklift">Corporate Event</option>
+                      <option value="private" className="bg-lux-blacklift">Private Celebration</option>
+                      <option value="other" className="bg-lux-blacklift">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-lux-muted text-sm mb-2">Event Date</label>
+                    <input
+                      type="date"
+                      value={formData.eventDate}
+                      onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
+                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-lux-muted text-sm mb-2">Guest Count</label>
+                    <select
+                      value={formData.guestCount}
+                      onChange={(e) => setFormData({ ...formData, guestCount: e.target.value })}
+                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white focus:border-lux-purple focus:outline-none transition-colors"
+                    >
+                      <option value="" className="bg-lux-blacklift">Select range</option>
+                      <option value="25-50" className="bg-lux-blacklift">25-50 guests</option>
+                      <option value="50-100" className="bg-lux-blacklift">50-100 guests</option>
+                      <option value="100-200" className="bg-lux-blacklift">100-200 guests</option>
+                      <option value="200+" className="bg-lux-blacklift">200+ guests</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-lux-muted text-sm mb-2">Message</label>
+                  <textarea
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors resize-none"
+                    placeholder="Tell us about your event..."
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="lux-button-primary w-full sm:w-auto group disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 mr-2 transition-transform group-hover:translate-x-1" />
+                      Send Inquiry
+                    </>
+                  )}
+                </button>
+
+                <p className="text-lux-muted/60 text-xs">
+                  Your information will be sent directly to Mercedes at bubble_fizzbar@yahoo.com
+                </p>
+              </form>
+            ) : (
+              <div className="lux-card text-center py-16">
+                <CheckCircle className="w-16 h-16 text-lux-pink mx-auto mb-6" />
+                <h3 className="font-display text-2xl text-lux-white mb-3">Message Sent!</h3>
+                <p className="text-lux-muted mb-6">
+                  Thank you for reaching out! Mercedes will get back to you within 24 hours.
+                </p>
+                <button 
+                  onClick={() => setIsSubmitted(false)}
+                  className="lux-button-outline"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Right Column - Contact Info */}
+          <div ref={infoRef}>
+            <div className="lux-card">
+              <div className="flex items-center gap-4 mb-6">
+                <img 
+                  src="/logo.png" 
+                  alt="Bubble & Fizz Logo"
+                  className="h-20 w-auto drop-shadow-[0_0_15px_rgba(236,72,153,0.4)]"
+                />
+                <div>
+                  <h3 className="font-display text-xl text-lux-white font-medium">
+                    Mercedes Pettiford
+                  </h3>
+                  <p className="text-gradient-purple text-sm">
+                    Professional, Licensed & Insured Mixologist
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-5">
+                <a 
+                  href="mailto:bubble_fizzbar@yahoo.com" 
+                  className="flex items-center gap-4 text-lux-muted hover:text-lux-pink transition-colors group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-lux-purple/20 to-lux-pink/20 flex items-center justify-center group-hover:from-lux-purple/30 group-hover:to-lux-pink/30 transition-all">
+                    <Mail className="w-5 h-5 text-lux-pink" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-lux-muted/70 uppercase tracking-wider">Email</p>
+                    <span className="text-sm md:text-base">bubble_fizzbar@yahoo.com</span>
+                  </div>
+                </a>
+
+                <a 
+                  href="tel:+19843854736" 
+                  className="flex items-center gap-4 text-lux-muted hover:text-lux-purple transition-colors group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-lux-purple/20 to-lux-pink/20 flex items-center justify-center group-hover:from-lux-purple/30 group-hover:to-lux-pink/30 transition-all">
+                    <Phone className="w-5 h-5 text-lux-purple" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-lux-muted/70 uppercase tracking-wider">Phone</p>
+                    <span className="text-sm md:text-base">984-385-4736</span>
+                  </div>
+                </a>
+
+                <div className="flex items-center gap-4 text-lux-muted">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-lux-purple/20 to-lux-pink/20 flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-lux-pink" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-lux-muted/70 uppercase tracking-wider">Service Area</p>
+                    <span className="text-sm md:text-base">NC & Surrounding States</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 text-lux-muted">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-lux-purple/20 to-lux-pink/20 flex items-center justify-center">
+                    <Calendar className="w-5 h-5 text-lux-purple" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-lux-muted/70 uppercase tracking-wider">Availability</p>
+                    <span className="text-sm md:text-base">Weekends book 2-3 months in advance</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="mt-8 pt-8 border-t border-lux-white/10">
+                <p className="text-lux-muted text-sm mb-4">Follow us on social media</p>
+                <div className="flex gap-4">
+                  <a 
+                    href="https://facebook.com/bubbleandfizzbartending" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-14 h-14 rounded-xl bg-gradient-to-br from-lux-purple to-lux-pink flex items-center justify-center text-white hover:shadow-[0_0_30px_rgba(236,72,153,0.5)] transition-all hover:-translate-y-1"
+                  >
+                    <Facebook className="w-6 h-6" />
+                  </a>
+                  <a 
+                    href="https://instagram.com/bubbleandfizz" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-14 h-14 rounded-xl bg-gradient-to-br from-lux-pink to-lux-purple flex items-center justify-center text-white hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] transition-all hover:-translate-y-1"
+                  >
+                    <Instagram className="w-6 h-6" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div 
+          ref={footerRef}
+          className="mt-24 pt-8 border-t border-lux-purple/20"
+        >
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Logo */}
+            <div className="flex items-center gap-4">
+              <img 
+                src="/logo.png" 
+                alt="Bubble & Fizz Logo"
+                className="h-16 w-auto drop-shadow-[0_0_15px_rgba(236,72,153,0.4)]"
+              />
+              <div>
+                <span className="font-display text-2xl text-lux-white block">
+                  Bubble <span className="text-lux-pink">&</span> Fizz
+                </span>
+                <span className="text-lux-muted text-sm">Luxury Mobile Bartending</span>
+              </div>
+            </div>
+
+            {/* Tagline */}
+            <p className="text-gradient-purple text-sm font-label uppercase tracking-[0.2em]">
+              BOOK US FOR ANY AND ALL EVENTS
+            </p>
+
+            {/* Copyright */}
+            <p className="text-lux-muted/60 text-sm">
+              © Bubble & Fizz. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
