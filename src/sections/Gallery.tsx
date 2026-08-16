@@ -55,9 +55,9 @@ export default function Gallery() {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=150%',
+          end: '+=100%',
           pin: true,
-          scrub: 0.7,
+          scrub: 0.3,
         }
       });
 

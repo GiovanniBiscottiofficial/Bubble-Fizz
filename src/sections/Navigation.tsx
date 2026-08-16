@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 
@@ -14,6 +14,12 @@ const navLinks = [
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+
+  const sectionSelectors = useMemo(
+    () => navLinks.map((link) => link.href).filter(Boolean),
+    []
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +29,29 @@ export default function Navigation() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Active section highlight on scroll
+  useEffect(() => {
+    const sections = sectionSelectors
+      .map((selector) => document.querySelector(selector))
+      .filter(Boolean) as HTMLElement[];
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [sectionSelectors]);
 
   // Body scroll lock when mobile menu is open
   useEffect(() => {
@@ -88,16 +117,24 @@ export default function Navigation() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-lux-muted hover:text-lux-pink transition-colors text-sm font-medium"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.slice(1);
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`transition-colors text-sm font-medium ${
+                      isActive
+                        ? 'text-lux-pink'
+                        : 'text-lux-muted hover:text-lux-pink'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
               <a 
                 href="tel:+19843854736"
                 className="flex items-center gap-2 text-lux-purple hover:text-lux-pink transition-colors text-sm font-medium"
@@ -168,19 +205,27 @@ export default function Navigation() {
           >
             BOOK US FOR ANY AND ALL EVENTS
           </p>
-          {navLinks.map((link, index) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
-              className={`font-display text-2xl text-lux-white hover:text-lux-pink transition-all duration-500 ${
-                isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
-              }`}
-              style={{ transitionDelay: `${200 + index * 80}ms` }}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link, index) => {
+            const isActive = activeSection === link.href.slice(1);
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href)}
+                aria-current={isActive ? 'true' : undefined}
+                className={`font-display text-2xl transition-all duration-500 ${
+                  isActive
+                    ? 'text-lux-pink'
+                    : 'text-lux-white hover:text-lux-pink'
+                } ${
+                  isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
+                }`}
+                style={{ transitionDelay: `${200 + index * 80}ms` }}
+              >
+                {link.label}
+              </a>
+            );
+          })}
           <a 
             href="tel:+19843854736"
             onClick={() => setIsMobileMenuOpen(false)}

@@ -63,9 +63,9 @@ export default function SignatureCocktails() {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=130%',
+          end: '+=100%',
           pin: true,
-          scrub: 0.6,
+          scrub: 0.3,
         }
       });
 
