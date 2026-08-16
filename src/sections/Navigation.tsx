@@ -23,6 +23,21 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.width = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.width = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
@@ -98,9 +113,18 @@ export default function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-12 h-12 flex items-center justify-center text-lux-white rounded-xl border border-lux-purple/30 bg-lux-purple/10"
+              className="lg:hidden w-12 h-12 flex items-center justify-center text-lux-white rounded-xl border border-lux-purple/30 bg-lux-purple/10 hover:bg-lux-pink/20 transition-all duration-300"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <Menu 
+                className={`w-6 h-6 transition-all duration-300 ${
+                  isMobileMenuOpen ? 'opacity-0 rotate-180 scale-90' : 'opacity-100 rotate-0 scale-100'
+                }`}
+              />
+              <X 
+                className={`absolute w-6 h-6 transition-all duration-300 ${
+                  isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-90'
+                }`}
+              />
             </button>
           </div>
         </div>
@@ -108,39 +132,60 @@ export default function Navigation() {
 
       {/* Mobile Menu */}
       <div 
-        className={`fixed inset-0 z-[99] bg-lux-blacker/98 backdrop-blur-xl transition-all duration-500 lg:hidden ${
-          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        onClick={() => setIsMobileMenuOpen(false)}
+        className={`fixed inset-0 z-[99] bg-lux-blacker/95 backdrop-blur-xl transition-opacity duration-500 lg:hidden ${
+          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-6">
+        <div 
+          onClick={(e) => e.stopPropagation()}
+          className="flex flex-col items-center justify-center h-full gap-6 px-6"
+        >
           <img 
             src="/logo.png" 
             alt="Bubble & Fizz Logo"
-            className="h-28 w-auto drop-shadow-[0_0_30px_rgba(236,72,153,0.5)]"
+            className={`w-40 h-auto drop-shadow-[0_0_30px_rgba(236,72,153,0.5)] transition-all duration-500 ${
+              isMobileMenuOpen ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
+            }`}
           />
-          <p className="text-gradient-purple font-label text-sm uppercase tracking-[0.25em] mb-4">
+          <p 
+            className={`text-gradient-purple font-label text-sm uppercase tracking-[0.25em] mb-4 transition-all duration-700 ${
+              isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+            }`}
+            style={{ transitionDelay: '100ms' }}
+          >
             BOOK US FOR ANY AND ALL EVENTS
           </p>
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.href)}
-              className="font-display text-2xl text-lux-white hover:text-lux-pink transition-colors"
+              className={`font-display text-2xl text-lux-white hover:text-lux-pink transition-all duration-500 ${
+                isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
+              }}`}
+              style={{ transitionDelay: `${200 + index * 80}ms` }}
             >
               {link.label}
             </a>
           ))}
           <a 
             href="tel:+19843854736"
-            className="flex items-center gap-2 text-lux-purple mt-4"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`flex items-center gap-2 text-lux-purple mt-4 transition-all duration-500 ${
+              isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+            }}`}
+            style={{ transitionDelay: '200ms' }}
           >
             <Phone className="w-5 h-5" />
             <span>984-385-4736</span>
           </a>
           <button 
             onClick={scrollToContact}
-            className="lux-button-primary mt-4"
+            className={`lux-button-primary mt-4 transition-all duration-500 ${
+              isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+            }}`}
+            style={{ transitionDelay: '280ms' }}
           >
             Book Now
           </button>

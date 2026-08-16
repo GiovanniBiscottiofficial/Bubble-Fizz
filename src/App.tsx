@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './index.css';
 
+import { useIsMobile } from '@/hooks/use-mobile';
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
 import Experience from './sections/Experience';
@@ -24,7 +25,11 @@ import LoadingScreen from './components/LoadingScreen';
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const isMobile = useIsMobile();
   useEffect(() => {
+    // Disable scroll-snap pinning system on mobile — natural scrolling works better
+    if (isMobile) return;
+
     // Wait for all ScrollTriggers to be created
     const timer = setTimeout(() => {
       const pinned = ScrollTrigger.getAll()
@@ -72,7 +77,7 @@ function App() {
       clearTimeout(timer);
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="relative bg-lux-black min-h-screen">
