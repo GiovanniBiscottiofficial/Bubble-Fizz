@@ -12,6 +12,7 @@ import DrinkMenu from './sections/DrinkMenu';
 import Process from './sections/Process';
 import Gallery from './sections/Gallery';
 import Testimonials from './sections/Testimonials';
+import ReviewsMap from './components/ReviewsMap';
 import Packages from './sections/Packages';
 import Credentials from './sections/Credentials';
 import ServiceAreas from './sections/ServiceAreas';
@@ -115,6 +116,9 @@ function App() {
         
         {/* Section 7: Testimonials - pin: false */}
         <Testimonials />
+        
+        {/* Section 7.5: Reviews & Map - pin: false */}
+        <ReviewsMap />
         
         {/* Section 8: Packages - pin: false */}
         <Packages />

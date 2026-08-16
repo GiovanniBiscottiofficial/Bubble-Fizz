@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const navLinks = [
   { label: 'About', href: '#experience' },
@@ -77,10 +78,11 @@ export default function Navigation() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <img 
+              <OptimizedImage 
                 src="/logo.png" 
                 alt="Bubble & Fizz Logo"
                 className="h-16 md:h-20 w-auto drop-shadow-[0_0_15px_rgba(236,72,153,0.5)] group-hover:drop-shadow-[0_0_25px_rgba(124,58,237,0.6)] transition-all duration-500"
+                priority
               />
             </a>
 
@@ -151,7 +153,7 @@ export default function Navigation() {
           onClick={(e) => e.stopPropagation()}
           className="flex flex-col items-center justify-center h-full gap-6 px-6"
         >
-          <img 
+          <OptimizedImage 
             src="/logo.png" 
             alt="Bubble & Fizz Logo"
             className={`w-40 h-auto drop-shadow-[0_0_30px_rgba(236,72,153,0.5)] transition-all duration-500 ${

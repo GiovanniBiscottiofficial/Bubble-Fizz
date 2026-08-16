@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Phone, Mail, Shield } from 'lucide-react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
+import OptimizedImage from '@/components/OptimizedImage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,7 +96,7 @@ export default function FinalCTA() {
         ref={bgRef}
         className="absolute inset-0 w-full h-full"
       >
-        <img 
+        <OptimizedImage 
           src="/mercedes_new_2.jpg" 
           alt="Mercedes Pettiford crafting cocktails"
           className="w-full h-full object-cover"
@@ -115,7 +116,7 @@ export default function FinalCTA() {
       >
         {/* Logo - MUCH BIGGER */}
         <div className="animate-in mb-6">
-          <img 
+          <OptimizedImage 
             src="/logo.png" 
             alt="Bubble & Fizz Logo"
             className="h-32 md:h-44 lg:h-52 w-auto drop-shadow-[0_0_40px_rgba(236,72,153,0.6)]"
