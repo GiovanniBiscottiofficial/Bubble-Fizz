@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronRight } from 'lucide-react';
 
+import { useIsMobile } from '@/hooks/use-mobile';
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
@@ -13,6 +15,7 @@ export default function Hero() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -26,7 +29,43 @@ export default function Hero() {
     if (!section || !logo || !headline || !subhead || !cta || !bg || !tagline) return;
 
     const ctx = gsap.context(() => {
-      // Auto-play entrance animation
+      // On mobile, skip pinning — just play entrance animations and exit normally
+      if (isMobile) {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        tl.fromTo(bg,
+          { scale: 1.08, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 1.2 }
+        );
+        tl.fromTo(logo,
+          { y: 50, opacity: 0, scale: 0.8 },
+          { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.2)' },
+          '-=0.8'
+        );
+        tl.fromTo(tagline,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          '-=0.5'
+        );
+        const words = headline.querySelectorAll('.word');
+        tl.fromTo(words,
+          { y: 40, opacity: 0, rotateX: 18 },
+          { y: 0, opacity: 1, rotateX: 0, duration: 0.8, stagger: 0.08 },
+          '-=0.3'
+        );
+        tl.fromTo(subhead,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          '-=0.4'
+        );
+        tl.fromTo(cta,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          '-=0.3'
+        );
+        return;
+      }
+
+      // Desktop: Auto-play entrance animation
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       // Background entrance

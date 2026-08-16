@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
+import { useIsMobile } from '@/hooks/use-mobile';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const cocktails = [
@@ -25,6 +27,7 @@ export default function SignatureCocktails() {
   const headlineRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -32,9 +35,29 @@ export default function SignatureCocktails() {
     const card = cardRef.current;
     const bg = bgRef.current;
 
-    if (!section || !headline || !card || !bg) return;
+     if (!section || !headline || !card || !bg) return;
 
     const ctx = gsap.context(() => {
+      // On mobile, skip pinning — use simple entrance animations instead
+      if (isMobile) {
+        gsap.fromTo(bg,
+          { scale: 1.10, y: '8vh', opacity: 0.6 },
+          { scale: 1.00, y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 50%', scrub: 0.5 } }
+        );
+        gsap.fromTo(headline,
+          { x: '-12vw', opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 50%', scrub: 0.5 } }
+        );
+        gsap.fromTo(card,
+          { x: '12vw', opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 50%', scrub: 0.5 } }
+        );
+        return;
+      }
+
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,

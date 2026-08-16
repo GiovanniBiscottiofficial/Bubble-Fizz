@@ -3,21 +3,39 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Phone, Mail, Shield } from 'lucide-react';
 
+import { useIsMobile } from '@/hooks/use-mobile';
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FinalCTA() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const section = sectionRef.current;
     const content = contentRef.current;
     const bg = bgRef.current;
 
-    if (!section || !content || !bg) return;
+     if (!section || !content || !bg) return;
 
     const ctx = gsap.context(() => {
+      // On mobile, skip pinning — use simple entrance animation
+      if (isMobile) {
+        gsap.fromTo(bg,
+          { scale: 1.08, opacity: 0.7 },
+          { scale: 1, opacity: 1, duration: 1, ease: 'power3.out' }
+        );
+        const elements = content.querySelectorAll('.animate-in');
+        gsap.fromTo(elements,
+          { y: '10vh', opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.04, duration: 0.6, ease: 'power2.out',
+            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 55%', scrub: 0.5 } }
+        );
+        return;
+      }
+
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,

@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
 
+import { useIsMobile } from '@/hooks/use-mobile';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const galleryImages = [
@@ -21,6 +23,7 @@ export default function Gallery() {
   const mosaicRef = useRef<HTMLDivElement>(null);
   const tilesRef = useRef<(HTMLDivElement | null)[]>([]);
   const captionRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -28,9 +31,25 @@ export default function Gallery() {
     const tiles = tilesRef.current.filter(Boolean);
     const caption = captionRef.current;
 
-    if (!section || !mosaic || tiles.length === 0 || !caption) return;
+     if (!section || !mosaic || !caption) return;
 
     const ctx = gsap.context(() => {
+      // On mobile, skip pinning — use simple staggered entrance animations
+      if (isMobile) {
+        const tiles = tilesRef.current.filter(Boolean);
+        gsap.fromTo(caption,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, ease: 'power2.out',
+            scrollTrigger: { trigger: section, start: 'top 85%', end: 'top 60%', scrub: 0.5 } }
+        );
+        gsap.fromTo(tiles,
+          { y: 30, opacity: 0, scale: 0.96 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out', stagger: 0.06,
+            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 40%', scrub: 0.5 } }
+        );
+        return;
+      }
+
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
