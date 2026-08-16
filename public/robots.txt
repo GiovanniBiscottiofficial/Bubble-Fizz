@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bubbleandfizz.co/sitemap.xml
+Host: https://bubbleandfizz.co
