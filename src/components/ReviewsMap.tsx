@@ -115,7 +115,7 @@ export default function ReviewsMap() {
               rel="noopener noreferrer"
               className="lux-button-primary w-full justify-center mt-4"
             >
-              {GOOGLE_BUSINESS_PROFILE_URL ? 'Leave a Google review' : 'Review us on Google'}
+              {GOOGLE_BUSINESS_PROFILE_URL ? 'Leave a Google review' : 'Find us on Google'}
             </a>
           </div>
         </div>
