@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
+import OptimizedImage from '@/components/OptimizedImage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -138,7 +139,7 @@ export default function SignatureCocktails() {
         ref={bgRef}
         className="absolute inset-0 w-full h-full"
       >
-        <img 
+        <OptimizedImage 
           src="/cocktail_closeup.jpg" 
           alt="Signature cocktail"
           className="w-full h-full object-cover"

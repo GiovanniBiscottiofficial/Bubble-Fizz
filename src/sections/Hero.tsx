@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronRight } from 'lucide-react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
+import OptimizedImage from '@/components/OptimizedImage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -185,10 +186,11 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full"
         style={{ opacity: 0 }}
       >
-        <img 
+        <OptimizedImage 
           src="/mercedes_new_1.jpg" 
           alt="Mercedes Pettiford - Professional Mixologist pouring champagne"
           className="w-full h-full object-cover object-top"
+          priority
         />
         {/* Purple/Pink gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/30 via-transparent to-lux-pink/20" />
@@ -206,10 +208,11 @@ export default function Hero() {
           className="mb-4 md:mb-6"
           style={{ opacity: 0 }}
         >
-          <img 
+          <OptimizedImage 
             src="/logo.png" 
             alt="Bubble & Fizz Logo"
             className="h-40 md:h-52 lg:h-64 w-auto drop-shadow-[0_0_30px_rgba(236,72,153,0.6)]"
+            priority
           />
         </div>
 

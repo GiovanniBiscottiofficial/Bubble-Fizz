@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Wine, Sparkles, Heart, Shield, Award } from 'lucide-react';
+import OptimizedImage from '@/components/OptimizedImage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -133,7 +134,7 @@ export default function Experience() {
         <div ref={aboutRef} className="mb-20">
           <div className="lux-card flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="w-44 h-44 md:w-56 md:h-56 rounded-full overflow-hidden flex-shrink-0 border-4 border-lux-pink/30 shadow-[0_0_40px_rgba(236,72,153,0.3)]">
-              <img 
+              <OptimizedImage 
                 src="/mercedes_new_3.jpg" 
                 alt="Mercedes Pettiford - Professional Mixologist"
                 className="w-full h-full object-cover"

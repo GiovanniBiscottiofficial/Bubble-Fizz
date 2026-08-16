@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export default function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true);
@@ -41,10 +42,11 @@ export default function LoadingScreen() {
 
   return (
     <div className="loading-screen fixed inset-0 z-[200] flex flex-col items-center justify-center bg-lux-black">
-      <img
+      <OptimizedImage
         src="/logo.png"
         alt="Bubble & Fizz Logo"
         className="h-32 w-auto drop-shadow-[0_0_30px_rgba(236,72,153,0.6)] animate-pulse"
+        priority
       />
       <p className="mt-6 text-gradient-purple font-label text-sm uppercase tracking-[0.25em]">
         BUBBLE & FIZZ
