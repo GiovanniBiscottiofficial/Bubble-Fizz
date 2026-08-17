@@ -1,41 +1,9 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Phone, Mail } from 'lucide-react';
 import CertificationBadges from '@/components/CertificationBadges';
 import OptimizedImage from '@/components/OptimizedImage';
 import Logo from '@/components/Logo';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function FinalCTA() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const content = contentRef.current;
-
-    if (!section || !content) return;
-
-    const ctx = gsap.context(() => {
-      const elements = content.querySelectorAll('.animate-in');
-      gsap.fromTo(elements,
-        { y: '6vh', opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.04,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 55%', scrub: 0.5 }
-        }
-      );
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
-
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -43,8 +11,7 @@ export default function FinalCTA() {
   return (
     <section
       id="final-cta"
-      ref={sectionRef}
-      className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 flex items-center justify-center z-80 overflow-hidden"
+      className="relative w-full min-h-[80vh] py-24 md:py-32 px-6 md:px-12 lg:px-20 flex items-center justify-center z-80 overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -58,30 +25,27 @@ export default function FinalCTA() {
         <div className="absolute inset-0 bg-gradient-to-t from-lux-black/80 via-lux-black/40 to-lux-black/60" />
       </div>
 
-      <div
-        ref={contentRef}
-        className="relative z-10 text-center flex flex-col items-center"
-      >
-        <div className="animate-in mb-6">
+      <div className="relative z-10 text-center flex flex-col items-center">
+        <div className="mb-6">
           <Logo className="h-28 w-28 md:h-40 md:w-40 lg:h-48 lg:w-48" priority />
         </div>
 
-        <p className="animate-in text-gradient-purple font-label text-sm md:text-base uppercase tracking-[0.25em] mb-6">
+        <p className="text-gradient-purple font-label text-sm md:text-base uppercase tracking-[0.25em] mb-6">
           BOOK US FOR ANY AND ALL EVENTS
         </p>
 
         <h2
-          className="animate-in font-display text-lux-white font-semibold leading-[0.95]"
+          className="font-display text-lux-white font-semibold leading-[0.95]"
           style={{ fontSize: 'clamp(36px, 4.5vw, 68px)' }}
         >
           Ready to raise the <span className="text-lux-pink">bar</span>?
         </h2>
 
-        <p className="animate-in mt-6 md:mt-8 text-lux-muted text-base md:text-xl max-w-xl leading-relaxed">
+        <p className="mt-6 md:mt-8 text-lux-muted text-base md:text-xl max-w-xl leading-relaxed">
           Let's design a pour list that fits your event.
         </p>
 
-        <div className="animate-in mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4">
+        <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4">
           <button
             onClick={scrollToContact}
             className="lux-button-primary"
@@ -97,7 +61,7 @@ export default function FinalCTA() {
           </a>
         </div>
 
-        <div className="animate-in mt-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-lux-muted/80 text-sm">
+        <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-lux-muted/80 text-sm">
           <a href="tel:+19843854736" className="flex items-center gap-2 hover:text-lux-pink transition-colors">
             <Phone className="w-4 h-4" />
             <span>984-385-4736</span>
@@ -108,7 +72,7 @@ export default function FinalCTA() {
           </a>
         </div>
 
-        <div className="animate-in mt-6">
+        <div className="mt-6">
           <CertificationBadges compact />
         </div>
       </div>

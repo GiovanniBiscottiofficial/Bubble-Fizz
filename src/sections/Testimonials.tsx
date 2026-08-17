@@ -125,9 +125,9 @@ export default function Testimonials() {
     const ctx = gsap.context(() => {
       // Headline animation
       gsap.fromTo(headline,
-        { x: '-6vw', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
           duration: 0.8,
           ease: 'power3.out',
@@ -135,7 +135,7 @@ export default function Testimonials() {
             trigger: section,
             start: 'top 80%',
             end: 'top 55%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
@@ -143,7 +143,7 @@ export default function Testimonials() {
       // Cards animation
       cards.forEach((card, index) => {
         gsap.fromTo(card,
-          { y: '8vh', opacity: 0 },
+          { y: 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -153,7 +153,7 @@ export default function Testimonials() {
               trigger: section,
               start: `top ${75 - index * 3}%`,
               end: `top ${50 - index * 3}%`,
-              scrub: 0.5,
+              scrub: 0.3,
             }
           }
         );
@@ -219,31 +219,6 @@ export default function Testimonials() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Trust Badges */}
-        <div className="mt-16 flex flex-wrap justify-center gap-8">
-          <div className="flex items-center gap-2 text-lux-muted">
-            <div className="w-10 h-10 rounded-full bg-lux-purple/20 flex items-center justify-center">
-              <span className="text-lux-purple font-bold text-lg">50+</span>
-            </div>
-            <span className="text-sm">Events Served</span>
-          </div>
-          <div className="flex items-center gap-2 text-lux-muted">
-            <div className="w-10 h-10 rounded-full bg-lux-pink/20 flex items-center justify-center">
-              <Star className="w-5 h-5 fill-lux-pink text-lux-pink" />
-            </div>
-            <div className="text-sm">
-              <span className="text-lux-pink font-bold">5.0</span>
-              <span className="block text-xs text-lux-muted/70">Average Rating</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 text-lux-muted">
-            <div className="w-10 h-10 rounded-full bg-lux-gold/20 flex items-center justify-center">
-              <span className="text-lux-gold font-bold text-lg">NC</span>
-            </div>
-            <span className="text-sm">Statewide Service</span>
-          </div>
         </div>
       </div>
     </section>

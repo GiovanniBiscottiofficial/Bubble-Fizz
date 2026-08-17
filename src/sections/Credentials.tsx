@@ -8,27 +8,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const credentials = [
   {
-    icon: Shield,
-    title: 'Fully Insured',
-    description: 'Comprehensive liability insurance coverage for all events. Certificate of Insurance (COI) available upon request.',
-    highlight: true,
-  },
-  {
-    icon: FileCheck,
-    title: 'Licensed Professional',
-    description: 'Licensed bartender in the state of North Carolina with all required certifications.',
-    highlight: true,
-  },
-  {
     icon: Award,
     title: '5-Star Rated',
     description: 'Consistently rated 5 stars by clients across all review platforms.',
-    highlight: false,
-  },
-  {
-    icon: CheckCircle,
-    title: 'TIPS Certified',
-    description: 'Training for Intervention ProcedureS certified for responsible alcohol service.',
     highlight: false,
   },
   {
@@ -38,9 +20,27 @@ const credentials = [
     highlight: false,
   },
   {
+    icon: Shield,
+    title: 'Full Mobile Setup',
+    description: 'Premium bar, tools, glassware, and ice service delivered to your venue.',
+    highlight: true,
+  },
+  {
     icon: BadgeCheck,
-    title: 'Professional Mixologist',
-    description: 'Trained in classic and modern mixology techniques with years of experience.',
+    title: 'Custom Menu Design',
+    description: 'Custom craft cocktails and mocktails built around your theme, colors, and taste.',
+    highlight: false,
+  },
+  {
+    icon: FileCheck,
+    title: 'Premium Presentation',
+    description: 'Shimmer drinks, dry-ice effects, edible garnishes, and elegant bar styling.',
+    highlight: true,
+  },
+  {
+    icon: CheckCircle,
+    title: 'Personalized Event Menus',
+    description: 'Every guest list is different. Menus are tailored to your crowd and occasion.',
     highlight: false,
   },
 ];
@@ -59,7 +59,7 @@ export default function Credentials() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(headline,
-        { y: '4vh', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -69,14 +69,14 @@ export default function Credentials() {
             trigger: section,
             start: 'top 80%',
             end: 'top 55%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
 
       cards.forEach((card, index) => {
         gsap.fromTo(card,
-          { y: '8vh', opacity: 0 },
+          { y: 40, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -86,7 +86,7 @@ export default function Credentials() {
               trigger: section,
               start: `top ${70 - index * 3}%`,
               end: `top ${50 - index * 3}%`,
-              scrub: 0.5,
+              scrub: 0.3,
             }
           }
         );
@@ -161,7 +161,7 @@ export default function Credentials() {
             What You Can <span className="text-lux-gold">Always</span> Expect
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
-            {['Licensed & Insured', 'Background Checked', 'TIPS Certified', 'Professional Attire', 'Punctual & Reliable', 'Custom Menus'].map((badge) => (
+            {['Premium Bar Setup', 'Dry-Ice Mocktails', 'Signature Cocktails', 'Professional Attire', 'Punctual & Reliable', 'Elegant Bar Styling'].map((badge) => (
               <div 
                 key={badge}
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-lux-black border border-lux-gold/30"
