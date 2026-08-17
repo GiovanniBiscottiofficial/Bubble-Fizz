@@ -13,7 +13,6 @@ import ThumbtackMoments from './sections/ThumbtackMoments';
 import ReviewsMap from './components/ReviewsMap';
 import Packages from './sections/Packages';
 import Credentials from './sections/Credentials';
-import ServiceAreas from './sections/ServiceAreas';
 import FAQ from './sections/FAQ';
 import FinalCTA from './sections/FinalCTA';
 import Contact from './sections/Contact';
@@ -72,10 +71,7 @@ function App() {
         {/* Section 9: Credentials - pin: false */}
         <Credentials />
         
-        {/* Section 10: Service Areas - pin: false */}
-        <ServiceAreas />
-        
-        {/* Section 11: FAQ - pin: false */}
+        {/* Section 10: FAQ - pin: false */}
         <FAQ />
 
         {/* Section 12: Final CTA - pin: true */}

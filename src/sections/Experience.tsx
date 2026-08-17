@@ -149,17 +149,17 @@ export default function Experience() {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       id="experience"
-      className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-20 bg-lux-black"
+      className="relative w-full py-20 md:py-24 px-6 md:px-12 lg:px-20 z-20 bg-lux-black"
     >
       {/* Purple glow */}
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-lux-purple/10 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto relative">
         {/* About Mercedes - NEW PHOTO */}
-        <div ref={aboutRef} className="mb-20">
+        <div ref={aboutRef} className="mb-12">
           <div className="lux-card flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="w-44 h-44 md:w-56 md:h-56 rounded-full overflow-hidden flex-shrink-0 border-4 border-lux-pink/30 shadow-[0_0_40px_rgba(236,72,153,0.3)]">
               <OptimizedImage 
@@ -187,7 +187,7 @@ export default function Experience() {
         </div>
 
         {/* Services Offered */}
-        <div className="mt-20 grid md:grid-cols-3 gap-6">
+        <div className="mt-12 grid md:grid-cols-3 gap-6">
           {serviceGroups.map((group) => (
             <div
               key={group.title}
@@ -213,9 +213,9 @@ export default function Experience() {
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 mt-20">
+        <div className="grid lg:grid-cols-2 gap-12 mt-12">
           {/* Left Column - Text */}
-          <div className="lg:sticky lg:top-32 lg:self-start">
+          <div>
             <span className="section-label">OUR SERVICES</span>
             <h2 
               ref={headlineRef}

@@ -339,8 +339,8 @@ ${formData.message || 'No additional message'}
           {/* Right Column - Contact Info */}
           <div ref={infoRef}>
             <div className="lux-card">
-              <div className="flex items-center gap-4 mb-6">
-                <Logo className="h-28 w-28" priority />
+              <div className="flex items-center gap-5 mb-6">
+                <Logo className="h-36 w-36 md:h-40 md:w-40" priority />
                 <div>
                   <h3 className="font-display text-xl text-lux-white font-medium">
                     Mercedes Pettiford
@@ -437,29 +437,36 @@ ${formData.message || 'No additional message'}
         </div>
 
         {/* Footer */}
-        <div 
+        <div
           ref={footerRef}
           className="mt-24 pt-8 border-t border-lux-purple/20"
         >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             {/* Logo */}
             <div className="flex items-center gap-4">
-              <Logo className="h-24 w-24" priority />
+              <Logo className="h-32 w-32 md:h-40 md:w-40" priority />
               <div>
-                <span className="font-display text-2xl text-lux-white block">
+                <span className="font-display text-2xl md:text-3xl text-lux-white block">
                   Bubble <span className="text-lux-pink">&</span> Fizz
                 </span>
                 <span className="text-lux-muted text-sm">Luxury Mobile Bartending</span>
               </div>
             </div>
 
-            {/* Tagline */}
-            <p className="text-gradient-purple text-sm font-label uppercase tracking-[0.2em]">
-              BOOK US FOR ANY AND ALL EVENTS
-            </p>
+            {/* Contact */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-lux-muted text-sm">
+              <a href="tel:+19843854736" className="flex items-center gap-2 hover:text-lux-pink transition-colors">
+                <Phone className="w-4 h-4" />
+                <span>984-385-4736</span>
+              </a>
+              <a href="mailto:bubble_fizzbar@yahoo.com" className="flex items-center gap-2 hover:text-lux-purple transition-colors">
+                <Mail className="w-4 h-4" />
+                <span>bubble_fizzbar@yahoo.com</span>
+              </a>
+            </div>
 
             {/* Copyright */}
-            <p className="text-lux-muted/60 text-sm">
+            <p className="text-lux-muted/60 text-sm text-center lg:text-right">
               © Bubble & Fizz. All rights reserved.
             </p>
           </div>
