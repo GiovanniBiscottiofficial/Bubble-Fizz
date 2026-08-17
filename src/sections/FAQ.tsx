@@ -54,6 +54,14 @@ const faqs = [
     question: 'Can you accommodate large events?',
     answer: 'Yes. For events over 100 guests, I bring additional trained bartending staff so every guest is served quickly and professionally. Staffing is planned during your consultation based on guest count, bar setup, and event timeline.',
   },
+  {
+    question: 'What if my event runs longer than planned?',
+    answer: 'No problem — I am happy to stay and keep pouring as long as you need. Overtime is billed at a simple hourly rate and is arranged in advance or during the event with the host, so there are never any surprise charges.',
+  },
+  {
+    question: 'Are there travel fees?',
+    answer: 'Events in the Raleigh / Triangle area have no travel fee. For venues outside the Triangle, a reasonable travel fee may apply depending on distance and event size. I will confirm all costs upfront during your consultation.',
+  },
 ];
 
 export default function FAQ() {
