@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import Logo from '@/components/Logo';
+import HeaderLogo from '@/components/HeaderLogo';
 
 const navLinks = [
   { label: 'About', href: '#experience' },
@@ -98,20 +99,21 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
           <div className="flex items-center justify-between h-24">
-            {/* Logo - BIGGER */}
-            <a 
-              href="#" 
-              className="flex items-center gap-3 group"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            >
-              <Logo className="h-14 w-14 md:h-16 md:w-16" priority />
-            </a>
+            <div className="flex items-center gap-4 xl:gap-6">
+              {/* Logo */}
+              <a
+                href="#"
+                className="flex items-center gap-3 group"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                <HeaderLogo className="h-10 w-10 md:h-11 md:w-11" />
+              </a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-6">
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex items-center gap-5">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.slice(1);
                 return (
@@ -130,14 +132,19 @@ export default function Navigation() {
                   </a>
                 );
               })}
-              <a 
+              </div>
+            </div>
+
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-4">
+              <a
                 href="tel:+19843854736"
                 className="flex items-center gap-2 text-lux-purple hover:text-lux-pink transition-colors text-sm font-medium"
               >
                 <Phone className="w-4 h-4" />
                 <span>984-385-4736</span>
               </a>
-              <button 
+              <button
                 onClick={scrollToContact}
                 className="lux-button-primary text-xs py-3 px-6"
               >
