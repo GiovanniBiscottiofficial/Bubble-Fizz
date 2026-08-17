@@ -214,9 +214,12 @@ ${formData.message || 'No additional message'}
                     >
                       <option value="" className="bg-lux-blacklift">Select event type</option>
                       <option value="wedding" className="bg-lux-blacklift">Wedding</option>
-                      <option value="birthday" className="bg-lux-blacklift">Birthday Party</option>
+                      <option value="private-party" className="bg-lux-blacklift">Private Party / Celebration</option>
                       <option value="corporate" className="bg-lux-blacklift">Corporate Event</option>
-                      <option value="private" className="bg-lux-blacklift">Private Celebration</option>
+                      <option value="sporting" className="bg-lux-blacklift">Sporting Event</option>
+                      <option value="popup" className="bg-lux-blacklift">Pop-Up Bar / Bartender-for-Hire</option>
+                      <option value="birthday" className="bg-lux-blacklift">Birthday Party</option>
+                      <option value="holiday" className="bg-lux-blacklift">Holiday Party</option>
                       <option value="other" className="bg-lux-blacklift">Other</option>
                     </select>
                   </div>

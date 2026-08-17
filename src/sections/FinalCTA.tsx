@@ -41,37 +41,37 @@ export default function FinalCTA() {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=100%',
+          end: '+=60%',
           pin: true,
-          scrub: 0.3,
+          scrub: 0.1,
         }
       });
 
       // ENTRANCE (0% - 30%)
       scrollTl.fromTo(bg,
-        { scale: 1.08, opacity: 0.7 },
+        { scale: 1.04, opacity: 0.8 },
         { scale: 1, opacity: 1, ease: 'none' },
         0
       );
 
       const elements = content.querySelectorAll('.animate-in');
       scrollTl.fromTo(elements,
-        { y: '10vh', opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.04, ease: 'power2.out' },
+        { y: '6vh', opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.02, ease: 'power2.out' },
         0
       );
 
-      // EXIT (70% - 100%)
+      // EXIT (55% - 95%)
       scrollTl.fromTo(content,
         { y: 0, opacity: 1 },
-        { y: '-12vh', opacity: 0, ease: 'power2.in' },
-        0.7
+        { y: '-6vh', opacity: 0, ease: 'power2.in' },
+        0.55
       );
 
       scrollTl.fromTo(bg,
         { scale: 1, y: 0 },
-        { scale: 1.05, y: '-6vh', ease: 'none' },
-        0.7
+        { scale: 1.02, y: '-3vh', ease: 'none' },
+        0.55
       );
 
     }, section);
@@ -136,7 +136,7 @@ export default function FinalCTA() {
         </h2>
         
         <p className="animate-in mt-6 md:mt-8 text-lux-muted text-base md:text-xl max-w-xl leading-relaxed">
-          Let's design a pour list that fits your celebration.
+          Let's design a pour list that fits your event.
         </p>
 
         <div className="animate-in mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4">

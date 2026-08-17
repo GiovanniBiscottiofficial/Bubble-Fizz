@@ -116,9 +116,9 @@ export default function Hero() {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=100%',
+          end: '+=70%',
           pin: true,
-          scrub: 0.3,
+          scrub: 0.1,
           onLeaveBack: () => {
             gsap.set([logo, headline, subhead, cta, tagline], { opacity: 1, y: 0 });
             gsap.set(bg, { scale: 1, y: 0 });
@@ -126,41 +126,41 @@ export default function Hero() {
         }
       });
 
-      // EXIT phase: 70% - 100%
+      // EXIT phase: 55% - 95%
       scrollTl.fromTo(logo,
         { y: 0, opacity: 1 },
-        { y: '-15vh', opacity: 0, ease: 'power2.in' },
-        0.65
+        { y: '-8vh', opacity: 0, ease: 'power2.in' },
+        0.55
       );
 
       scrollTl.fromTo(headline,
         { y: 0, opacity: 1 },
-        { y: '-18vh', opacity: 0, ease: 'power2.in' },
-        0.7
+        { y: '-10vh', opacity: 0, ease: 'power2.in' },
+        0.6
       );
 
       scrollTl.fromTo(subhead,
         { y: 0, opacity: 1 },
-        { y: '-14vh', opacity: 0, ease: 'power2.in' },
-        0.72
+        { y: '-8vh', opacity: 0, ease: 'power2.in' },
+        0.62
       );
 
       scrollTl.fromTo(cta,
         { y: 0, opacity: 1 },
-        { y: '-10vh', opacity: 0, ease: 'power2.in' },
-        0.74
+        { y: '-6vh', opacity: 0, ease: 'power2.in' },
+        0.64
       );
 
       scrollTl.fromTo(tagline,
         { y: 0, opacity: 1 },
-        { y: '-10vh', opacity: 0, ease: 'power2.in' },
-        0.7
+        { y: '-6vh', opacity: 0, ease: 'power2.in' },
+        0.6
       );
 
       scrollTl.fromTo(bg,
         { scale: 1, y: 0 },
-        { scale: 1.06, y: '-6vh', ease: 'none' },
-        0.7
+        { scale: 1.04, y: '-4vh', ease: 'none' },
+        0.6
       );
 
     }, section);
@@ -247,7 +247,7 @@ export default function Hero() {
           className="mt-4 md:mt-6 text-center text-lux-muted text-base md:text-lg max-w-2xl leading-relaxed"
           style={{ opacity: 0 }}
         >
-          Mobile champagne bars and craft cocktails for weddings, celebrations, and corporate events across North Carolina.
+          Mobile champagne bars and craft cocktails for weddings, private parties, corporate events, sporting events, and pop-up bars across North Carolina.
         </p>
 
         {/* CTA Buttons */}

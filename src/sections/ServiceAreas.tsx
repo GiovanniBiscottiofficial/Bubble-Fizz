@@ -1,23 +1,23 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MapPin, Car, Plane, Clock, Home, Phone, type LucideIcon } from 'lucide-react';
+import { MapPin, Car, Building2, Globe } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const serviceAreas: { name: string; distance: string; icon: LucideIcon }[] = [
-  { name: 'Raleigh', distance: 'Home Base', icon: Home },
-  { name: 'Durham', distance: '15 min', icon: Car },
-  { name: 'Chapel Hill', distance: '25 min', icon: Car },
-  { name: 'Cary', distance: '20 min', icon: Car },
-  { name: 'Charlotte', distance: '2.5 hrs', icon: Car },
-  { name: 'Greensboro', distance: '1 hr', icon: Car },
-  { name: 'Winston-Salem', distance: '1.5 hrs', icon: Car },
-  { name: 'Fayetteville', distance: '1 hr', icon: Car },
-  { name: 'Wilmington', distance: '2 hrs', icon: Car },
-  { name: 'Asheville', distance: '3.5 hrs', icon: Plane },
-  { name: 'Outer Banks', distance: '3 hrs', icon: Car },
-  { name: 'And Beyond!', distance: 'Let\'s Talk', icon: Phone },
+const serviceAreas: { name: string; distance: string }[] = [
+  { name: 'Raleigh', distance: 'Home Base' },
+  { name: 'Durham', distance: '15 min' },
+  { name: 'Chapel Hill', distance: '25 min' },
+  { name: 'Cary', distance: '20 min' },
+  { name: 'Charlotte', distance: '2.5 hrs' },
+  { name: 'Greensboro', distance: '1 hr' },
+  { name: 'Winston-Salem', distance: '1.5 hrs' },
+  { name: 'Fayetteville', distance: '1 hr' },
+  { name: 'Wilmington', distance: '2 hrs' },
+  { name: 'Asheville', distance: '3.5 hrs' },
+  { name: 'Outer Banks', distance: '3 hrs' },
+  { name: 'And Beyond!', distance: 'Let\'s Talk' },
 ];
 
 export default function ServiceAreas() {
@@ -101,22 +101,22 @@ export default function ServiceAreas() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           <div className="lux-card text-center py-8">
-            <Car className="w-8 h-8 text-lux-pink mx-auto mb-3" />
+            <MapPin className="w-7 h-7 text-lux-pink mx-auto mb-3" />
             <p className="font-display text-3xl text-lux-white">50+</p>
             <p className="text-lux-muted text-sm">Mile Radius</p>
           </div>
           <div className="lux-card text-center py-8">
-            <Clock className="w-8 h-8 text-lux-purple mx-auto mb-3" />
+            <Building2 className="w-7 h-7 text-lux-purple mx-auto mb-3" />
             <p className="font-display text-3xl text-lux-white">12</p>
             <p className="text-lux-muted text-sm">Major Cities</p>
           </div>
           <div className="lux-card text-center py-8">
-            <Plane className="w-8 h-8 text-lux-gold mx-auto mb-3" />
+            <Globe className="w-7 h-7 text-lux-gold mx-auto mb-3" />
             <p className="font-display text-3xl text-lux-white">NC</p>
             <p className="text-lux-muted text-sm">Statewide</p>
           </div>
           <div className="lux-card text-center py-8">
-            <MapPin className="w-8 h-8 text-lux-pink mx-auto mb-3" />
+            <Car className="w-7 h-7 text-lux-pink mx-auto mb-3" />
             <p className="font-display text-3xl text-lux-white">100%</p>
             <p className="text-lux-muted text-sm">Mobile Service</p>
           </div>
@@ -130,11 +130,12 @@ export default function ServiceAreas() {
               ref={el => { cardsRef.current[index] = el; }}
               className="lux-card group hover:border-lux-pink/40 transition-all duration-300 hover:-translate-y-1 text-center py-6"
             >
-              <area.icon className="w-8 h-8 mx-auto mb-3 text-lux-gold group-hover:text-lux-pink transition-colors" />
+              <span className="block text-xs font-label uppercase tracking-wider text-lux-gold/70 mb-1 group-hover:text-lux-pink transition-colors">
+                {area.distance}
+              </span>
               <h3 className="font-display text-xl text-lux-white group-hover:text-lux-pink transition-colors">
                 {area.name}
               </h3>
-              <p className="text-lux-muted text-sm mt-1">{area.distance}</p>
             </div>
           ))}
         </div>

@@ -93,8 +93,11 @@ export default function Newsletter() {
             </form>
           ) : (
             <div className="bg-lux-pink/10 border border-lux-pink/30 rounded-2xl p-6 max-w-md mx-auto">
-              <p className="text-lux-pink font-display text-xl mb-2">You're on the list! 🥂</p>
-              <p className="text-lux-muted text-sm">Watch your inbox for exclusive cocktail recipes and updates!</p>
+              <div className="flex items-center justify-center gap-2 text-lux-pink font-display text-xl mb-2">
+                <Sparkles className="w-5 h-5" />
+                <span>You're on the list!</span>
+              </div>
+              <p className="text-lux-muted text-sm">Watch your inbox for exclusive cocktail recipes and updates.</p>
             </div>
           )}
 

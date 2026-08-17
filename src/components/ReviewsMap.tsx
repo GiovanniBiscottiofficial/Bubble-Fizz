@@ -47,7 +47,7 @@ export default function ReviewsMap() {
             Loved across <span className="text-lux-pink">North Carolina</span>.
           </h2>
           <p className="mt-6 text-lux-muted text-lg max-w-2xl mx-auto">
-            Real words from real hosts. See why Bubble & Fizz is the go-to mobile bar for weddings, parties, and corporate events.
+            Real words from real hosts. See why Bubble & Fizz is the go-to mobile bar for weddings, private parties, corporate events, and pop-up bars.
           </p>
         </div>
 

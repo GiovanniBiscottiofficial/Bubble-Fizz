@@ -55,28 +55,28 @@ export default function Gallery() {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=100%',
+          end: '+=60%',
           pin: true,
-          scrub: 0.3,
+          scrub: 0.1,
         }
       });
 
       // ENTRANCE (0% - 30%)
       const tileAnimations = [
-        { x: '-50vw', y: 0, from: 0, to: 0.08 },
-        { x: 0, y: '-60vh', from: 0, to: 0.10 },
-        { x: '50vw', y: 0, from: 0, to: 0.08 },
-        { x: '-30vw', y: '40vh', from: 0.05, to: 0.15 },
-        { x: 0, y: '40vh', from: 0.08, to: 0.18 },
-        { x: '30vw', y: '40vh', from: 0.05, to: 0.15 },
-        { x: '-40vw', y: '30vh', from: 0.10, to: 0.20 },
-        { x: '40vw', y: '30vh', from: 0.12, to: 0.22 },
+        { x: '-25vw', y: 0, from: 0, to: 0.06 },
+        { x: 0, y: '-30vh', from: 0, to: 0.08 },
+        { x: '25vw', y: 0, from: 0, to: 0.06 },
+        { x: '-15vw', y: '20vh', from: 0.04, to: 0.12 },
+        { x: 0, y: '20vh', from: 0.06, to: 0.14 },
+        { x: '15vw', y: '20vh', from: 0.04, to: 0.12 },
+        { x: '-20vw', y: '15vh', from: 0.08, to: 0.16 },
+        { x: '20vw', y: '15vh', from: 0.10, to: 0.18 },
       ];
 
       tiles.forEach((tile, index) => {
-        const anim = tileAnimations[index] || { x: 0, y: '30vh', from: 0.10, to: 0.20 };
+        const anim = tileAnimations[index] || { x: 0, y: '20vh', from: 0.08, to: 0.16 };
         scrollTl.fromTo(tile,
-          { x: anim.x, y: anim.y, opacity: 0, scale: 0.96 },
+          { x: anim.x, y: anim.y, opacity: 0, scale: 0.98 },
           { x: 0, y: 0, opacity: 1, scale: 1, ease: 'power2.out' },
           anim.from
         );
@@ -84,16 +84,16 @@ export default function Gallery() {
 
       // Caption entrance
       scrollTl.fromTo(caption,
-        { y: 20, opacity: 0 },
+        { y: 16, opacity: 0 },
         { y: 0, opacity: 1, ease: 'power2.out' },
-        0.2
+        0.15
       );
 
-      // EXIT (70% - 100%)
+      // EXIT (55% - 95%)
       scrollTl.fromTo(mosaic,
         { y: 0, opacity: 1 },
-        { y: '-10vh', opacity: 0, ease: 'power2.in' },
-        0.7
+        { y: '-5vh', opacity: 0, ease: 'power2.in' },
+        0.55
       );
 
     }, section);

@@ -42,19 +42,19 @@ export default function SignatureCocktails() {
       // On mobile, skip pinning — use simple entrance animations instead
       if (isMobile) {
         gsap.fromTo(bg,
-          { scale: 1.10, y: '8vh', opacity: 0.6 },
+          { scale: 1.05, y: '3vh', opacity: 0.75 },
           { scale: 1.00, y: 0, opacity: 1, duration: 1, ease: 'power3.out',
-            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 50%', scrub: 0.5 } }
+            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 55%', scrub: 0.2 } }
         );
         gsap.fromTo(headline,
-          { x: '-12vw', opacity: 0 },
+          { x: '-6vw', opacity: 0 },
           { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 50%', scrub: 0.5 } }
+            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 55%', scrub: 0.2 } }
         );
         gsap.fromTo(card,
-          { x: '12vw', opacity: 0 },
+          { x: '6vw', opacity: 0 },
           { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 50%', scrub: 0.5 } }
+            scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 55%', scrub: 0.2 } }
         );
         return;
       }
@@ -63,61 +63,61 @@ export default function SignatureCocktails() {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=100%',
+          end: '+=60%',
           pin: true,
-          scrub: 0.3,
+          scrub: 0.1,
         }
       });
 
       // ENTRANCE (0% - 30%)
       // Background
       scrollTl.fromTo(bg,
-        { scale: 1.10, y: '8vh', opacity: 0.6 },
+        { scale: 1.04, y: '3vh', opacity: 0.75 },
         { scale: 1.00, y: 0, opacity: 1, ease: 'none' },
         0
       );
 
       // Headline
       scrollTl.fromTo(headline,
-        { x: '-12vw', opacity: 0 },
+        { x: '-5vw', opacity: 0 },
         { x: 0, opacity: 1, ease: 'power2.out' },
         0
       );
 
       // Card
       scrollTl.fromTo(card,
-        { x: '12vw', opacity: 0, rotateY: 8 },
+        { x: '5vw', opacity: 0, rotateY: 3 },
         { x: 0, opacity: 1, rotateY: 0, ease: 'power2.out' },
-        0.08
+        0.05
       );
 
       // Menu lines stagger
       const menuLines = card.querySelectorAll('.menu-line');
       scrollTl.fromTo(menuLines,
-        { y: 16, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.03, ease: 'power2.out' },
-        0.18
+        { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.02, ease: 'power2.out' },
+        0.12
       );
 
-      // SETTLE (30% - 70%) - elements hold position
+      // SETTLE (30% - 60%) - elements hold position
 
-      // EXIT (70% - 100%)
+      // EXIT (60% - 95%)
       scrollTl.fromTo(headline,
         { x: 0, opacity: 1 },
-        { x: '-10vw', opacity: 0, ease: 'power2.in' },
-        0.7
+        { x: '-4vw', opacity: 0, ease: 'power2.in' },
+        0.6
       );
 
       scrollTl.fromTo(card,
         { x: 0, opacity: 1 },
-        { x: '10vw', opacity: 0, ease: 'power2.in' },
-        0.7
+        { x: '4vw', opacity: 0, ease: 'power2.in' },
+        0.6
       );
 
       scrollTl.fromTo(bg,
         { scale: 1, y: 0 },
-        { scale: 1.05, y: '-6vh', ease: 'none' },
-        0.7
+        { scale: 1.02, y: '-3vh', ease: 'none' },
+        0.6
       );
 
     }, section);
