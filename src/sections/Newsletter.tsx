@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail, Send, Sparkles } from 'lucide-react';
+import Logo from '@/components/Logo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,7 +61,7 @@ export default function Newsletter() {
           ref={contentRef}
           className="lux-card text-center border-lux-pink/30"
         >
-          <Sparkles className="w-12 h-12 text-lux-pink mx-auto mb-6" />
+          <Logo className="h-24 w-24 mx-auto mb-6" priority />
           
           <h2 className="font-display text-3xl md:text-4xl text-lux-white mb-4">
             Join the <span className="text-gradient-purple">Bubble & Fizz</span> Family
