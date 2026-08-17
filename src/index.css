@@ -262,6 +262,21 @@
   animation: hero-sparkle 1.2s ease-in-out forwards;
 }
 
+/* Service radius ring on map */
+@keyframes radiusPulse {
+  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.55; }
+  70% { opacity: 0.2; }
+  100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+}
+
+.animate-radius-pulse {
+  animation: radiusPulse 3s ease-out infinite;
+}
+
+.animate-radius-pulse-delayed {
+  animation: radiusPulse 3s ease-out 1.5s infinite;
+}
+
 /* Custom cursor: hide default on fine-pointer devices when active */
 .custom-cursor * {
   cursor: none !important;

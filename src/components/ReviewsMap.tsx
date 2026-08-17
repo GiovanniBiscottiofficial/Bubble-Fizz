@@ -111,8 +111,10 @@ export default function ReviewsMap() {
                 style={{ top: '32%', left: '56%', transform: 'translate(-50%, -100%)' }}
                 aria-hidden="true"
               >
-                <MapPin className="w-8 h-8 text-lux-pink fill-lux-pink/30 drop-shadow-[0_0_16px_rgba(236,72,153,0.9)]" />
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-lux-pink animate-ping" />
+                <MapPin className="w-8 h-8 text-lux-gold fill-lux-gold/30 drop-shadow-[0_0_16px_rgba(200,169,81,0.9)]" />
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-lux-gold animate-ping" />
+                <span className="absolute top-0 left-1/2 w-24 h-24 rounded-full border border-lux-gold/40 animate-radius-pulse" />
+                <span className="absolute top-0 left-1/2 w-24 h-24 rounded-full border border-lux-gold/30 animate-radius-pulse-delayed" />
               </div>
               {/* Interaction blocker so the map stays focused on NC */}
               <div
