@@ -2,6 +2,7 @@ import { ChevronRight } from 'lucide-react';
 
 import OptimizedImage from '@/components/OptimizedImage';
 import Logo from '@/components/Logo';
+import HeroSparkle from '@/components/HeroSparkle';
 import CertificationBadges from '@/components/CertificationBadges';
 
 export default function Hero() {
@@ -26,8 +27,9 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
-        <div className="mb-4 md:mb-6">
+        <div className="relative mb-4 md:mb-6">
           <Logo className="h-28 w-28 sm:h-32 sm:w-32 md:h-40 md:w-40 lg:h-48 lg:w-48 logo-dramatic" priority />
+          <HeroSparkle />
         </div>
 
         <p
