@@ -27,7 +27,7 @@ export default function FinalCTA() {
 
       <div className="relative z-10 text-center flex flex-col items-center">
         <div className="mb-6">
-          <Logo className="h-28 w-28 md:h-40 md:w-40 lg:h-48 lg:w-48" priority />
+          <Logo className="h-28 w-28 md:h-40 md:w-40 lg:h-48 lg:w-48 logo-dramatic" priority />
         </div>
 
         <p className="text-gradient-purple font-label text-sm md:text-base uppercase tracking-[0.25em] mb-6">

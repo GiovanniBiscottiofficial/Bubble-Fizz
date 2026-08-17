@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronDown, HelpCircle, Phone, Mail, MessageSquare } from 'lucide-react';
+import { ChevronDown, HelpCircle, Phone, Mail } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,10 +92,6 @@ export default function FAQ() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section
       ref={sectionRef}
@@ -172,13 +168,6 @@ export default function FAQ() {
               <Mail className="w-4 h-4 mr-2" />
               Email Mercedes
             </a>
-            <button
-              onClick={scrollToContact}
-              className="lux-button-outline inline-flex"
-            >
-              <MessageSquare className="w-4 h-4 mr-2" />
-              Send a Message
-            </button>
           </div>
         </div>
       </div>
