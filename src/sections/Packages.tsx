@@ -39,7 +39,7 @@ const packages = [
     description: 'The ultimate luxury package',
     features: [
       'Up to 6 hours of service',
-      'Bespoke menu + signage',
+      'Custom menu + signage',
       'Champagne tower option',
       'Dedicated lead bartender',
     ],
