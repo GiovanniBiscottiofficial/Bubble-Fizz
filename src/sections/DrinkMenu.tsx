@@ -145,11 +145,11 @@ export default function DrinkMenu() {
         </div>
 
         {/* Drinks Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {activeDrinks.map((drink) => (
             <div
               key={drink.name}
-              className="lux-card group hover:border-lux-pink/40 transition-all duration-300 hover:-translate-y-1"
+              className="lux-card group hover:border-lux-pink/40 transition-all duration-300 hover:-translate-y-1 last:md:col-span-2 last:lg:col-span-1"
             >
               <h3 className="font-display text-xl text-lux-white group-hover:text-lux-pink transition-colors mb-3">
               {drink.name}

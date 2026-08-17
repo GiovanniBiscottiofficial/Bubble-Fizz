@@ -146,22 +146,22 @@ export default function ThumbtackMoments() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {moments.map((moment, index) => (
             <div
               key={moment.src}
               ref={el => { cardsRef.current[index] = el; }}
-              className="lux-card overflow-hidden group hover:border-lux-pink/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(236,72,153,0.1)]"
+              className="lux-card overflow-hidden group hover:border-lux-pink/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(236,72,153,0.1)] last:md:col-span-2 last:lg:col-span-1"
             >
               <div className="relative h-64 overflow-hidden">
                 <OptimizedImage
                   src={moment.src}
                   alt={moment.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.70] saturate-[0.65] contrast-[0.95]"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.55] saturate-[0.50] contrast-[0.90]"
                 />
-                <div className="absolute inset-0 bg-lux-black/20" />
-                <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/45 via-lux-pink/20 to-lux-black/30 mix-blend-overlay opacity-80 group-hover:opacity-65 transition-opacity duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-t from-lux-black via-lux-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-lux-black/35" />
+                <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/50 via-lux-pink/25 to-lux-black/40 mix-blend-overlay opacity-90 group-hover:opacity-70 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-lux-black via-lux-black/50 to-transparent" />
                 <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-lux-black/70 backdrop-blur-sm border border-lux-white/10 text-[10px] uppercase tracking-wider text-lux-white/80 font-medium">
                   Recent
                 </div>
