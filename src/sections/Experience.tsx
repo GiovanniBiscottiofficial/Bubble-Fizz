@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Wine, Palette, ConciergeBell } from 'lucide-react';
+import { Wine, Palette, ConciergeBell, Martini, PartyPopper, Sparkles } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import CertificationBadges from '@/components/CertificationBadges';
 
@@ -25,6 +25,33 @@ const pillars = [
     label: 'Impeccable Service',
     title: 'Professional Team',
     description: 'Professional, warm bartenders who read the room and create memorable experiences.',
+  },
+];
+
+const serviceGroups = [
+  {
+    icon: Martini,
+    title: 'Beverage Types',
+    items: ['Beer', 'Liquor / mixed drinks', 'Wine', 'Non-alcoholic beverages'],
+  },
+  {
+    icon: PartyPopper,
+    title: 'Event Type',
+    items: [
+      'Wedding reception',
+      'Birthday party',
+      'Special occasion',
+      'Cocktail party',
+      'Corporate event',
+      'Fundraiser',
+      'Holiday party',
+      'Bachelor / bachelorette party',
+    ],
+  },
+  {
+    icon: Sparkles,
+    title: 'Event Vibe',
+    items: ['Low key / casual', 'Formal / elegant', 'Upbeat / lively', 'Club scene'],
   },
 ];
 
@@ -149,7 +176,7 @@ export default function Experience() {
                 Professional, Licensed & Insured Mixologist
               </p>
               <p className="mt-4 text-lux-muted leading-relaxed max-w-xl">
-                With years of experience crafting unforgettable bar experiences, I bring passion, professionalism, and a touch of glamour to every event. From intimate gatherings to grand celebrations, Bubble & Fizz is here to elevate your special occasion.
+                Exceptional customer service and awesome cocktails with a smile and swagger like no other — and we make amazing dry ice mocktails, too! Seeing people enjoy my delicious craft cocktails while having a great time always puts a smile on my face. I love the positive feedback after every sip. My team and I specialize in offering an experience and atmosphere like no other. Book us and find out what all the talk is about!
               </p>
               <CertificationBadges compact className="mt-6" />
               <blockquote className="mt-6 text-lux-white/80 italic border-l-2 border-lux-pink/40 pl-4 max-w-xl">
@@ -159,7 +186,34 @@ export default function Experience() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        {/* Services Offered */}
+        <div className="mt-20 grid md:grid-cols-3 gap-6">
+          {serviceGroups.map((group) => (
+            <div
+              key={group.title}
+              className="lux-card"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-lux-purple/20 to-lux-pink/20 flex items-center justify-center">
+                  <group.icon className="w-5 h-5 text-lux-pink" />
+                </div>
+                <h4 className="font-display text-lg text-lux-white">{group.title}</h4>
+              </div>
+              <ul className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <li
+                    key={item}
+                    className="px-3 py-1 rounded-full text-xs text-lux-white/90 bg-lux-white/5 border border-lux-white/10"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 mt-20">
           {/* Left Column - Text */}
           <div className="lg:sticky lg:top-32 lg:self-start">
             <span className="section-label">OUR SERVICES</span>
