@@ -1,10 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const cocktails = [
   {
@@ -12,48 +7,24 @@ const cocktails = [
     description: 'Sparkling rosé, berry reduction, gold leaf.',
   },
   {
-    name: 'Midnight Margarita',
-    description: 'Mezcal, citrus, charcoal salt rim.',
+    name: 'Purple Reign',
+    description: 'Empress gin, lemon, lavender syrup.',
   },
   {
-    name: 'Velvet Old Fashioned',
-    description: 'Bourbon, vanilla, burnt orange.',
+    name: 'Shimmer Elixir',
+    description: 'Vodka, edible shimmer, citrus, sparkling topper.',
   },
 ];
 
 export default function SignatureCocktails() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const content = contentRef.current;
-
-    if (!section || !content) return;
-
-    const ctx = gsap.context(() => {
-      const elements = content.querySelectorAll('.animate-in');
-      gsap.fromTo(elements,
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.05,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 55%', scrub: 0.5 }
-        }
-      );
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
+  const scrollToMenu = () => {
+    document.getElementById('drink-menu')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section
       id="signature-cocktails"
-      ref={sectionRef}
-      className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-30 flex items-center overflow-hidden"
+      className="relative w-full py-20 md:py-28 px-6 md:px-12 lg:px-20 z-30 bg-lux-black"
     >
       {/* Pink glow */}
       <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-lux-pink/15 rounded-full blur-[120px] pointer-events-none" />
@@ -72,9 +43,9 @@ export default function SignatureCocktails() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto">
-        <div ref={contentRef} className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Headline */}
-          <div className="animate-in">
+          <div>
             <span className="section-label">OUR MENU</span>
             <h2
               className="mt-4 font-display text-lux-white font-semibold leading-[1.0]"
@@ -88,7 +59,7 @@ export default function SignatureCocktails() {
           </div>
 
           {/* Right - Menu Card */}
-          <div className="animate-in justify-self-start lg:justify-self-end">
+          <div className="justify-self-start lg:justify-self-end">
             <div
               className="w-full max-w-md rounded-3xl p-8 md:p-10 border border-lux-purple/30"
               style={{
@@ -111,15 +82,22 @@ export default function SignatureCocktails() {
                 ))}
               </div>
 
+              <button
+                onClick={scrollToMenu}
+                className="mt-8 w-full py-4 px-6 rounded-xl bg-gradient-to-r from-lux-purple to-lux-pink text-white font-medium hover:shadow-[0_0_30px_rgba(236,72,153,0.4)] transition-all flex items-center justify-center gap-2 group"
+              >
+                View Full Menu
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
+
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfYourGoogleFormLink/viewform"
+                href="https://www.thumbtack.com/nc/mebane/bartenders/bubble-fizz-mobile-bartending/service/296554191838363813"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 lux-button-outline w-full group inline-flex justify-center"
+                className="mt-4 w-full py-3 px-6 rounded-xl border border-lux-pink/30 text-lux-white text-sm font-medium hover:border-lux-pink/60 transition-all flex items-center justify-center gap-2 group"
               >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Request Full Menu
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <ExternalLink className="w-4 h-4" />
+                Book on Thumbtack
               </a>
             </div>
           </div>

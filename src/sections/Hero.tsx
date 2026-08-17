@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronRight } from 'lucide-react';
 
-import { useIsMobile } from '@/hooks/use-mobile';
 import OptimizedImage from '@/components/OptimizedImage';
 import Logo from '@/components/Logo';
 import CertificationBadges from '@/components/CertificationBadges';
@@ -18,7 +17,6 @@ export default function Hero() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -32,66 +30,25 @@ export default function Hero() {
     if (!section || !logo || !headline || !subhead || !cta || !bg || !tagline) return;
 
     const ctx = gsap.context(() => {
-      // On mobile, skip pinning — just play entrance animations and exit normally
-      if (isMobile) {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        tl.fromTo(bg,
-          { scale: 1.08, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 1.2 }
-        );
-        tl.fromTo(logo,
-          { y: 50, opacity: 0, scale: 0.8 },
-          { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.2)' },
-          '-=0.8'
-        );
-        tl.fromTo(tagline,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6 },
-          '-=0.5'
-        );
-        const words = headline.querySelectorAll('.word');
-        tl.fromTo(words,
-          { y: 40, opacity: 0, rotateX: 18 },
-          { y: 0, opacity: 1, rotateX: 0, duration: 0.8, stagger: 0.08 },
-          '-=0.3'
-        );
-        tl.fromTo(subhead,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6 },
-          '-=0.4'
-        );
-        tl.fromTo(cta,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6 },
-          '-=0.3'
-        );
-        return;
-      }
-
-      // Desktop: Auto-play entrance animation
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      // Background entrance
-      tl.fromTo(bg, 
+      tl.fromTo(bg,
         { scale: 1.08, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1.2 }
       );
 
-      // Logo entrance - BIGGER ANIMATION
       tl.fromTo(logo,
         { y: 50, opacity: 0, scale: 0.8 },
         { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.2)' },
         '-=0.8'
       );
 
-      // Tagline entrance
       tl.fromTo(tagline,
         { y: 20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6 },
         '-=0.5'
       );
 
-      // Headline words entrance
       const words = headline.querySelectorAll('.word');
       tl.fromTo(words,
         { y: 40, opacity: 0, rotateX: 18 },
@@ -99,113 +56,49 @@ export default function Hero() {
         '-=0.3'
       );
 
-      // Subheadline entrance
       tl.fromTo(subhead,
         { y: 20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6 },
         '-=0.4'
       );
 
-      // CTA entrance
       tl.fromTo(cta,
         { y: 20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6 },
         '-=0.3'
       );
-
-      // Scroll-driven exit animation
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: '+=70%',
-          pin: true,
-          scrub: 0.1,
-          onLeaveBack: () => {
-            gsap.set([logo, headline, subhead, cta, tagline], { opacity: 1, y: 0 });
-            gsap.set(bg, { scale: 1, y: 0 });
-          }
-        }
-      });
-
-      // EXIT phase: 55% - 95%
-      scrollTl.fromTo(logo,
-        { y: 0, opacity: 1 },
-        { y: '-8vh', opacity: 0, ease: 'power2.in' },
-        0.55
-      );
-
-      scrollTl.fromTo(headline,
-        { y: 0, opacity: 1 },
-        { y: '-10vh', opacity: 0, ease: 'power2.in' },
-        0.6
-      );
-
-      scrollTl.fromTo(subhead,
-        { y: 0, opacity: 1 },
-        { y: '-8vh', opacity: 0, ease: 'power2.in' },
-        0.62
-      );
-
-      scrollTl.fromTo(cta,
-        { y: 0, opacity: 1 },
-        { y: '-6vh', opacity: 0, ease: 'power2.in' },
-        0.64
-      );
-
-      scrollTl.fromTo(tagline,
-        { y: 0, opacity: 1 },
-        { y: '-6vh', opacity: 0, ease: 'power2.in' },
-        0.6
-      );
-
-      scrollTl.fromTo(bg,
-        { scale: 1, y: 0 },
-        { scale: 1.04, y: '-4vh', ease: 'none' },
-        0.6
-      );
-
     }, section);
 
     return () => ctx.revert();
   }, []);
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden z-10"
     >
-      {/* Background Image - MERCEDES */}
-      <div 
+      <div
         ref={bgRef}
         className="absolute inset-0 w-full h-full"
         style={{ opacity: 0 }}
       >
-        <OptimizedImage 
-          src="/mercedes_new_1.jpg" 
+        <OptimizedImage
+          src="/mercedes_new_1.jpg"
           alt="Mercedes Pettiford - Professional Mixologist pouring champagne"
           className="w-full h-full object-cover object-top"
           priority
         />
-        {/* Purple/Pink gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/30 via-transparent to-lux-pink/20" />
-        {/* Vignette overlay */}
         <div className="absolute inset-0 vignette-overlay" />
-        {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-lux-black/70 via-lux-black/40 to-lux-black/80" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
-        {/* Logo - MUCH BIGGER */}
-        <div 
+        <div
           ref={logoRef}
           className="mb-4 md:mb-6"
           style={{ opacity: 0 }}
@@ -213,8 +106,7 @@ export default function Hero() {
           <Logo className="h-36 w-36 md:h-48 md:w-48 lg:h-56 lg:w-56 logo-dramatic" priority />
         </div>
 
-        {/* Tagline */}
-        <p 
+        <p
           ref={taglineRef}
           className="text-gradient-purple font-label text-sm md:text-base uppercase tracking-[0.25em] mb-6 md:mb-8"
           style={{ opacity: 0 }}
@@ -222,11 +114,10 @@ export default function Hero() {
           BOOK US FOR ANY AND ALL EVENTS
         </p>
 
-        {/* Headline */}
-        <h1 
+        <h1
           ref={headlineRef}
           className="font-display text-center text-lux-white font-semibold leading-[0.95] tracking-[-0.02em]"
-          style={{ 
+          style={{
             fontSize: 'clamp(32px, 4vw, 60px)',
             opacity: 0
           }}
@@ -238,8 +129,7 @@ export default function Hero() {
           <span className="word inline-block text-lux-purple">moments.</span>
         </h1>
 
-        {/* Subheadline */}
-        <p 
+        <p
           ref={subheadRef}
           className="mt-4 md:mt-6 text-center text-lux-muted text-base md:text-lg max-w-2xl leading-relaxed"
           style={{ opacity: 0 }}
@@ -247,14 +137,13 @@ export default function Hero() {
           Mobile champagne bars and craft cocktails for weddings, private parties, corporate events, sporting events, and pop-up bars across the Triangle, Winston‑Salem, Sanford, Mebane, and all of North Carolina.
         </p>
 
-        {/* CTA Buttons */}
-        <div 
+        <div
           ref={ctaRef}
           className="mt-6 md:mt-8 flex flex-col items-center gap-4"
           style={{ opacity: 0 }}
         >
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <button 
+            <button
               onClick={scrollToContact}
               className="lux-button-primary"
             >

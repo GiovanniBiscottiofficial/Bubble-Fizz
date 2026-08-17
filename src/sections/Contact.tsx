@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, Phone, MapPin, Send, Instagram, Facebook, ExternalLink, Calendar, Loader2, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram, Facebook, ExternalLink, Calendar, Loader2, CheckCircle, Star } from 'lucide-react';
 import Logo from '@/components/Logo';
 import CertificationBadges from '@/components/CertificationBadges';
 
@@ -35,10 +35,11 @@ export default function Contact() {
     if (!section || !form || !info || !footer) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(form,
-        { x: '-6vw', opacity: 0 },
+      const elements = [form, info];
+      gsap.fromTo(elements,
+        { y: 40, opacity: 0 },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
           duration: 0.8,
           ease: 'power3.out',
@@ -46,23 +47,7 @@ export default function Contact() {
             trigger: section,
             start: 'top 80%',
             end: 'top 55%',
-            scrub: 0.5,
-          }
-        }
-      );
-
-      gsap.fromTo(info,
-        { x: '6vw', opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 75%',
-            end: 'top 50%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
@@ -349,6 +334,11 @@ ${formData.message || 'No additional message'}
                     Professional, Licensed & Insured Mixologist
                   </p>
                   <CertificationBadges compact className="mt-3" />
+                  <div className="mt-4 flex flex-wrap gap-3 text-xs text-lux-muted">
+                    <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-lux-pink fill-lux-pink" /> 5.0 Avg Rating</span>
+                    <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-lux-purple" /> 50+ Events</span>
+                    <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-lux-gold" /> NC Statewide</span>
+                  </div>
                 </div>
               </div>
 

@@ -74,9 +74,9 @@ export default function Experience() {
     const ctx = gsap.context(() => {
       // Headline animation
       gsap.fromTo(headline,
-        { x: '-8vw', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
           duration: 0.8,
           ease: 'power3.out',
@@ -84,14 +84,14 @@ export default function Experience() {
             trigger: section,
             start: 'top 80%',
             end: 'top 55%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
 
       // Body animation
       gsap.fromTo(body,
-        { y: '6vh', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -101,14 +101,14 @@ export default function Experience() {
             trigger: section,
             start: 'top 75%',
             end: 'top 50%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
 
       // About section animation
       gsap.fromTo(about,
-        { y: '8vh', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -118,18 +118,17 @@ export default function Experience() {
             trigger: about,
             start: 'top 85%',
             end: 'top 60%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
 
       // Cards animation with stagger
       cards.forEach((card, index) => {
-        const direction = index === 2 ? '-10vw' : '10vw';
         gsap.fromTo(card,
-          { x: direction, opacity: 0 },
+          { y: 30, opacity: 0 },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
             duration: 0.8,
             ease: 'power3.out',
@@ -137,7 +136,7 @@ export default function Experience() {
               trigger: section,
               start: `top ${75 - index * 5}%`,
               end: `top ${50 - index * 5}%`,
-              scrub: 0.5,
+              scrub: 0.3,
             }
           }
         );

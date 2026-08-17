@@ -13,8 +13,8 @@ const drinkCategories = [
     color: 'from-lux-pink to-lux-purple',
     drinks: [
       { name: 'The Rosé Royale', desc: 'Sparkling rosé, berry reduction, gold leaf' },
-      { name: 'Midnight Margarita', desc: 'Mezcal, citrus, charcoal salt rim' },
-      { name: 'Velvet Old Fashioned', desc: 'Bourbon, vanilla, burnt orange' },
+      { name: 'The Velvet Crown', desc: 'Bourbon, vanilla, burnt orange, golden demerara' },
+      { name: 'Smoked Amethyst', desc: 'Mezcal, fresh citrus, charcoal-salted rim' },
       { name: 'Purple Reign', desc: 'Empress gin, lemon, lavender syrup' },
       { name: 'Bubble & Fizz Special', desc: 'Champagne, Chambord, fresh berries' },
       { name: 'Shimmer Elixir', desc: 'Vodka, edible shimmer, citrus, sparkling topper' },
@@ -52,11 +52,11 @@ const drinkCategories = [
     icon: Coffee,
     color: 'from-lux-pink to-lux-gold',
     drinks: [
-      { name: 'Virgin Mojito', desc: 'Mint, lime, soda, simple syrup' },
-      { name: 'No-Groni', desc: 'Seedlip, tonic, orange' },
-      { name: 'Shirley Temple', desc: 'Ginger ale, grenadine, cherry' },
-      { name: 'Cucumber Cooler', desc: 'Cucumber, lime, mint, soda' },
-      { name: 'Sparkling Berry', desc: 'Berry syrup, soda, fresh fruit' },
+      { name: 'Minted Bubbles', desc: 'Muddled mint, lime, soda, raw sugar' },
+      { name: 'Citrus Shimmer', desc: 'Seedlip-style botanicals, tonic, burnt orange' },
+      { name: 'Cherry Fizz', desc: 'Ginger ale, grenadine, luxardo cherry' },
+      { name: 'Cucumber Mist', desc: 'Cucumber, lime, mint, soda' },
+      { name: 'Berry Sparkler', desc: 'Berry syrup, soda, fresh fruit' },
     ],
   },
 ];

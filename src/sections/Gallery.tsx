@@ -5,12 +5,15 @@ import OptimizedImage from '@/components/OptimizedImage';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const galleryImages = [
+const galleryPeople = [
   { src: '/mercedes_new_1.jpg', alt: 'Mercedes pouring champagne' },
-  { src: '/gallery_2.jpg', alt: 'Champagne tower' },
   { src: '/mercedes_new_5.jpg', alt: 'Mercedes with pink cocktail' },
-  { src: '/gallery_1.jpg', alt: 'Elegant bar setup' },
   { src: '/mercedes_new_2.jpg', alt: 'Mercedes garnishing cocktail' },
+];
+
+const gallerySetups = [
+  { src: '/gallery_2.jpg', alt: 'Champagne tower' },
+  { src: '/gallery_1.jpg', alt: 'Elegant bar setup' },
 ];
 
 export default function Gallery() {
@@ -63,7 +66,7 @@ export default function Gallery() {
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-lux-pink/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-lux-purple/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative">
+      <div className="max-w-6xl mx-auto relative">
         <div ref={headlineRef} className="text-center mb-12">
           <span className="section-label">GALLERY</span>
           <h2
@@ -74,23 +77,38 @@ export default function Gallery() {
           </h2>
         </div>
 
-        <div
-          ref={gridRef}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
-        >
-          {galleryImages.map((image) => (
-            <div
-              key={image.src}
-              className="gallery-tile relative overflow-hidden rounded-2xl border border-lux-purple/10 group hover:border-lux-pink/30 transition-all duration-500 aspect-square"
-            >
-              <OptimizedImage
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-lux-purple/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-          ))}
+        <div ref={gridRef} className="space-y-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galleryPeople.map((image) => (
+              <div
+                key={image.src}
+                className="gallery-tile relative overflow-hidden rounded-2xl border border-lux-purple/10 group hover:border-lux-pink/30 transition-all duration-500 aspect-[4/5]"
+              >
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-lux-purple/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            {gallerySetups.map((image) => (
+              <div
+                key={image.src}
+                className="gallery-tile relative overflow-hidden rounded-2xl border border-lux-purple/10 group hover:border-lux-pink/30 transition-all duration-500 aspect-[16/9]"
+              >
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-lux-purple/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
