@@ -127,8 +127,8 @@ export default function SignatureCocktails() {
 
   return (
     <section 
+      id="signature-cocktails"
       ref={sectionRef}
-      id="menu"
       className="relative w-full h-screen overflow-hidden z-30"
     >
       {/* Pink glow */}

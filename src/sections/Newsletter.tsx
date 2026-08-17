@@ -48,6 +48,7 @@ export default function Newsletter() {
 
   return (
     <section 
+      id="newsletter"
       ref={sectionRef}
       className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 z-51 bg-lux-black"
     >
