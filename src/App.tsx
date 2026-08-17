@@ -1,9 +1,11 @@
 import './index.css';
 import { lazy } from 'react';
-import Navigation from './sections/Navigation';
-import Hero from './sections/Hero';
+import CustomCursor from './components/CustomCursor';
 import ChampagneBubbles from './components/ChampagneBubbles';
 import LazySection from './components/LazySection';
+import Navigation from './sections/Navigation';
+import Hero from './sections/Hero';
+import NotFound from './sections/NotFound';
 
 const Experience = lazy(() => import('./sections/Experience'));
 const SignatureCocktails = lazy(() => import('./sections/SignatureCocktails'));
@@ -20,8 +22,19 @@ const FinalCTA = lazy(() => import('./sections/FinalCTA'));
 const Contact = lazy(() => import('./sections/Contact'));
 
 function App() {
+  const path = window.location.pathname;
+  if (path !== '/' && path !== '/index.html') {
+    return (
+      <>
+        <CustomCursor />
+        <NotFound />
+      </>
+    );
+  }
+
   return (
     <div className="relative bg-lux-black min-h-screen">
+      <CustomCursor />
       {/* Champagne Bubbles Animation */}
       <ChampagneBubbles />
 
