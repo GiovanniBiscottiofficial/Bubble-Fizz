@@ -111,7 +111,6 @@ export default function Packages() {
   return (
     <section 
       ref={sectionRef}
-      id="packages"
       className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-70 bg-lux-black"
     >
       {/* Purple glow */}

@@ -9,7 +9,6 @@ export default function FinalCTA() {
 
   return (
     <section
-      id="final-cta"
       className="relative w-full min-h-[80vh] py-24 md:py-32 px-6 md:px-12 lg:px-20 flex items-center justify-center z-80 overflow-hidden"
     >
       {/* Background Image */}

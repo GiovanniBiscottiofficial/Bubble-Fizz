@@ -105,7 +105,6 @@ export default function DrinkMenu() {
   return (
     <section 
       ref={sectionRef}
-      id="drink-menu"
       className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-53 bg-lux-black"
     >
       {/* Pink glow */}

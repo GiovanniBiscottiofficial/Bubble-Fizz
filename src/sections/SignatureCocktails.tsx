@@ -23,7 +23,6 @@ export default function SignatureCocktails() {
 
   return (
     <section
-      id="signature-cocktails"
       className="relative w-full py-20 md:py-28 px-6 md:px-12 lg:px-20 z-30 bg-lux-black"
     >
       {/* Pink glow */}

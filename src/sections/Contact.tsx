@@ -144,7 +144,6 @@ ${formData.message || 'No additional message'}
   return (
     <section 
       ref={sectionRef}
-      id="contact"
       className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-90 bg-lux-black"
     >
       {/* Pink glow */}

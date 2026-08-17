@@ -8,20 +8,20 @@ interface Bubble {
   opacity: number;
   wobble: number;
   wobbleSpeed: number;
-  color: 'pink' | 'purple' | 'gold' | 'white';
+  color: string;
 }
 
-const THEME_COLORS = {
-  pink: { center: '255, 120, 200', mid: '236, 72, 153', edge: '139, 92, 246' },
-  purple: { center: '200, 160, 255', mid: '139, 92, 246', edge: '236, 72, 153' },
-  gold: { center: '255, 245, 210', mid: '212, 175, 55', edge: '184, 134, 11' },
-  white: { center: '255, 255, 255', mid: '230, 230, 240', edge: '139, 92, 246' },
+const THEME_COLORS: Record<string, string> = {
+  pink: 'rgba(236, 72, 153, ',
+  purple: 'rgba(124, 58, 237, ',
+  gold: 'rgba(200, 169, 81, ',
+  white: 'rgba(246, 246, 250, ',
 };
 
 export default function ChampagneBubbles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const bubblesRef = useRef<Bubble[]>([]);
-  const animationRef = useRef<number | null>(null);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -32,11 +32,12 @@ export default function ChampagneBubbles() {
 
     let cssWidth = window.innerWidth;
     let cssHeight = window.innerHeight;
+    let frameCount = 0;
 
     const resizeCanvas = () => {
       cssWidth = window.innerWidth;
       cssHeight = window.innerHeight;
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       canvas.width = Math.floor(cssWidth * dpr);
       canvas.height = Math.floor(cssHeight * dpr);
       canvas.style.width = '100%';
@@ -46,104 +47,84 @@ export default function ChampagneBubbles() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    const colorKeys = Object.keys(THEME_COLORS) as Bubble['color'][];
+    const colorKeys = Object.keys(THEME_COLORS);
 
     const initBubbles = () => {
       bubblesRef.current = [];
-      // Keep it elegant but lightweight on slower devices
-      const count = Math.min(28, Math.floor((cssWidth * cssHeight) / 42000));
+      const count = Math.min(14, Math.floor((cssWidth * cssHeight) / 65000));
       for (let i = 0; i < count; i++) {
         bubblesRef.current.push({
           x: Math.random() * cssWidth,
           y: cssHeight + Math.random() * 400,
-          size: Math.random() * 5 + 2, // 2-7px
-          speed: Math.random() * 0.7 + 0.25,
-          opacity: Math.random() * 0.35 + 0.25,
+          size: Math.random() * 4 + 2,
+          speed: Math.random() * 0.5 + 0.2,
+          opacity: Math.random() * 0.22 + 0.18,
           wobble: Math.random() * Math.PI * 2,
-          wobbleSpeed: Math.random() * 0.015 + 0.005,
+          wobbleSpeed: Math.random() * 0.012 + 0.004,
           color: colorKeys[Math.floor(Math.random() * colorKeys.length)],
         });
       }
     };
     initBubbles();
 
-    const animate = () => {
+    const draw = () => {
       ctx.clearRect(0, 0, cssWidth, cssHeight);
-      // Overlapping bubbles lighten each other for a soft, glassy glow
       ctx.globalCompositeOperation = 'lighter';
 
       bubblesRef.current.forEach((bubble) => {
         bubble.y -= bubble.speed;
         bubble.wobble += bubble.wobbleSpeed;
-        bubble.x += Math.sin(bubble.wobble) * 0.35;
+        bubble.x += Math.sin(bubble.wobble) * 0.25;
 
-        if (bubble.y < -30) {
-          bubble.y = cssHeight + 30;
+        if (bubble.y < -20) {
+          bubble.y = cssHeight + 20;
           bubble.x = Math.random() * cssWidth;
         }
 
-        const palette = THEME_COLORS[bubble.color];
+        const base = THEME_COLORS[bubble.color];
         const r = bubble.size;
 
-        // Outer soft halo
-        const halo = ctx.createRadialGradient(
-          bubble.x, bubble.y, 0,
-          bubble.x, bubble.y, r * 2.2
-        );
-        halo.addColorStop(0, `rgba(${palette.mid}, ${bubble.opacity * 0.18})`);
-        halo.addColorStop(0.5, `rgba(${palette.edge}, ${bubble.opacity * 0.08})`);
-        halo.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
+        // Single soft halo per bubble
         ctx.beginPath();
         ctx.arc(bubble.x, bubble.y, r * 2.2, 0, Math.PI * 2);
-        ctx.fillStyle = halo;
+        ctx.fillStyle = `${base}${bubble.opacity * 0.25})`;
         ctx.fill();
 
-        // Main glassy orb
-        const orb = ctx.createRadialGradient(
-          bubble.x - r * 0.25, bubble.y - r * 0.25, 0,
-          bubble.x, bubble.y, r
-        );
-        orb.addColorStop(0, `rgba(${palette.center}, ${bubble.opacity})`);
-        orb.addColorStop(0.45, `rgba(${palette.mid}, ${bubble.opacity * 0.65})`);
-        orb.addColorStop(0.85, `rgba(${palette.edge}, ${bubble.opacity * 0.25})`);
-        orb.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
+        // Main orb
         ctx.beginPath();
         ctx.arc(bubble.x, bubble.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = orb;
+        ctx.fillStyle = `${base}${bubble.opacity})`;
         ctx.fill();
 
-        // Sharp white specular highlight
+        // Specular highlight
         ctx.beginPath();
-        ctx.arc(
-          bubble.x - r * 0.35,
-          bubble.y - r * 0.35,
-          r * 0.22,
-          0,
-          Math.PI * 2
-        );
+        ctx.arc(bubble.x - r * 0.35, bubble.y - r * 0.35, r * 0.25, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${bubble.opacity * 0.9})`;
         ctx.fill();
       });
+    };
 
-      animationRef.current = requestAnimationFrame(animate);
+    const animate = () => {
+      // Render at ~30 fps to keep mobile main thread free
+      frameCount++;
+      if (frameCount % 2 === 0) {
+        draw();
+      }
+      rafRef.current = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[90]"
+      className="fixed inset-0 pointer-events-none z-[98]"
       style={{ opacity: 0.55, mixBlendMode: 'screen' }}
     />
   );

@@ -1,90 +1,18 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronRight } from 'lucide-react';
 
 import OptimizedImage from '@/components/OptimizedImage';
 import Logo from '@/components/Logo';
 import CertificationBadges from '@/components/CertificationBadges';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subheadRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-  const taglineRef = useRef<HTMLParagraphElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const logo = logoRef.current;
-    const headline = headlineRef.current;
-    const subhead = subheadRef.current;
-    const cta = ctaRef.current;
-    const bg = bgRef.current;
-    const tagline = taglineRef.current;
-
-    if (!section || !logo || !headline || !subhead || !cta || !bg || !tagline) return;
-
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      tl.fromTo(bg,
-        { scale: 1.08, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.2 }
-      );
-
-      tl.fromTo(logo,
-        { y: 50, opacity: 0, scale: 0.8 },
-        { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.2)' },
-        '-=0.8'
-      );
-
-      tl.fromTo(tagline,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 },
-        '-=0.5'
-      );
-
-      const words = headline.querySelectorAll('.word');
-      tl.fromTo(words,
-        { y: 40, opacity: 0, rotateX: 18 },
-        { y: 0, opacity: 1, rotateX: 0, duration: 0.8, stagger: 0.08 },
-        '-=0.3'
-      );
-
-      tl.fromTo(subhead,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 },
-        '-=0.4'
-      );
-
-      tl.fromTo(cta,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 },
-        '-=0.3'
-      );
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
-
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full h-screen overflow-hidden z-10"
-    >
+    <section className="relative w-full h-screen overflow-hidden z-10">
       <div
-        ref={bgRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ opacity: 0 }}
+        className="absolute inset-0 w-full h-full animate-hero-bg"
       >
         <OptimizedImage
           src="/mercedes_new_1.jpg"
@@ -98,46 +26,38 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
-        <div
-          ref={logoRef}
-          className="mb-4 md:mb-6"
-          style={{ opacity: 0 }}
-        >
+        <div className="mb-4 md:mb-6">
           <Logo className="h-28 w-28 sm:h-32 sm:w-32 md:h-40 md:w-40 lg:h-48 lg:w-48 logo-dramatic" priority />
         </div>
 
         <p
-          ref={taglineRef}
-          className="text-gradient-purple font-label text-sm md:text-base uppercase tracking-[0.25em] mb-6 md:mb-8"
-          style={{ opacity: 0 }}
+          className="text-gradient-purple font-label text-sm md:text-base uppercase tracking-[0.25em] mb-6 md:mb-8 animate-hero-fade-up"
+          style={{ animationDelay: '0.4s' }}
         >
           BOOK US FOR ANY AND ALL EVENTS
         </p>
 
         <h1
-          ref={headlineRef}
           className="font-display text-center text-lux-white font-semibold leading-[0.95] tracking-[-0.02em]"
           style={{ fontSize: 'clamp(32px, 4vw, 60px)' }}
         >
-          <span className="word inline-block opacity-0">Luxury</span>{' '}
-          <span className="word inline-block text-lux-pink opacity-0">pours.</span>
+          <span className="animate-hero-word" style={{ animationDelay: '0.55s' }}>Luxury</span>{' '}
+          <span className="animate-hero-word text-lux-pink" style={{ animationDelay: '0.63s' }}>pours.</span>
           <br />
-          <span className="word inline-block opacity-0">Curated</span>{' '}
-          <span className="word inline-block text-lux-purple opacity-0">moments.</span>
+          <span className="animate-hero-word" style={{ animationDelay: '0.71s' }}>Curated</span>{' '}
+          <span className="animate-hero-word text-lux-purple" style={{ animationDelay: '0.79s' }}>moments.</span>
         </h1>
 
         <p
-          ref={subheadRef}
-          className="mt-4 md:mt-6 text-center text-lux-muted text-base md:text-lg max-w-2xl leading-relaxed"
-          style={{ opacity: 0 }}
+          className="mt-4 md:mt-6 text-center text-lux-muted text-base md:text-lg max-w-2xl leading-relaxed animate-hero-fade-up"
+          style={{ animationDelay: '0.95s' }}
         >
           Mobile champagne bars and craft cocktails for weddings, private parties, corporate events, sporting events, and pop-up bars across the Triangle, Winston‑Salem, Sanford, Mebane, and all of North Carolina.
         </p>
 
         <div
-          ref={ctaRef}
-          className="mt-6 md:mt-8 flex flex-col items-center gap-4"
-          style={{ opacity: 0 }}
+          className="mt-6 md:mt-8 flex flex-col items-center gap-4 animate-hero-fade-up"
+          style={{ animationDelay: '1.1s' }}
         >
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <button

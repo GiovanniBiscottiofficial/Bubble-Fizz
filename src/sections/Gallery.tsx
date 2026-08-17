@@ -60,7 +60,6 @@ export default function Gallery() {
   return (
     <section
       ref={sectionRef}
-      id="gallery"
       className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 z-50 bg-lux-black"
     >
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-lux-pink/10 rounded-full blur-[120px] pointer-events-none" />

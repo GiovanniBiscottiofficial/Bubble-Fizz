@@ -99,7 +99,6 @@ export default function Credentials() {
   return (
     <section 
       ref={sectionRef}
-      id="credentials"
       className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-52 bg-lux-black"
     >
       {/* Gold glow */}

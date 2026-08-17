@@ -12,4 +12,18 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/gsap')) {
+            return 'gsap';
+          }
+          if (id.includes('node_modules/tailwind-merge') || id.includes('node_modules/clsx')) {
+            return 'tw-merge';
+          }
+        },
+      },
+    },
+  },
 });

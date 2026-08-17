@@ -1,84 +1,54 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './index.css';
+import { lazy } from 'react';
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
-import Experience from './sections/Experience';
-import SignatureCocktails from './sections/SignatureCocktails';
-import DrinkMenu from './sections/DrinkMenu';
-import Process from './sections/Process';
-import Gallery from './sections/Gallery';
-import Testimonials from './sections/Testimonials';
-import ThumbtackMoments from './sections/ThumbtackMoments';
-import ReviewsMap from './components/ReviewsMap';
-import Packages from './sections/Packages';
-import Credentials from './sections/Credentials';
-import FAQ from './sections/FAQ';
-import FinalCTA from './sections/FinalCTA';
-import Contact from './sections/Contact';
 import ChampagneBubbles from './components/ChampagneBubbles';
-import LoadingScreen from './components/LoadingScreen';
+import LazySection from './components/LazySection';
 
-gsap.registerPlugin(ScrollTrigger);
+const Experience = lazy(() => import('./sections/Experience'));
+const SignatureCocktails = lazy(() => import('./sections/SignatureCocktails'));
+const DrinkMenu = lazy(() => import('./sections/DrinkMenu'));
+const Process = lazy(() => import('./sections/Process'));
+const Gallery = lazy(() => import('./sections/Gallery'));
+const ThumbtackMoments = lazy(() => import('./sections/ThumbtackMoments'));
+const Testimonials = lazy(() => import('./sections/Testimonials'));
+const ReviewsMap = lazy(() => import('./components/ReviewsMap'));
+const Packages = lazy(() => import('./sections/Packages'));
+const Credentials = lazy(() => import('./sections/Credentials'));
+const FAQ = lazy(() => import('./sections/FAQ'));
+const FinalCTA = lazy(() => import('./sections/FinalCTA'));
+const Contact = lazy(() => import('./sections/Contact'));
 
 function App() {
   return (
     <div className="relative bg-lux-black min-h-screen">
-      {/* Loading Screen */}
-      <LoadingScreen />
-
       {/* Champagne Bubbles Animation */}
       <ChampagneBubbles />
-      
+
       {/* Grain Overlay */}
       <div className="grain-overlay" />
-      
+
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main Content */}
       <main className="relative">
         {/* Section 1: Hero - pin: true */}
         <Hero />
-        
-        {/* Section 2: Experience - pin: false */}
-        <Experience />
-        
-        {/* Section 3: Signature Cocktails - pin: true */}
-        <SignatureCocktails />
-        
-        {/* Section 4: Full Drink Menu - pin: false */}
-        <DrinkMenu />
-        
-        {/* Section 5: Process - pin: false */}
-        <Process />
-        
-        {/* Section 6: Gallery - pin: true */}
-        <Gallery />
-        
-        {/* Section 7: Thumbtack Moments - photo proof first */}
-        <ThumbtackMoments />
 
-        {/* Section 7.5: Testimonials - kind words after */}
-        <Testimonials />
-
-        {/* Section 7.6: Reviews & Map - pin: false */}
-        <ReviewsMap />
-        
-        {/* Section 8: Packages - pin: false */}
-        <Packages />
-        
-        {/* Section 9: Credentials - pin: false */}
-        <Credentials />
-        
-        {/* Section 10: FAQ - pin: false */}
-        <FAQ />
-
-        {/* Section 12: Final CTA - pin: true */}
-        <FinalCTA />
-        
-        {/* Section 14: Contact - pin: false */}
-        <Contact />
+        <LazySection component={Experience} id="experience" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={SignatureCocktails} id="signature-cocktails" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={DrinkMenu} id="drink-menu" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={Process} id="process" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={Gallery} id="gallery" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={ThumbtackMoments} id="thumbtack-moments" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={Testimonials} id="testimonials" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={ReviewsMap} id="service-map" placeholderClassName="min-h-[60vh] bg-lux-black" />
+        <LazySection component={Packages} id="packages" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={Credentials} id="credentials" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={FAQ} id="faq" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={FinalCTA} id="final-cta" placeholderClassName="min-h-[80vh] bg-lux-black" />
+        <LazySection component={Contact} id="contact" placeholderClassName="min-h-screen bg-lux-black" />
       </main>
     </div>
   );
