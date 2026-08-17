@@ -9,6 +9,7 @@ import DrinkMenu from './sections/DrinkMenu';
 import Process from './sections/Process';
 import Gallery from './sections/Gallery';
 import Testimonials from './sections/Testimonials';
+import ThumbtackMoments from './sections/ThumbtackMoments';
 import ReviewsMap from './components/ReviewsMap';
 import Packages from './sections/Packages';
 import Credentials from './sections/Credentials';
@@ -59,8 +60,11 @@ function App() {
         
         {/* Section 7: Testimonials - pin: false */}
         <Testimonials />
-        
-        {/* Section 7.5: Reviews & Map - pin: false */}
+
+        {/* Section 7.5: Thumbtack Moments - pin: false */}
+        <ThumbtackMoments />
+
+        {/* Section 7.6: Reviews & Map - pin: false */}
         <ReviewsMap />
         
         {/* Section 8: Packages - pin: false */}
