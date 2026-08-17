@@ -142,7 +142,7 @@ export default function ThumbtackMoments() {
             Proof in the <span className="text-lux-pink">pour</span>.
           </h2>
           <p className="mt-6 text-lux-muted text-lg max-w-2xl mx-auto">
-            Every photo is from an actual Bubble & Fizz event, paired with the guest review that goes with it.
+            Recent snapshots from real Bubble & Fizz events — each one paired with the review from the guest who lived it.
           </p>
         </div>
 
@@ -157,9 +157,13 @@ export default function ThumbtackMoments() {
                 <OptimizedImage
                   src={moment.src}
                   alt={moment.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.85] saturate-[0.85]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-lux-black via-lux-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/35 via-lux-pink/15 to-lux-gold/5 mix-blend-overlay opacity-70 group-hover:opacity-50 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-lux-black via-lux-black/30 to-transparent" />
+                <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-lux-black/60 backdrop-blur-sm border border-lux-pink/30 text-[10px] uppercase tracking-wider text-lux-pink font-medium">
+                  Recent
+                </div>
               </div>
 
               <div className="p-5">
