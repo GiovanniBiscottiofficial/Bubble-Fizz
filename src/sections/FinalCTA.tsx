@@ -5,6 +5,7 @@ import { Phone, Mail, Shield } from 'lucide-react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 import OptimizedImage from '@/components/OptimizedImage';
+import Logo from '@/components/Logo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,11 +118,7 @@ export default function FinalCTA() {
       >
         {/* Logo - MUCH BIGGER */}
         <div className="animate-in mb-6">
-          <OptimizedImage 
-            src="/logo.png" 
-            alt="Bubble & Fizz Logo"
-            className="h-32 md:h-44 lg:h-52 w-auto drop-shadow-[0_0_40px_rgba(236,72,153,0.6)]"
-          />
+          <Logo className="h-28 w-28 md:h-40 md:w-40 lg:h-48 lg:w-48" priority />
         </div>
 
         <p className="animate-in text-gradient-purple font-label text-sm md:text-base uppercase tracking-[0.25em] mb-6">

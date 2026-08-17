@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail, Phone, MapPin, Send, Instagram, Facebook, Calendar, Loader2, CheckCircle } from 'lucide-react';
-import OptimizedImage from '@/components/OptimizedImage';
+import Logo from '@/components/Logo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -305,11 +305,7 @@ ${formData.message || 'No additional message'}
           <div ref={infoRef}>
             <div className="lux-card">
               <div className="flex items-center gap-4 mb-6">
-                <OptimizedImage 
-                  src="/logo.png" 
-                  alt="Bubble & Fizz Logo"
-                  className="h-20 w-auto drop-shadow-[0_0_15px_rgba(236,72,153,0.4)]"
-                />
+                <Logo className="h-20 w-20" priority />
                 <div>
                   <h3 className="font-display text-xl text-lux-white font-medium">
                     Mercedes Pettiford
@@ -402,11 +398,7 @@ ${formData.message || 'No additional message'}
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Logo */}
             <div className="flex items-center gap-4">
-              <OptimizedImage 
-                src="/logo.png" 
-                alt="Bubble & Fizz Logo"
-                className="h-16 w-auto drop-shadow-[0_0_15px_rgba(236,72,153,0.4)]"
-              />
+              <Logo className="h-16 w-16" priority />
               <div>
                 <span className="font-display text-2xl text-lux-white block">
                   Bubble <span className="text-lux-pink">&</span> Fizz
