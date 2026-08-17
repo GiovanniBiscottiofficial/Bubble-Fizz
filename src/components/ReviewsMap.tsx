@@ -104,6 +104,9 @@ export default function ReviewsMap() {
                 title="Bubble & Fizz service area map"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=-79.15%2C35.45%2C-78.15%2C36.05&layer=mapnik&marker=35.7796%2C-78.6382"
                 className="absolute inset-0 w-full h-full border-0"
+                style={{
+                  filter: 'grayscale(100%) invert(92%) hue-rotate(180deg) brightness(0.85) contrast(1.1)',
+                }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />

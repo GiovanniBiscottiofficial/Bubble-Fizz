@@ -1,23 +1,23 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MapPin, Car, Plane, Clock } from 'lucide-react';
+import { MapPin, Car, Plane, Clock, Home, Phone, type LucideIcon } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const serviceAreas = [
-  { name: 'Raleigh', distance: 'Home Base', icon: '🏠' },
-  { name: 'Durham', distance: '15 min', icon: '🚗' },
-  { name: 'Chapel Hill', distance: '25 min', icon: '🚗' },
-  { name: 'Cary', distance: '20 min', icon: '🚗' },
-  { name: 'Charlotte', distance: '2.5 hrs', icon: '🚗' },
-  { name: 'Greensboro', distance: '1 hr', icon: '🚗' },
-  { name: 'Winston-Salem', distance: '1.5 hrs', icon: '🚗' },
-  { name: 'Fayetteville', distance: '1 hr', icon: '🚗' },
-  { name: 'Wilmington', distance: '2 hrs', icon: '🚗' },
-  { name: 'Asheville', distance: '3.5 hrs', icon: '✈️' },
-  { name: 'Outer Banks', distance: '3 hrs', icon: '🚗' },
-  { name: 'And Beyond!', distance: 'Let\'s Talk', icon: '📞' },
+const serviceAreas: { name: string; distance: string; icon: LucideIcon }[] = [
+  { name: 'Raleigh', distance: 'Home Base', icon: Home },
+  { name: 'Durham', distance: '15 min', icon: Car },
+  { name: 'Chapel Hill', distance: '25 min', icon: Car },
+  { name: 'Cary', distance: '20 min', icon: Car },
+  { name: 'Charlotte', distance: '2.5 hrs', icon: Car },
+  { name: 'Greensboro', distance: '1 hr', icon: Car },
+  { name: 'Winston-Salem', distance: '1.5 hrs', icon: Car },
+  { name: 'Fayetteville', distance: '1 hr', icon: Car },
+  { name: 'Wilmington', distance: '2 hrs', icon: Car },
+  { name: 'Asheville', distance: '3.5 hrs', icon: Plane },
+  { name: 'Outer Banks', distance: '3 hrs', icon: Car },
+  { name: 'And Beyond!', distance: 'Let\'s Talk', icon: Phone },
 ];
 
 export default function ServiceAreas() {
@@ -130,7 +130,7 @@ export default function ServiceAreas() {
               ref={el => { cardsRef.current[index] = el; }}
               className="lux-card group hover:border-lux-pink/40 transition-all duration-300 hover:-translate-y-1 text-center py-6"
             >
-              <span className="text-4xl mb-3 block">{area.icon}</span>
+              <area.icon className="w-8 h-8 mx-auto mb-3 text-lux-gold group-hover:text-lux-pink transition-colors" />
               <h3 className="font-display text-xl text-lux-white group-hover:text-lux-pink transition-colors">
                 {area.name}
               </h3>

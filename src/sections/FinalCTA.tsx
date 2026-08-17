@@ -88,6 +88,7 @@ export default function FinalCTA() {
 
   return (
     <section 
+      id="final-cta"
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden z-80"
     >

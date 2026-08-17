@@ -112,6 +112,7 @@ export default function Testimonials() {
 
   return (
     <section 
+      id="testimonials"
       ref={sectionRef}
       className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-60 bg-lux-black"
     >

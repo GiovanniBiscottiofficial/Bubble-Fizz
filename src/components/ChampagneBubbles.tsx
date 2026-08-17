@@ -29,19 +29,19 @@ export default function ChampagneBubbles() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize MORE bubbles with MORE variety
+    // Subtle champagne bubbles — fewer, smaller, slower
     const initBubbles = () => {
       bubblesRef.current = [];
-      // Increased from 50 to 80 bubbles
-      for (let i = 0; i < 80; i++) {
+      const count = Math.min(30, Math.floor((canvas.width * canvas.height) / 35000));
+      for (let i = 0; i < count; i++) {
         bubblesRef.current.push({
           x: Math.random() * canvas.width,
-          y: canvas.height + Math.random() * 200,
-          size: Math.random() * 8 + 3, // Larger bubbles (3-11px)
-          speed: Math.random() * 1.5 + 0.8, // Faster speed
-          opacity: Math.random() * 0.6 + 0.3, // More opaque
+          y: canvas.height + Math.random() * 300,
+          size: Math.random() * 3 + 1, // 1-4px
+          speed: Math.random() * 0.5 + 0.2, // Slow rise
+          opacity: Math.random() * 0.25 + 0.1, // Very subtle
           wobble: Math.random() * Math.PI * 2,
-          wobbleSpeed: Math.random() * 0.03 + 0.01,
+          wobbleSpeed: Math.random() * 0.01 + 0.005,
         });
       }
     };
@@ -54,47 +54,38 @@ export default function ChampagneBubbles() {
         // Update position
         bubble.y -= bubble.speed;
         bubble.wobble += bubble.wobbleSpeed;
-        bubble.x += Math.sin(bubble.wobble) * 0.8; // More wobble
+        bubble.x += Math.sin(bubble.wobble) * 0.25; // Gentle wobble
 
         // Reset bubble if it goes off screen
-        if (bubble.y < -30) {
-          bubble.y = canvas.height + 30;
+        if (bubble.y < -20) {
+          bubble.y = canvas.height + 20;
           bubble.x = Math.random() * canvas.width;
         }
 
-        // Draw bubble with stronger gradient
+        // Soft champagne-gold bubble
         const gradient = ctx.createRadialGradient(
           bubble.x, bubble.y, 0,
           bubble.x, bubble.y, bubble.size
         );
-        // Brighter, more noticeable colors
-        gradient.addColorStop(0, `rgba(255, 100, 200, ${bubble.opacity})`); // Bright pink center
-        gradient.addColorStop(0.4, `rgba(200, 80, 255, ${bubble.opacity * 0.8})`); // Purple middle
-        gradient.addColorStop(0.8, `rgba(150, 50, 200, ${bubble.opacity * 0.4})`); // Fading edge
-        gradient.addColorStop(1, 'rgba(236, 72, 153, 0)');
+        gradient.addColorStop(0, `rgba(255, 248, 220, ${bubble.opacity})`); // Champagne white center
+        gradient.addColorStop(0.5, `rgba(200, 170, 110, ${bubble.opacity * 0.7})`); // Soft gold middle
+        gradient.addColorStop(1, 'rgba(200, 170, 110, 0)');
 
         ctx.beginPath();
         ctx.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
 
-        // Add outer glow ring
-        ctx.beginPath();
-        ctx.arc(bubble.x, bubble.y, bubble.size * 1.3, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(236, 72, 153, ${bubble.opacity * 0.3})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-
-        // Add shine effect (bigger and brighter)
+        // Tiny white shine
         ctx.beginPath();
         ctx.arc(
-          bubble.x - bubble.size * 0.35,
-          bubble.y - bubble.size * 0.35,
-          bubble.size * 0.25,
+          bubble.x - bubble.size * 0.3,
+          bubble.y - bubble.size * 0.3,
+          bubble.size * 0.2,
           0,
           Math.PI * 2
         );
-        ctx.fillStyle = `rgba(255, 255, 255, ${bubble.opacity * 0.9})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${bubble.opacity * 0.8})`;
         ctx.fill();
       });
 
@@ -115,7 +106,7 @@ export default function ChampagneBubbles() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[5]"
-      style={{ opacity: 0.85 }} // Much more visible
+      style={{ opacity: 0.35, mixBlendMode: 'screen' }}
     />
   );
 }
