@@ -5,6 +5,7 @@ import { ChevronRight } from 'lucide-react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 import OptimizedImage from '@/components/OptimizedImage';
+import Logo from '@/components/Logo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -208,12 +209,7 @@ export default function Hero() {
           className="mb-4 md:mb-6"
           style={{ opacity: 0 }}
         >
-          <OptimizedImage 
-            src="/logo.png" 
-            alt="Bubble & Fizz Logo"
-            className="h-40 md:h-52 lg:h-64 w-auto drop-shadow-[0_0_30px_rgba(236,72,153,0.6)]"
-            priority
-          />
+          <Logo className="h-36 w-36 md:h-48 md:w-48 lg:h-56 lg:w-56" priority />
         </div>
 
         {/* Tagline */}

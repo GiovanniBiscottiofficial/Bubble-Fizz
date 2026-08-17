@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
-import OptimizedImage from '@/components/OptimizedImage';
+import Logo from '@/components/Logo';
 
 const navLinks = [
   { label: 'About', href: '#experience' },
@@ -107,12 +107,7 @@ export default function Navigation() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <OptimizedImage 
-                src="/logo.png" 
-                alt="Bubble & Fizz Logo"
-                className="h-16 md:h-20 w-auto drop-shadow-[0_0_15px_rgba(236,72,153,0.5)] group-hover:drop-shadow-[0_0_25px_rgba(124,58,237,0.6)] transition-all duration-500"
-                priority
-              />
+              <Logo className="h-14 w-14 md:h-16 md:w-16" priority />
             </a>
 
             {/* Desktop Navigation */}
@@ -190,13 +185,9 @@ export default function Navigation() {
           onClick={(e) => e.stopPropagation()}
           className="flex flex-col items-center justify-center h-full gap-6 px-6"
         >
-          <OptimizedImage 
-            src="/logo.png" 
-            alt="Bubble & Fizz Logo"
-            className={`w-40 h-auto drop-shadow-[0_0_30px_rgba(236,72,153,0.5)] transition-all duration-500 ${
+          <Logo className={`w-36 h-36 transition-all duration-500 ${
               isMobileMenuOpen ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
-            }`}
-          />
+            }`} />
           <p 
             className={`text-gradient-purple font-label text-sm uppercase tracking-[0.25em] mb-4 transition-all duration-700 ${
               isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
