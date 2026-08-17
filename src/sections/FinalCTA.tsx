@@ -1,6 +1,7 @@
 import { Phone, Mail } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import Logo from '@/components/Logo';
+import { buildInquiryMailto } from '@/lib/utils';
 
 export default function FinalCTA() {
   const scrollToContact = () => {
@@ -64,7 +65,7 @@ export default function FinalCTA() {
             <Phone className="w-4 h-4" />
             <span>984-385-4736</span>
           </a>
-          <a href="mailto:bubble_fizzbar@yahoo.com" className="flex items-center gap-2 hover:text-lux-purple transition-colors">
+          <a href={buildInquiryMailto()} className="flex items-center gap-2 hover:text-lux-purple transition-colors">
             <Mail className="w-4 h-4" />
             <span>bubble_fizzbar@yahoo.com</span>
           </a>

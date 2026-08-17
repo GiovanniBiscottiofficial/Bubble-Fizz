@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown, HelpCircle, Phone, Mail } from 'lucide-react';
+import { buildInquiryMailto } from '@/lib/utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -169,7 +170,7 @@ export default function FAQ() {
               Call 984-385-4736
             </a>
             <a
-              href="mailto:bubble_fizzbar@yahoo.com"
+              href={buildInquiryMailto()}
               className="lux-button-outline inline-flex"
             >
               <Mail className="w-4 h-4 mr-2" />

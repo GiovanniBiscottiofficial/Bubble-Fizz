@@ -52,7 +52,7 @@ export default function ReviewsMap() {
               {regions.map((region) => (
                 <div
                   key={region}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-lux-blacklift border border-lux-white/5"
+                  className="flex items-center gap-3 p-3 lux-input"
                 >
                   <div className="w-2 h-2 rounded-full bg-lux-pink" />
                   <span className="text-lux-white/90 text-sm">{region}</span>

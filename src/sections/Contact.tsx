@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail, Phone, MapPin, Send, Instagram, Facebook, ExternalLink, Calendar, Loader2, CheckCircle, Star } from 'lucide-react';
 import Logo from '@/components/Logo';
+import { buildInquiryMailto } from '@/lib/utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,8 +123,8 @@ export default function Contact() {
         throw new Error('Form submission failed');
       }
     } catch (error) {
-      const subject = `Booking Inquiry from ${formData.name}`;
-      const body = `
+      const extra = `
+Provided details:
 Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone || 'Not provided'}
@@ -135,7 +136,7 @@ Guest Count: ${formData.guestCount || 'Not specified'}
 Message:
 ${formData.message || 'No additional message'}
       `;
-      window.location.href = `mailto:bubble_fizzbar@yahoo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = buildInquiryMailto(`Booking Inquiry from ${formData.name}`, extra);
     } finally {
       setIsSubmitting(false);
     }
@@ -178,7 +179,7 @@ ${formData.message || 'No additional message'}
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
+                      className="w-full lux-input px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
                       placeholder="Your name"
                     />
                   </div>
@@ -189,7 +190,7 @@ ${formData.message || 'No additional message'}
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
+                      className="w-full lux-input px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -202,7 +203,7 @@ ${formData.message || 'No additional message'}
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
+                      className="w-full lux-input px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
                       placeholder="(555) 000-0000"
                     />
                   </div>
@@ -211,17 +212,17 @@ ${formData.message || 'No additional message'}
                     <select
                       value={formData.eventType}
                       onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
-                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white focus:border-lux-purple focus:outline-none transition-colors"
+                      className="w-full lux-input px-4 py-3 text-lux-white focus:border-lux-purple focus:outline-none transition-colors"
                     >
-                      <option value="" className="bg-lux-blacklift">Select event type</option>
-                      <option value="wedding" className="bg-lux-blacklift">Wedding</option>
-                      <option value="private-party" className="bg-lux-blacklift">Private Party / Celebration</option>
-                      <option value="corporate" className="bg-lux-blacklift">Corporate Event</option>
-                      <option value="sporting" className="bg-lux-blacklift">Sporting Event</option>
-                      <option value="popup" className="bg-lux-blacklift">Pop-Up Bar / Bartender-for-Hire</option>
-                      <option value="birthday" className="bg-lux-blacklift">Birthday Party</option>
-                      <option value="holiday" className="bg-lux-blacklift">Holiday Party</option>
-                      <option value="other" className="bg-lux-blacklift">Other</option>
+                      <option value="" className="bg-lux-black">Select event type</option>
+                      <option value="wedding" className="bg-lux-black">Wedding</option>
+                      <option value="private-party" className="bg-lux-black">Private Party / Celebration</option>
+                      <option value="corporate" className="bg-lux-black">Corporate Event</option>
+                      <option value="sporting" className="bg-lux-black">Sporting Event</option>
+                      <option value="popup" className="bg-lux-black">Pop-Up Bar / Bartender-for-Hire</option>
+                      <option value="birthday" className="bg-lux-black">Birthday Party</option>
+                      <option value="holiday" className="bg-lux-black">Holiday Party</option>
+                      <option value="other" className="bg-lux-black">Other</option>
                     </select>
                   </div>
                 </div>
@@ -232,13 +233,13 @@ ${formData.message || 'No additional message'}
                     <select
                       value={formData.package}
                       onChange={(e) => setFormData({ ...formData, package: e.target.value })}
-                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white focus:border-lux-purple focus:outline-none transition-colors"
+                      className="w-full lux-input px-4 py-3 text-lux-white focus:border-lux-purple focus:outline-none transition-colors"
                     >
-                      <option value="" className="bg-lux-blacklift">No package selected</option>
-                      <option value="Essential Hour" className="bg-lux-blacklift">Essential Hour — $250</option>
-                      <option value="Signature Celebration" className="bg-lux-blacklift">Signature Celebration — $425</option>
-                      <option value="Full Experience" className="bg-lux-blacklift">Full Experience — $650</option>
-                      <option value="Custom" className="bg-lux-blacklift">Custom / Not sure yet</option>
+                      <option value="" className="bg-lux-black">No package selected</option>
+                      <option value="Essential Hour" className="bg-lux-black">Essential Hour — $250</option>
+                      <option value="Signature Celebration" className="bg-lux-black">Signature Celebration — $425</option>
+                      <option value="Full Experience" className="bg-lux-black">Full Experience — $650</option>
+                      <option value="Custom" className="bg-lux-black">Custom / Not sure yet</option>
                     </select>
                   </div>
                 </div>
@@ -250,7 +251,7 @@ ${formData.message || 'No additional message'}
                       type="date"
                       value={formData.eventDate}
                       onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
-                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
+                      className="w-full lux-input px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors"
                     />
                   </div>
                   <div>
@@ -258,13 +259,13 @@ ${formData.message || 'No additional message'}
                     <select
                       value={formData.guestCount}
                       onChange={(e) => setFormData({ ...formData, guestCount: e.target.value })}
-                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white focus:border-lux-purple focus:outline-none transition-colors"
+                      className="w-full lux-input px-4 py-3 text-lux-white focus:border-lux-purple focus:outline-none transition-colors"
                     >
-                      <option value="" className="bg-lux-blacklift">Select range</option>
-                      <option value="25-50" className="bg-lux-blacklift">25-50 guests</option>
-                      <option value="50-100" className="bg-lux-blacklift">50-100 guests</option>
-                      <option value="100-200" className="bg-lux-blacklift">100-200 guests</option>
-                      <option value="200+" className="bg-lux-blacklift">200+ guests</option>
+                      <option value="" className="bg-lux-black">Select range</option>
+                      <option value="25-50" className="bg-lux-black">25-50 guests</option>
+                      <option value="50-100" className="bg-lux-black">50-100 guests</option>
+                      <option value="100-200" className="bg-lux-black">100-200 guests</option>
+                      <option value="200+" className="bg-lux-black">200+ guests</option>
                     </select>
                   </div>
                 </div>
@@ -275,7 +276,7 @@ ${formData.message || 'No additional message'}
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors resize-none"
+                    className="w-full lux-input px-4 py-3 text-lux-white placeholder-lux-muted/50 focus:border-lux-purple focus:outline-none transition-colors resize-none"
                     placeholder="Tell us about your event..."
                   />
                 </div>
@@ -341,7 +342,7 @@ ${formData.message || 'No additional message'}
 
               <div className="space-y-5">
                 <a 
-                  href="mailto:bubble_fizzbar@yahoo.com" 
+                  href={buildInquiryMailto()} 
                   className="flex items-center gap-4 text-lux-muted hover:text-lux-pink transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-lux-purple/20 to-lux-pink/20 flex items-center justify-center group-hover:from-lux-purple/30 group-hover:to-lux-pink/30 transition-all">
@@ -412,7 +413,7 @@ ${formData.message || 'No additional message'}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Book on Thumbtack"
-                    className="px-4 h-14 rounded-xl bg-gradient-to-br from-lux-gold/20 to-lux-gold/5 border border-lux-gold/30 flex items-center gap-2 text-lux-gold hover:border-lux-gold/60 hover:shadow-[0_0_30px_rgba(250,204,21,0.2)] transition-all hover:-translate-y-1"
+                    className="px-4 h-14 rounded-xl bg-gradient-to-br from-lux-gold/20 to-lux-gold/5 border border-lux-gold/30 flex items-center gap-2 text-lux-gold hover:border-lux-gold/60 hover:shadow-[0_0_30px_rgba(200,169,81,0.25)] transition-all hover:-translate-y-1"
                   >
                     <ExternalLink className="w-5 h-5" />
                     <span className="text-sm font-medium">Thumbtack</span>
@@ -446,7 +447,7 @@ ${formData.message || 'No additional message'}
                 <Phone className="w-4 h-4" />
                 <span>984-385-4736</span>
               </a>
-              <a href="mailto:bubble_fizzbar@yahoo.com" className="flex items-center gap-2 hover:text-lux-purple transition-colors">
+              <a href={buildInquiryMailto()} className="flex items-center gap-2 hover:text-lux-purple transition-colors">
                 <Mail className="w-4 h-4" />
                 <span>bubble_fizzbar@yahoo.com</span>
               </a>

@@ -11,7 +11,7 @@ export default function Logo({ className, priority }: LogoProps) {
     <div
       className={cn(
         'relative inline-flex items-center justify-center rounded-full overflow-hidden',
-        'bg-lux-blacklift/70 border border-lux-purple/30',
+        'bg-lux-black/40 backdrop-blur-sm border border-lux-purple/20',
         'shadow-[0_0_30px_rgba(139,92,246,0.15),0_0_60px_rgba(236,72,153,0.08)]',
         className
       )}
