@@ -109,10 +109,10 @@ export default function ReviewsMap() {
               {/* Custom marker — Raleigh / Triangle home base */}
               <div
                 className="absolute pointer-events-none"
-                style={{ top: '68%', left: '56%', transform: 'translate(-50%, -100%)' }}
+                style={{ top: '32%', left: '56%', transform: 'translate(-50%, -100%)' }}
                 aria-hidden="true"
               >
-                <MapPin className="w-8 h-8 text-lux-pink fill-lux-pink/20 drop-shadow-[0_0_12px_rgba(236,72,153,0.8)]" />
+                <MapPin className="w-8 h-8 text-lux-pink fill-lux-pink/30 drop-shadow-[0_0_16px_rgba(236,72,153,0.9)]" />
                 <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-lux-pink animate-ping" />
               </div>
               {/* Interaction blocker so the map stays focused on NC */}

@@ -157,11 +157,12 @@ export default function ThumbtackMoments() {
                 <OptimizedImage
                   src={moment.src}
                   alt={moment.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.85] saturate-[0.85]"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.70] saturate-[0.65] contrast-[0.95]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/35 via-lux-pink/15 to-lux-gold/5 mix-blend-overlay opacity-70 group-hover:opacity-50 transition-opacity duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-t from-lux-black via-lux-black/30 to-transparent" />
-                <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-lux-black/60 backdrop-blur-sm border border-lux-pink/30 text-[10px] uppercase tracking-wider text-lux-pink font-medium">
+                <div className="absolute inset-0 bg-lux-black/20" />
+                <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/45 via-lux-pink/20 to-lux-black/30 mix-blend-overlay opacity-80 group-hover:opacity-65 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-lux-black via-lux-black/40 to-transparent" />
+                <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-lux-black/70 backdrop-blur-sm border border-lux-white/10 text-[10px] uppercase tracking-wider text-lux-white/80 font-medium">
                   Recent
                 </div>
               </div>
