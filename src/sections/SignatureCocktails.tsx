@@ -59,7 +59,7 @@ export default function SignatureCocktails() {
           </div>
 
           {/* Right - Menu Card */}
-          <div className="justify-self-start lg:justify-self-end">
+          <div className="justify-self-center lg:justify-self-end">
             <div
               className="w-full max-w-md rounded-3xl p-8 md:p-10 border border-lux-purple/30"
               style={{

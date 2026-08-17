@@ -78,11 +78,11 @@ export default function Gallery() {
         </div>
 
         <div ref={gridRef} className="space-y-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {galleryPeople.map((image) => (
               <div
                 key={image.src}
-                className="gallery-tile relative overflow-hidden rounded-2xl border border-lux-purple/10 group hover:border-lux-pink/30 transition-all duration-500 aspect-[4/5]"
+                className="gallery-tile relative overflow-hidden rounded-2xl border border-lux-purple/10 group hover:border-lux-pink/30 transition-all duration-500 aspect-[4/5] last:sm:col-span-2 last:md:col-span-1"
               >
                 <OptimizedImage
                   src={image.src}
@@ -95,7 +95,7 @@ export default function Gallery() {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {gallerySetups.map((image) => (
               <div
                 key={image.src}

@@ -103,7 +103,7 @@ export default function Hero() {
           className="mb-4 md:mb-6"
           style={{ opacity: 0 }}
         >
-          <Logo className="h-36 w-36 md:h-48 md:w-48 lg:h-56 lg:w-56 logo-dramatic" priority />
+          <Logo className="h-28 w-28 sm:h-32 sm:w-32 md:h-40 md:w-40 lg:h-48 lg:w-48 logo-dramatic" priority />
         </div>
 
         <p
@@ -117,16 +117,13 @@ export default function Hero() {
         <h1
           ref={headlineRef}
           className="font-display text-center text-lux-white font-semibold leading-[0.95] tracking-[-0.02em]"
-          style={{
-            fontSize: 'clamp(32px, 4vw, 60px)',
-            opacity: 0
-          }}
+          style={{ fontSize: 'clamp(32px, 4vw, 60px)' }}
         >
-          <span className="word inline-block">Luxury</span>{' '}
-          <span className="word inline-block text-lux-pink">pours.</span>
+          <span className="word inline-block opacity-0">Luxury</span>{' '}
+          <span className="word inline-block text-lux-pink opacity-0">pours.</span>
           <br />
-          <span className="word inline-block">Curated</span>{' '}
-          <span className="word inline-block text-lux-purple">moments.</span>
+          <span className="word inline-block opacity-0">Curated</span>{' '}
+          <span className="word inline-block text-lux-purple opacity-0">moments.</span>
         </h1>
 
         <p

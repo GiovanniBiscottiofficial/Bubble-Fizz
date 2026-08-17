@@ -323,8 +323,8 @@ ${formData.message || 'No additional message'}
           {/* Right Column - Contact Info */}
           <div ref={infoRef}>
             <div className="lux-card">
-              <div className="flex items-center gap-5 mb-6">
-                <Logo className="h-36 w-36 md:h-40 md:w-40" priority />
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-5 mb-6 text-center md:text-left">
+                <Logo className="h-28 w-28 md:h-36 md:w-36 lg:h-40 lg:w-40" priority />
                 <div>
                   <h3 className="font-display text-xl text-lux-white font-medium">
                     Mercedes Pettiford
