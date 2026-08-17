@@ -12,12 +12,12 @@ const drinkCategories = [
     icon: Sparkles,
     color: 'from-lux-pink to-lux-purple',
     drinks: [
-      { name: 'The Rosé Royale', desc: 'Sparkling rosé, berry reduction, gold leaf', price: '$14' },
-      { name: 'Midnight Margarita', desc: 'Mezcal, citrus, charcoal salt rim', price: '$13' },
-      { name: 'Velvet Old Fashioned', desc: 'Bourbon, vanilla, burnt orange', price: '$15' },
-      { name: 'Purple Reign', desc: 'Empress gin, lemon, lavender syrup', price: '$14' },
-      { name: 'Bubble & Fizz Special', desc: 'Champagne, Chambord, fresh berries', price: '$16' },
-      { name: 'Shimmer Elixir', desc: 'Vodka, edible shimmer, citrus, sparkling topper', price: '$15' },
+      { name: 'The Rosé Royale', desc: 'Sparkling rosé, berry reduction, gold leaf' },
+      { name: 'Midnight Margarita', desc: 'Mezcal, citrus, charcoal salt rim' },
+      { name: 'Velvet Old Fashioned', desc: 'Bourbon, vanilla, burnt orange' },
+      { name: 'Purple Reign', desc: 'Empress gin, lemon, lavender syrup' },
+      { name: 'Bubble & Fizz Special', desc: 'Champagne, Chambord, fresh berries' },
+      { name: 'Shimmer Elixir', desc: 'Vodka, edible shimmer, citrus, sparkling topper' },
     ],
   },
   {
@@ -26,11 +26,11 @@ const drinkCategories = [
     icon: Wine,
     color: 'from-lux-purple to-lux-gold',
     drinks: [
-      { name: 'Mojito', desc: 'Rum, mint, lime, soda', price: '$12' },
-      { name: 'Cosmopolitan', desc: 'Vodka, cranberry, lime, Cointreau', price: '$13' },
-      { name: 'Moscow Mule', desc: 'Vodka, ginger beer, lime', price: '$12' },
-      { name: 'Margarita', desc: 'Tequila, lime, triple sec', price: '$12' },
-      { name: 'Manhattan', desc: 'Rye, sweet vermouth, bitters', price: '$14' },
+      { name: 'Mojito', desc: 'Rum, mint, lime, soda' },
+      { name: 'Cosmopolitan', desc: 'Vodka, cranberry, lime, Cointreau' },
+      { name: 'Moscow Mule', desc: 'Vodka, ginger beer, lime' },
+      { name: 'Margarita', desc: 'Tequila, lime, triple sec' },
+      { name: 'Manhattan', desc: 'Rye, sweet vermouth, bitters' },
     ],
   },
   {
@@ -39,11 +39,11 @@ const drinkCategories = [
     icon: GlassWater,
     color: 'from-lux-gold to-lux-pink',
     drinks: [
-      { name: 'Classic Mimosa', desc: 'Champagne, fresh orange juice', price: '$11' },
-      { name: 'Bellini', desc: 'Prosecco, peach purée', price: '$12' },
-      { name: 'French 75', desc: 'Gin, lemon, champagne', price: '$14' },
-      { name: 'Kir Royale', desc: 'Champagne, crème de cassis', price: '$13' },
-      { name: 'Champagne Tower', desc: '50+ glasses, premium champagne', price: 'Custom' },
+      { name: 'Classic Mimosa', desc: 'Champagne, fresh orange juice' },
+      { name: 'Bellini', desc: 'Prosecco, peach purée' },
+      { name: 'French 75', desc: 'Gin, lemon, champagne' },
+      { name: 'Kir Royale', desc: 'Champagne, crème de cassis' },
+      { name: 'Champagne Tower', desc: '50+ glasses, premium champagne' },
     ],
   },
   {
@@ -52,11 +52,11 @@ const drinkCategories = [
     icon: Coffee,
     color: 'from-lux-pink to-lux-gold',
     drinks: [
-      { name: 'Virgin Mojito', desc: 'Mint, lime, soda, simple syrup', price: '$8' },
-      { name: 'No-Groni', desc: 'Seedlip, tonic, orange', price: '$10' },
-      { name: 'Shirley Temple', desc: 'Ginger ale, grenadine, cherry', price: '$7' },
-      { name: 'Cucumber Cooler', desc: 'Cucumber, lime, mint, soda', price: '$8' },
-      { name: 'Sparkling Berry', desc: 'Berry syrup, soda, fresh fruit', price: '$9' },
+      { name: 'Virgin Mojito', desc: 'Mint, lime, soda, simple syrup' },
+      { name: 'No-Groni', desc: 'Seedlip, tonic, orange' },
+      { name: 'Shirley Temple', desc: 'Ginger ale, grenadine, cherry' },
+      { name: 'Cucumber Cooler', desc: 'Cucumber, lime, mint, soda' },
+      { name: 'Sparkling Berry', desc: 'Berry syrup, soda, fresh fruit' },
     ],
   },
 ];
@@ -151,13 +151,10 @@ export default function DrinkMenu() {
               key={drink.name}
               className="lux-card group hover:border-lux-pink/40 transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="font-display text-xl text-lux-white group-hover:text-lux-pink transition-colors">
-                  {drink.name}
-                </h3>
-                <span className="text-lux-gold font-display text-lg">{drink.price}</span>
-              </div>
-              <p className="text-lux-muted text-sm">{drink.desc}</p>
+              <h3 className="font-display text-xl text-lux-white group-hover:text-lux-pink transition-colors mb-3">
+              {drink.name}
+            </h3>
+            <p className="text-lux-muted text-sm">{drink.desc}</p>
             </div>
           ))}
         </div>
