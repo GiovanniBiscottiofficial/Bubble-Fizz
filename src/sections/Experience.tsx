@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Wine, Palette, ConciergeBell, Shield, Award } from 'lucide-react';
+import { Wine, Palette, ConciergeBell } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
+import CertificationBadges from '@/components/CertificationBadges';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -150,16 +151,10 @@ export default function Experience() {
               <p className="mt-4 text-lux-muted leading-relaxed max-w-xl">
                 With years of experience crafting unforgettable bar experiences, I bring passion, professionalism, and a touch of glamour to every event. From intimate gatherings to grand celebrations, Bubble & Fizz is here to elevate your special occasion.
               </p>
-              <div className="mt-4 flex flex-wrap justify-center md:justify-start gap-4">
-                <div className="flex items-center gap-2 text-lux-pink text-sm">
-                  <Shield className="w-4 h-4" />
-                  <span>Fully Insured</span>
-                </div>
-                <div className="flex items-center gap-2 text-lux-purple text-sm">
-                  <Award className="w-4 h-4" />
-                  <span>Licensed Professional</span>
-                </div>
-              </div>
+              <CertificationBadges compact className="mt-6" />
+              <blockquote className="mt-6 text-lux-white/80 italic border-l-2 border-lux-pink/40 pl-4 max-w-xl">
+                “I don’t just pour drinks — I curate the whole bar experience so you can be the host who actually gets to enjoy the party.”
+              </blockquote>
             </div>
           </div>
         </div>
