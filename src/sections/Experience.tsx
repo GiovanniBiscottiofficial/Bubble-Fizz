@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Wine, Sparkles, Heart, Shield, Award } from 'lucide-react';
+import { Wine, Palette, ConciergeBell, Shield, Award } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,13 +14,13 @@ const pillars = [
     description: 'Signature cocktails and champagne service tailored to your theme and taste preferences.',
   },
   {
-    icon: Sparkles,
+    icon: Palette,
     label: 'Styling & Setup',
     title: 'Elegant Design',
     description: 'Elegant bar design that complements your venue\'s aesthetic and elevates the atmosphere.',
   },
   {
-    icon: Heart,
+    icon: ConciergeBell,
     label: 'Impeccable Service',
     title: 'Professional Team',
     description: 'Professional, warm bartenders who read the room and create memorable experiences.',

@@ -177,9 +177,12 @@ export default function Testimonials() {
           </div>
           <div className="flex items-center gap-2 text-lux-muted">
             <div className="w-10 h-10 rounded-full bg-lux-pink/20 flex items-center justify-center">
-              <span className="text-lux-pink font-bold text-lg">5★</span>
+              <Star className="w-5 h-5 fill-lux-pink text-lux-pink" />
             </div>
-            <span className="text-sm">Average Rating</span>
+            <div className="text-sm">
+              <span className="text-lux-pink font-bold">5.0</span>
+              <span className="block text-xs text-lux-muted/70">Average Rating</span>
+            </div>
           </div>
           <div className="flex items-center gap-2 text-lux-muted">
             <div className="w-10 h-10 rounded-full bg-lux-gold/20 flex items-center justify-center">

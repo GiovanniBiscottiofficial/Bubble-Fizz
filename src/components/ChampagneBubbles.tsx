@@ -8,7 +8,15 @@ interface Bubble {
   opacity: number;
   wobble: number;
   wobbleSpeed: number;
+  color: 'pink' | 'purple' | 'gold' | 'white';
 }
+
+const THEME_COLORS = {
+  pink: { center: '255, 120, 200', mid: '236, 72, 153', edge: '139, 92, 246' },
+  purple: { center: '200, 160, 255', mid: '139, 92, 246', edge: '236, 72, 153' },
+  gold: { center: '255, 245, 210', mid: '212, 175, 55', edge: '184, 134, 11' },
+  white: { center: '255, 255, 255', mid: '230, 230, 240', edge: '139, 92, 246' },
+};
 
 export default function ChampagneBubbles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -29,19 +37,22 @@ export default function ChampagneBubbles() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Subtle champagne bubbles — fewer, smaller, slower
+    const colorKeys = Object.keys(THEME_COLORS) as Bubble['color'][];
+
     const initBubbles = () => {
       bubblesRef.current = [];
-      const count = Math.min(30, Math.floor((canvas.width * canvas.height) / 35000));
+      // Elegant density: enough to feel alive, sparse enough to stay premium
+      const count = Math.min(48, Math.floor((canvas.width * canvas.height) / 22000));
       for (let i = 0; i < count; i++) {
         bubblesRef.current.push({
           x: Math.random() * canvas.width,
-          y: canvas.height + Math.random() * 300,
-          size: Math.random() * 3 + 1, // 1-4px
-          speed: Math.random() * 0.5 + 0.2, // Slow rise
-          opacity: Math.random() * 0.25 + 0.1, // Very subtle
+          y: canvas.height + Math.random() * 400,
+          size: Math.random() * 5 + 2, // 2-7px
+          speed: Math.random() * 0.7 + 0.25,
+          opacity: Math.random() * 0.35 + 0.25,
           wobble: Math.random() * Math.PI * 2,
-          wobbleSpeed: Math.random() * 0.01 + 0.005,
+          wobbleSpeed: Math.random() * 0.015 + 0.005,
+          color: colorKeys[Math.floor(Math.random() * colorKeys.length)],
         });
       }
     };
@@ -49,43 +60,61 @@ export default function ChampagneBubbles() {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Overlapping bubbles lighten each other for a soft, glassy glow
+      ctx.globalCompositeOperation = 'lighter';
 
       bubblesRef.current.forEach((bubble) => {
-        // Update position
         bubble.y -= bubble.speed;
         bubble.wobble += bubble.wobbleSpeed;
-        bubble.x += Math.sin(bubble.wobble) * 0.25; // Gentle wobble
+        bubble.x += Math.sin(bubble.wobble) * 0.35;
 
-        // Reset bubble if it goes off screen
-        if (bubble.y < -20) {
-          bubble.y = canvas.height + 20;
+        if (bubble.y < -30) {
+          bubble.y = canvas.height + 30;
           bubble.x = Math.random() * canvas.width;
         }
 
-        // Soft champagne-gold bubble
-        const gradient = ctx.createRadialGradient(
+        const palette = THEME_COLORS[bubble.color];
+        const r = bubble.size;
+
+        // Outer soft halo
+        const halo = ctx.createRadialGradient(
           bubble.x, bubble.y, 0,
-          bubble.x, bubble.y, bubble.size
+          bubble.x, bubble.y, r * 2.2
         );
-        gradient.addColorStop(0, `rgba(255, 248, 220, ${bubble.opacity})`); // Champagne white center
-        gradient.addColorStop(0.5, `rgba(200, 170, 110, ${bubble.opacity * 0.7})`); // Soft gold middle
-        gradient.addColorStop(1, 'rgba(200, 170, 110, 0)');
+        halo.addColorStop(0, `rgba(${palette.mid}, ${bubble.opacity * 0.18})`);
+        halo.addColorStop(0.5, `rgba(${palette.edge}, ${bubble.opacity * 0.08})`);
+        halo.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.beginPath();
-        ctx.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
+        ctx.arc(bubble.x, bubble.y, r * 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = halo;
         ctx.fill();
 
-        // Tiny white shine
+        // Main glassy orb
+        const orb = ctx.createRadialGradient(
+          bubble.x - r * 0.25, bubble.y - r * 0.25, 0,
+          bubble.x, bubble.y, r
+        );
+        orb.addColorStop(0, `rgba(${palette.center}, ${bubble.opacity})`);
+        orb.addColorStop(0.45, `rgba(${palette.mid}, ${bubble.opacity * 0.65})`);
+        orb.addColorStop(0.85, `rgba(${palette.edge}, ${bubble.opacity * 0.25})`);
+        orb.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx.beginPath();
+        ctx.arc(bubble.x, bubble.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = orb;
+        ctx.fill();
+
+        // Sharp white specular highlight
         ctx.beginPath();
         ctx.arc(
-          bubble.x - bubble.size * 0.3,
-          bubble.y - bubble.size * 0.3,
-          bubble.size * 0.2,
+          bubble.x - r * 0.35,
+          bubble.y - r * 0.35,
+          r * 0.22,
           0,
           Math.PI * 2
         );
-        ctx.fillStyle = `rgba(255, 255, 255, ${bubble.opacity * 0.8})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${bubble.opacity * 0.9})`;
         ctx.fill();
       });
 
@@ -105,8 +134,8 @@ export default function ChampagneBubbles() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[5]"
-      style={{ opacity: 0.35, mixBlendMode: 'screen' }}
+      className="fixed inset-0 pointer-events-none z-[90]"
+      style={{ opacity: 0.55, mixBlendMode: 'screen' }}
     />
   );
 }
