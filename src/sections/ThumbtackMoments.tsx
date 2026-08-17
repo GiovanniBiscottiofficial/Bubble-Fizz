@@ -8,6 +8,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const moments = [
   {
+    src: '/gallery_event_1.webp',
+    alt: 'Real wedding reception bar by Bubble & Fizz',
+    quote: "Highly recommend!! Mercedes was incredibly professional and organized. She arrived on time, set up the bar beautifully, and kept everything running smoothly throughout the reception. She helped make our wedding day unforgettable!",
+    author: 'Kristina P.',
+    event: 'Wedding Reception',
+  },
+  {
     src: '/thumbtack_1366_3.webp',
     alt: 'Themed party cocktail',
     quote: "I used Bubble & Fizz for my birthday and trusted her to use her creativity for some drinks to fit my 3 themed party atmosphere and the drinks were absolutely amazing!!",
