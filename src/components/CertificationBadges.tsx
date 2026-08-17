@@ -8,8 +8,6 @@ interface CertificationBadgesProps {
 
 const ALL_BADGES = [
   { icon: ShieldCheck, title: 'TIPS Certified' },
-  { icon: ShieldCheck, title: 'TIPS On-Premise' },
-  { icon: ShieldCheck, title: 'TIPS Concessions' },
   { icon: Utensils, title: 'ServSafe' },
   { icon: Beer, title: 'Certified Beer Server' },
   { icon: BadgeCheck, title: 'Certified Cicerone' },
@@ -19,7 +17,7 @@ const ALL_BADGES = [
 ];
 
 const COMPACT_BADGES = ALL_BADGES.filter((b) =>
-  ['TIPS On-Premise', 'TIPS Concessions', 'ServSafe', 'Fully Insured', 'Background Checked'].includes(b.title)
+  ['TIPS Certified', 'ServSafe', 'Background Checked', 'Fully Insured', 'Professional Mixologist'].includes(b.title)
 );
 
 export default function CertificationBadges({ compact, className }: CertificationBadgesProps) {

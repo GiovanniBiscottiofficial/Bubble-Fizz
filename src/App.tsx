@@ -56,11 +56,11 @@ function App() {
         {/* Section 6: Gallery - pin: true */}
         <Gallery />
         
-        {/* Section 7: Testimonials - pin: false */}
-        <Testimonials />
-
-        {/* Section 7.5: Thumbtack Moments - pin: false */}
+        {/* Section 7: Thumbtack Moments - photo proof first */}
         <ThumbtackMoments />
+
+        {/* Section 7.5: Testimonials - kind words after */}
+        <Testimonials />
 
         {/* Section 7.6: Reviews & Map - pin: false */}
         <ReviewsMap />

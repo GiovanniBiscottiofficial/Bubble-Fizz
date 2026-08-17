@@ -20,12 +20,12 @@ export default function Logo({ className, priority }: LogoProps) {
         src="/logo.png"
         alt="Bubble & Fizz Logo"
         priority={priority}
-        className="w-full h-full object-cover rounded-full opacity-95"
+        className="absolute inset-0 w-full h-full object-cover rounded-full opacity-95"
       />
       <div
         className="absolute inset-0 rounded-full pointer-events-none"
         style={{
-          boxShadow: 'inset 0 0 40px 20px rgba(10,10,15,0.55)',
+          boxShadow: 'inset 0 0 24px 10px rgba(10,10,15,0.45)',
         }}
       />
     </div>
