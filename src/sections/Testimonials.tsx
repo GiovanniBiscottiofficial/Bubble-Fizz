@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Star } from 'lucide-react';
+import OptimizedImage from '@/components/OptimizedImage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,6 +54,12 @@ const testimonials = [
     author: 'Ashley & Bridesmaids',
     event: 'Bridal Shower',
     location: 'Cary, NC',
+  },
+  {
+    quote: "Highly recommend!! Mercedes was incredibly professional and organized. She arrived on time, set up the bar beautifully, and kept everything running smoothly throughout the reception. She helped make our wedding day unforgettable!",
+    author: 'Kristina P.',
+    event: 'Wedding Reception',
+    location: 'Reviewed Apr 5, 2025',
   },
 ];
 
@@ -165,6 +172,34 @@ export default function Testimonials() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Featured Review with Event Photo */}
+        <div className="mt-16 lux-card overflow-hidden">
+          <div className="grid md:grid-cols-2 gap-0">
+            <div className="relative h-64 md:h-auto min-h-[300px]">
+              <OptimizedImage
+                src="/gallery_event_1.webp"
+                alt="Real wedding reception bar by Bubble & Fizz"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+            <div className="p-8 md:p-10 flex flex-col justify-center">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-lux-pink text-lux-pink" />
+                ))}
+              </div>
+              <blockquote className="font-display text-xl md:text-2xl text-lux-white leading-relaxed mb-6">
+                "Highly recommend!! Mercedes was incredibly professional and organized. She arrived on time, set up the bar beautifully, and kept everything running smoothly throughout the reception. She helped make our wedding day unforgettable!"
+              </blockquote>
+              <div>
+                <p className="text-lux-white font-medium">Kristina P.</p>
+                <p className="text-lux-pink text-sm">Wedding Reception</p>
+                <p className="text-lux-muted/70 text-xs mt-1">Reviewed Apr 5, 2025</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Trust Badges */}
