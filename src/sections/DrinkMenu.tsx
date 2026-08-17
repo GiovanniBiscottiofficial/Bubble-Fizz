@@ -12,12 +12,12 @@ const drinkCategories = [
     icon: Sparkles,
     color: 'from-lux-pink to-lux-purple',
     drinks: [
-      { name: 'The Rosé Royale', desc: 'Sparkling rosé, berry reduction, gold leaf' },
-      { name: 'The Velvet Crown', desc: 'Bourbon, vanilla, burnt orange, golden demerara' },
-      { name: 'Smoked Amethyst', desc: 'Mezcal, fresh citrus, charcoal-salted rim' },
-      { name: 'Purple Reign', desc: 'Empress gin, lemon, lavender syrup' },
-      { name: 'Bubble & Fizz Special', desc: 'Champagne, Chambord, fresh berries' },
-      { name: 'Shimmer Elixir', desc: 'Vodka, edible shimmer, citrus, sparkling topper' },
+      { name: 'The Rosé Royale', desc: 'Sparkling rosé, berry reduction, gold leaf', tags: ['Bubbly', 'Elegant'] },
+      { name: 'The Velvet Crown', desc: 'Bourbon, vanilla, burnt orange, golden demerara', tags: ['Bold', 'Smoked'] },
+      { name: 'Smoked Amethyst', desc: 'Mezcal, fresh citrus, charcoal-salted rim', tags: ['Smoked', 'Citrus'] },
+      { name: 'Purple Reign', desc: 'Empress gin, lemon, lavender syrup', tags: ['Floral', 'Elegant'] },
+      { name: 'Bubble & Fizz Special', desc: 'Champagne, Chambord, fresh berries', tags: ['Bubbly', 'Signature'] },
+      { name: 'Shimmer Elixir', desc: 'Vodka, edible shimmer, citrus, sparkling topper', tags: ['Shimmer', 'Citrus'] },
     ],
   },
   {
@@ -26,11 +26,11 @@ const drinkCategories = [
     icon: Wine,
     color: 'from-lux-purple to-lux-gold',
     drinks: [
-      { name: 'Mojito', desc: 'Rum, mint, lime, soda' },
-      { name: 'Cosmopolitan', desc: 'Vodka, cranberry, lime, Cointreau' },
-      { name: 'Moscow Mule', desc: 'Vodka, ginger beer, lime' },
-      { name: 'Margarita', desc: 'Tequila, lime, triple sec' },
-      { name: 'Manhattan', desc: 'Rye, sweet vermouth, bitters' },
+      { name: 'Mojito', desc: 'Rum, mint, lime, soda', tags: ['Classic', 'Refreshing'] },
+      { name: 'Cosmopolitan', desc: 'Vodka, cranberry, lime, Cointreau', tags: ['Classic', 'Elegant'] },
+      { name: 'Moscow Mule', desc: 'Vodka, ginger beer, lime', tags: ['Classic', 'Refreshing'] },
+      { name: 'Margarita', desc: 'Tequila, lime, triple sec', tags: ['Classic', 'Citrus'] },
+      { name: 'Manhattan', desc: 'Rye, sweet vermouth, bitters', tags: ['Classic', 'Bold'] },
     ],
   },
   {
@@ -39,11 +39,11 @@ const drinkCategories = [
     icon: GlassWater,
     color: 'from-lux-gold to-lux-pink',
     drinks: [
-      { name: 'Classic Mimosa', desc: 'Champagne, fresh orange juice' },
-      { name: 'Bellini', desc: 'Prosecco, peach purée' },
-      { name: 'French 75', desc: 'Gin, lemon, champagne' },
-      { name: 'Kir Royale', desc: 'Champagne, crème de cassis' },
-      { name: 'Champagne Tower', desc: '50+ glasses, premium champagne' },
+      { name: 'Classic Mimosa', desc: 'Champagne, fresh orange juice', tags: ['Bubbly', 'Brunch'] },
+      { name: 'Bellini', desc: 'Prosecco, peach purée', tags: ['Bubbly', 'Fruity'] },
+      { name: 'French 75', desc: 'Gin, lemon, champagne', tags: ['Bubbly', 'Citrus'] },
+      { name: 'Kir Royale', desc: 'Champagne, crème de cassis', tags: ['Bubbly', 'Elegant'] },
+      { name: 'Champagne Tower', desc: '50+ glasses, premium champagne', tags: ['Bubbly', 'Statement'] },
     ],
   },
   {
@@ -52,11 +52,11 @@ const drinkCategories = [
     icon: Coffee,
     color: 'from-lux-pink to-lux-gold',
     drinks: [
-      { name: 'Minted Bubbles', desc: 'Muddled mint, lime, soda, raw sugar' },
-      { name: 'Citrus Shimmer', desc: 'Seedlip-style botanicals, tonic, burnt orange' },
-      { name: 'Cherry Fizz', desc: 'Ginger ale, grenadine, luxardo cherry' },
-      { name: 'Cucumber Mist', desc: 'Cucumber, lime, mint, soda' },
-      { name: 'Berry Sparkler', desc: 'Berry syrup, soda, fresh fruit' },
+      { name: 'Minted Bubbles', desc: 'Muddled mint, lime, soda, raw sugar', tags: ['Zero-Proof', 'Refreshing'] },
+      { name: 'Citrus Shimmer', desc: 'Seedlip-style botanicals, tonic, burnt orange', tags: ['Zero-Proof', 'Citrus'] },
+      { name: 'Cherry Fizz', desc: 'Ginger ale, grenadine, luxardo cherry', tags: ['Zero-Proof', 'Sweet'] },
+      { name: 'Cucumber Mist', desc: 'Cucumber, lime, mint, soda', tags: ['Zero-Proof', 'Dry-Ice'] },
+      { name: 'Berry Sparkler', desc: 'Berry syrup, soda, fresh fruit', tags: ['Zero-Proof', 'Fruity'] },
     ],
   },
 ];
@@ -155,6 +155,18 @@ export default function DrinkMenu() {
               {drink.name}
             </h3>
             <p className="text-lux-muted text-sm">{drink.desc}</p>
+            {drink.tags && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {drink.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center px-2 py-1 rounded-full text-[10px] uppercase tracking-wider font-medium bg-lux-pink/10 text-lux-pink border border-lux-pink/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
             </div>
           ))}
         </div>
