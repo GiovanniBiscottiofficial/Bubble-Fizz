@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Phone, Mail, Shield } from 'lucide-react';
+import { Phone, Mail } from 'lucide-react';
+import CertificationBadges from '@/components/CertificationBadges';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 import OptimizedImage from '@/components/OptimizedImage';
@@ -164,10 +165,9 @@ export default function FinalCTA() {
           </a>
         </div>
 
-        <p className="animate-in mt-6 text-lux-muted/60 text-xs flex items-center gap-2">
-          <Shield className="w-3 h-3 text-lux-pink" />
-          Licensed & Insured • Mercedes Pettiford, Professional Mixologist
-        </p>
+        <div className="animate-in mt-6">
+          <CertificationBadges compact />
+        </div>
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ import { ChevronRight } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import OptimizedImage from '@/components/OptimizedImage';
 import Logo from '@/components/Logo';
+import CertificationBadges from '@/components/CertificationBadges';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -249,19 +250,22 @@ export default function Hero() {
         {/* CTA Buttons */}
         <div 
           ref={ctaRef}
-          className="mt-6 md:mt-8 flex flex-col sm:flex-row items-center gap-4"
+          className="mt-6 md:mt-8 flex flex-col items-center gap-4"
           style={{ opacity: 0 }}
         >
-          <button 
-            onClick={scrollToContact}
-            className="lux-button-primary"
-          >
-            Book Your Event
-          </button>
-          <a href="#packages" className="lux-button-outline group">
-            View Packages
-            <ChevronRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <button 
+              onClick={scrollToContact}
+              className="lux-button-primary"
+            >
+              Book Your Event
+            </button>
+            <a href="#packages" className="lux-button-outline group">
+              View Packages
+              <ChevronRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
+          <CertificationBadges compact />
         </div>
       </div>
     </section>

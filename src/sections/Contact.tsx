@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail, Phone, MapPin, Send, Instagram, Facebook, Calendar, Loader2, CheckCircle } from 'lucide-react';
 import Logo from '@/components/Logo';
+import CertificationBadges from '@/components/CertificationBadges';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -313,6 +314,7 @@ ${formData.message || 'No additional message'}
                   <p className="text-gradient-purple text-sm">
                     Professional, Licensed & Insured Mixologist
                   </p>
+                  <CertificationBadges compact className="mt-3" />
                 </div>
               </div>
 
