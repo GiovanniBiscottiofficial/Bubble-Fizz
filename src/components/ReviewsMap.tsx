@@ -17,7 +17,6 @@ export default function ReviewsMap() {
 
   return (
     <section
-      id="service-map"
       className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-lux-black z-50"
     >
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-lux-purple/10 rounded-full blur-[150px] pointer-events-none" />

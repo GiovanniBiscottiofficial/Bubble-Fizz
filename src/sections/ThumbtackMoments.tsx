@@ -126,7 +126,6 @@ export default function ThumbtackMoments() {
   return (
     <section
       ref={sectionRef}
-      id="thumbtack-moments"
       className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 z-65 bg-lux-black"
     >
       {/* Pink glow */}

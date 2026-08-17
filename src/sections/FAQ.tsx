@@ -103,7 +103,6 @@ export default function FAQ() {
   return (
     <section
       ref={sectionRef}
-      id="faq"
       className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 z-55 bg-lux-black"
     >
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-lux-pink/10 rounded-full blur-[150px] pointer-events-none" />

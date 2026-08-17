@@ -73,7 +73,6 @@ export default function Process() {
 
   return (
     <section
-      id="process"
       ref={sectionRef}
       className="relative w-full py-20 md:py-24 px-6 md:px-12 lg:px-20 z-40 bg-lux-black"
     >

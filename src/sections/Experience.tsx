@@ -167,7 +167,6 @@ export default function Experience() {
   return (
     <section
       ref={sectionRef}
-      id="experience"
       className="relative w-full py-20 md:py-24 px-6 md:px-12 lg:px-20 z-20 bg-lux-black"
     >
       {/* Purple glow */}
