@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { Shield, ShieldCheck, Utensils, Beer, BadgeCheck, UserCheck, Wine } from 'lucide-react';
+import { Shield, ShieldCheck, Utensils, Beer, BadgeCheck, UserCheck } from 'lucide-react';
 
 interface CertificationBadgesProps {
   compact?: boolean;
@@ -13,11 +13,10 @@ const ALL_BADGES = [
   { icon: BadgeCheck, title: 'Certified Cicerone' },
   { icon: Shield, title: 'Fully Insured' },
   { icon: UserCheck, title: 'Background Checked' },
-  { icon: Wine, title: 'Professional Mixologist' },
 ];
 
 const COMPACT_BADGES = ALL_BADGES.filter((b) =>
-  ['TIPS Certified', 'ServSafe', 'Background Checked', 'Fully Insured', 'Professional Mixologist'].includes(b.title)
+  ['TIPS Certified', 'ServSafe', 'Background Checked', 'Fully Insured'].includes(b.title)
 );
 
 export default function CertificationBadges({ compact, className }: CertificationBadgesProps) {

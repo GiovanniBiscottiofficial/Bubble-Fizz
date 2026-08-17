@@ -31,7 +31,16 @@ const serviceGroups = [
   {
     icon: Martini,
     title: 'Beverage Types',
-    items: ['Beer', 'Liquor / mixed drinks', 'Wine', 'Non-alcoholic beverages'],
+    items: [
+      'Beer',
+      'Liquor / mixed drinks',
+      'Wine',
+      'Champagne & bubbles',
+      'Signature cocktails',
+      'Craft mocktails',
+      'Non-alcoholic beverages',
+      'House-made mixers',
+    ],
   },
   {
     icon: PartyPopper,
@@ -50,7 +59,16 @@ const serviceGroups = [
   {
     icon: Sparkles,
     title: 'Event Vibe',
-    items: ['Low key / casual', 'Formal / elegant', 'Upbeat / lively', 'Club scene'],
+    items: [
+      'Low key / casual',
+      'Formal / elegant',
+      'Upbeat / lively',
+      'Club scene',
+      'Upscale & refined',
+      'Festive & fun',
+      'Romantic & intimate',
+      'Glamorous',
+    ],
   },
 ];
 
