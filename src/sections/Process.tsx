@@ -1,30 +1,25 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MessageSquare, Wine, ConciergeBell, Sparkles } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    icon: MessageSquare,
     title: 'Consultation',
-    description: 'We discuss your date, guest count, venue, and vision so every detail is covered.',
+    description: 'We discuss your timeline, guest count, event vibe, and venue logistics so nothing is left to chance.',
   },
   {
-    icon: Wine,
     title: 'Menu Design',
-    description: 'I build a custom drink menu around your theme, colors, and taste — cocktails, classics, and mocktails included.',
+    description: 'You choose from signature cocktails, timeless classics, and zero-proof options tailored to your taste.',
   },
   {
-    icon: ConciergeBell,
     title: 'Setup & Pour',
-    description: 'I arrive early with a styled bar, chilled glassware, premium tools, and everything needed for polished service.',
+    description: 'I arrive early with a styled bar, chilled glassware, and everything needed for a polished service.',
   },
   {
-    icon: Sparkles,
     title: 'Toast & Wrap',
-    description: 'From first pour to last call, the flow stays smooth, the drinks stay beautiful, and the space stays spotless.',
+    description: 'From first pour to last call, I keep the flow smooth and leave the space spotless.',
   },
 ];
 
@@ -98,27 +93,32 @@ export default function Process() {
           </p>
         </div>
 
-        <div ref={timelineRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((step, index) => (
-            <div
-              key={step.title}
-              ref={el => { nodesRef.current[index] = el; }}
-              className="lux-card group hover:border-lux-pink/40 transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-lux-purple/20 to-lux-pink/20 flex items-center justify-center group-hover:from-lux-purple/30 group-hover:to-lux-pink/30 transition-all">
-                  <step.icon className="w-6 h-6 text-lux-pink" />
+        <div ref={timelineRef} className="relative">
+          <div
+            className="absolute left-4 top-0 w-1 h-full rounded-full"
+            style={{ background: 'linear-gradient(180deg, #7C3AED 0%, #EC4899 50%, #C8A951 100%)' }}
+          />
+
+          <div className="space-y-8">
+            {steps.map((step, index) => (
+              <div
+                key={step.title}
+                ref={el => { nodesRef.current[index] = el; }}
+                className="relative pl-14"
+              >
+                <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-lux-black border-2 border-lux-pink flex items-center justify-center shadow-[0_0_15px_rgba(236,72,153,0.4)]">
+                  <div className="w-3 h-3 rounded-full bg-gradient-logo" />
                 </div>
                 <span className="text-lux-purple text-xs font-label uppercase tracking-wider">Step {index + 1}</span>
+                <h3 className="mt-1 font-display text-2xl text-lux-white font-medium">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-lux-muted leading-relaxed">
+                  {step.description}
+                </p>
               </div>
-              <h3 className="font-display text-2xl text-lux-white font-medium">
-                {step.title}
-              </h3>
-              <p className="mt-2 text-lux-muted leading-relaxed text-sm">
-                {step.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

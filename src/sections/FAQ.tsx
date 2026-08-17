@@ -108,7 +108,7 @@ export default function FAQ() {
     >
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-lux-pink/10 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto relative">
+      <div className="max-w-7xl mx-auto relative">
         <div ref={headlineRef} className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lux-purple/10 border border-lux-purple/30 mb-6">
             <HelpCircle className="w-4 h-4 text-lux-purple" />
@@ -125,7 +125,7 @@ export default function FAQ() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
@@ -135,13 +135,13 @@ export default function FAQ() {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between p-6 text-left"
+                className="w-full flex items-center justify-between p-5 text-left"
               >
-                <span className="font-display text-lg text-lux-white pr-4">
+                <span className="font-display text-base text-lux-white pr-3">
                   {faq.question}
                 </span>
                 <ChevronDown
-                  className={`w-5 h-5 text-lux-pink flex-shrink-0 transition-transform duration-300 ${
+                  className={`w-4 h-4 text-lux-pink flex-shrink-0 transition-transform duration-300 ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                 />
@@ -151,7 +151,7 @@ export default function FAQ() {
                   openIndex === index ? 'max-h-96' : 'max-h-0'
                 }`}
               >
-                <div className="px-6 pb-6 text-lux-muted leading-relaxed">
+                <div className="px-5 pb-5 text-lux-muted text-sm leading-relaxed">
                   {faq.answer}
                 </div>
               </div>
