@@ -174,7 +174,7 @@ export default function Experience() {
                 Professional, Licensed & Insured Mixologist
               </p>
               <p className="mt-4 text-lux-muted leading-relaxed max-w-xl">
-                Exceptional customer service and awesome cocktails with a smile and swagger like no other — and we make amazing dry ice mocktails, too! Seeing people enjoy my delicious craft cocktails while having a great time always puts a smile on my face. I love the positive feedback after every sip. My team and I specialize in offering an experience and atmosphere like no other. Book us and find out what all the talk is about!
+                Exceptional customer service and awesome cocktails — and we make amazing dry ice mocktails, too! Seeing people enjoy my delicious craft cocktails while having a great time always puts a smile on my face. I love the positive feedback after every sip. My team and I specialize in offering an experience and atmosphere like no other. Book us and find out what all the talk is about!
               </p>
               <p className="mt-4 text-lux-white/90 italic leading-relaxed max-w-xl border-l-2 border-lux-gold/40 pl-4">
                 I started Bubble & Fizz because I love seeing people enjoy delicious craft cocktails while having a great time — and I wanted to bring a smile and swagger to every celebration in North Carolina.
@@ -187,11 +187,11 @@ export default function Experience() {
         </div>
 
         {/* Services Offered */}
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
+        <div className="mt-12 grid md:grid-cols-3 gap-6 items-stretch">
           {serviceGroups.map((group) => (
             <div
               key={group.title}
-              className="lux-card"
+              className="lux-card flex flex-col h-full"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-lux-purple/20 to-lux-pink/20 flex items-center justify-center">
@@ -199,11 +199,11 @@ export default function Experience() {
                 </div>
                 <h4 className="font-display text-lg text-lux-white">{group.title}</h4>
               </div>
-              <ul className="flex flex-wrap gap-2">
+              <ul className="grid grid-cols-2 gap-2 mt-auto">
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="px-3 py-1 rounded-full text-xs text-lux-white/90 bg-lux-white/5 border border-lux-white/10"
+                    className="px-3 py-1 rounded-full text-xs text-lux-white/90 bg-lux-white/5 border border-lux-white/10 flex items-center justify-center text-center"
                   >
                     {item}
                   </li>
@@ -215,7 +215,7 @@ export default function Experience() {
 
         <div className="grid lg:grid-cols-2 gap-12 mt-12">
           {/* Left Column - Text */}
-          <div>
+          <div className="lg:sticky lg:top-24 lg:self-start h-fit">
             <span className="section-label">OUR SERVICES</span>
             <h2 
               ref={headlineRef}
@@ -230,6 +230,12 @@ export default function Experience() {
             >
               We bring the full setup—chilled glassware, premium spirits, fresh garnishes, and a polished team—so you can host without lifting a glass.
             </p>
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="lux-button-primary mt-8"
+            >
+              Book a Free Consultation
+            </button>
           </div>
 
           {/* Right Column - Cards */}

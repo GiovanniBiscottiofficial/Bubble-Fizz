@@ -177,6 +177,17 @@ export default function ThumbtackMoments() {
             </div>
           ))}
         </div>
+
+        {/* CTA */}
+        <div className="mt-12 text-center">
+          <p className="text-lux-muted mb-4">Want your event to look like this?</p>
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="lux-button-primary"
+          >
+            Book Your Bubble & Fizz Experience
+          </button>
+        </div>
       </div>
     </section>
   );

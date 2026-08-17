@@ -102,12 +102,6 @@ const testimonials = [
     event: 'Birthday party • Club scene',
     location: 'Hired on Thumbtack',
   },
-  {
-    quote: "Would definitely recommend.",
-    author: 'Cidney H.',
-    event: 'Event Bartending',
-    location: 'Reviewed Aug 10, 2021',
-  },
 ];
 
 export default function Testimonials() {
@@ -219,6 +213,17 @@ export default function Testimonials() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-12 text-center">
+          <p className="text-lux-muted mb-4">Ready to be the next happy host?</p>
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="lux-button-primary"
+          >
+            Book Your Event
+          </button>
         </div>
       </div>
     </section>
