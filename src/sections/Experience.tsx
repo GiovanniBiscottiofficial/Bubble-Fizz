@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Wine, Palette, ConciergeBell, Martini, PartyPopper, Sparkles } from 'lucide-react';
+import { Wine, Palette, ConciergeBell, Martini, PartyPopper, Sparkles, Package } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -68,6 +68,16 @@ const serviceGroups = [
       'Festive & fun',
       'Romantic & intimate',
       'Glamorous',
+    ],
+  },
+  {
+    icon: Package,
+    title: 'Additional Services & Supplies',
+    items: [
+      'Setup / cleanup',
+      'Ice',
+      'Disposable cups',
+      'Coolers',
     ],
   },
 ];
@@ -204,7 +214,7 @@ export default function Experience() {
         </div>
 
         {/* Services Offered */}
-        <div className="mt-12 grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {serviceGroups.map((group) => (
             <div
               key={group.title}
