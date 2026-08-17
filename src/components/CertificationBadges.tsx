@@ -41,7 +41,7 @@ export default function CertificationBadges({ compact, className }: Certificatio
           >
             <badge.icon className={cn('text-lux-gold', compact ? 'w-3 h-3' : 'w-4 h-4')} />
           </div>
-          <span className={cn('text-lux-white font-medium whitespace-nowrap', compact ? 'text-xs' : 'text-sm')}>
+          <span className={cn('text-lux-white font-medium text-center leading-tight', compact ? 'text-xs' : 'text-sm')}>
             {badge.title}
           </span>
         </div>
