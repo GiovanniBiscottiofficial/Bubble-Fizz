@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Award, Shield, CheckCircle, Star, FileCheck, BadgeCheck } from 'lucide-react';
+import { Award, Shield, CheckCircle, Star, FileCheck, BadgeCheck, Beer, Utensils, ShieldCheck, UserCheck, Wine } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,13 +44,14 @@ const credentials = [
   },
 ];
 
-const trustBadges = [
-  'Licensed & Insured',
-  'Background Checked',
-  'TIPS Certified',
-  'Professional Attire',
-  'Punctual & Reliable',
-  'Custom Menus',
+const certifications = [
+  { icon: ShieldCheck, title: 'TIPS Certified' },
+  { icon: Utensils, title: 'ServSafe Certified' },
+  { icon: Beer, title: 'Certified Beer Server' },
+  { icon: BadgeCheck, title: 'Certified Cicerone' },
+  { icon: Shield, title: 'Fully Insured' },
+  { icon: UserCheck, title: 'Background Checked' },
+  { icon: Wine, title: 'Professional Mixologist' },
 ];
 
 export default function Credentials() {
@@ -131,6 +132,21 @@ export default function Credentials() {
           </p>
         </div>
 
+        {/* Certification Badges */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
+          {certifications.map((cert) => (
+            <div 
+              key={cert.title}
+              className="flex items-center gap-3 px-5 py-3 rounded-full bg-lux-black border border-lux-gold/30 hover:border-lux-gold/60 transition-all group"
+            >
+              <div className="w-8 h-8 rounded-full bg-lux-gold/10 flex items-center justify-center group-hover:bg-lux-gold/20 transition-all">
+                <cert.icon className="w-4 h-4 text-lux-gold" />
+              </div>
+              <span className="text-lux-white text-sm font-medium whitespace-nowrap">{cert.title}</span>
+            </div>
+          ))}
+        </div>
+
         {/* Credentials Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {credentials.map((cred, index) => (
@@ -166,7 +182,7 @@ export default function Credentials() {
             What You Can <span className="text-lux-gold">Always</span> Expect
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
-            {trustBadges.map((badge) => (
+            {['Licensed & Insured', 'Background Checked', 'TIPS Certified', 'Professional Attire', 'Punctual & Reliable', 'Custom Menus'].map((badge) => (
               <div 
                 key={badge}
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-lux-black border border-lux-gold/30"
