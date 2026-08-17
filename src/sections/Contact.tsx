@@ -460,14 +460,9 @@ ${formData.message || 'No additional message'}
           </div>
 
           <div className="mt-8 text-center">
-            <a
-              href="https://vaultbornegroup.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] text-lux-muted/40 hover:text-lux-gold font-label uppercase tracking-[0.25em] transition-colors"
-            >
+            <p className="text-[10px] text-lux-muted/40 font-label uppercase tracking-[0.25em]">
               Site built by Vaultborne Group LLC
-            </a>
+            </p>
           </div>
         </div>
       </div>
