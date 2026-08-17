@@ -61,6 +61,102 @@ const testimonials = [
     event: 'Wedding Reception',
     location: 'Reviewed Apr 5, 2025',
   },
+  {
+    quote: "I used Bubble & Fizz for my birthday and trusted her to use her creativity for some drinks to fit my 3 themed party atmosphere and the drinks were absolutely amazing!! Her professionalism is Top Notch!!",
+    author: 'Tameika H.',
+    event: 'Birthday Party',
+    location: 'Reviewed Apr 5, 2025',
+  },
+  {
+    quote: "We are so appreciative of Bubble and Fizz Mobile Bartending. We hired her at the last minute because me and my now husband completely forgot we needed one. She was flexible and communicated effectively. She was professional and my guests appreciated how relatable she was. I would hire her again!!",
+    author: 'Aquiel R.',
+    event: 'Wedding reception • 76-100 guests • Formal / elegant',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "We had such a great experience with bubble and fizz. The owner Mercedes is a ball of joy to work with she really enhances the vibes of the party she offered so many creative drinks and the whole set up was super cute and classy. The drinks gives what needs to be gave!",
+    author: 'Tiondra b.',
+    event: 'Wedding',
+    location: 'Reviewed Aug 9, 2021',
+  },
+  {
+    quote: "My wedding experience was amazing and I would definitely recommend the services. She is very knowledgeable and gave me very useful tips to prepare for my guests. She showed up on time, very neat table set up, and the drinks and Jell-O shots were delicious!",
+    author: 'Tiara F.',
+    event: 'Wedding',
+    location: 'Reviewed Aug 12, 2021',
+  },
+  {
+    quote: "I recently tapped B&F for a private celebration that I hosted for my daughter. She recently received a promotion and I wanted to let her know how proud we are of her. Needless to say B&F came through and held no punches. The event was beautiful. I couldn't have been more satisfied!",
+    author: 'Danny C.',
+    event: 'Private Celebration',
+    location: 'Reviewed Aug 9, 2021',
+  },
+  {
+    quote: "I invited Bubble and Fizz to my vendors event and every one loved the personality, the kindness and the quality of the drinks. I would recommend this business to anyone. I will be reaching out again!",
+    author: 'Yolanda M.',
+    event: "Vendor's Event",
+    location: 'Reviewed Aug 12, 2021',
+  },
+  {
+    quote: "It was a pleasure working with them. Needed waitstaff for my daughter's wedding. They came in and immediately started to work with the catering team to handle the needs of the guests. They worked through a few obstacles to make the event a success. I commend them for their adaptability, professionalism, work ethic and their enthusiastic personalities. Thank you again for everything! It is very much appreciated!!!",
+    author: 'Swandya J.',
+    event: 'Wedding • 201-300 guests • Waitstaff',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "Dope Bartender!!!! Her service was great thank you for making my wedding come true!!",
+    author: 'Latrece G.',
+    event: 'Wedding reception',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "Mercedes and Ray were very helpful and kept the party going so I could focus on my guests.",
+    author: 'Andrea B.',
+    event: 'Special event / party • Waitstaff',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "Drinks were excellent and really great. Would highly recommend to anyone with a gathering or party",
+    author: 'Jason P.',
+    event: 'Wedding reception • 76-100 guests • Upbeat / lively',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "This was my second time using her and every time was nothing but amazing my people enjoy how she interacted with them and how she was very attentive and sanitary and great service. I definitely would hire her again A+A+",
+    author: 'Adrian W.',
+    event: 'Repeat client',
+    location: 'Reviewed Aug 12, 2021',
+  },
+  {
+    quote: "Mercedes was absolutely amazing to work with! Can't wait to book her again for future events!",
+    author: 'Nataleh H.',
+    event: 'Cocktail party',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "Stellar customer service. Extremely friendly, personable and professional. Delivers and exceeds expectations. Excellent quality product. Would highly recommend.",
+    author: 'Gisselle C.',
+    event: 'Event Bartending',
+    location: 'Reviewed Aug 10, 2021',
+  },
+  {
+    quote: "Was a wonderful experience both times we booked we can't wait to continue business in the future",
+    author: 'Josh B.',
+    event: 'Repeat client',
+    location: 'Reviewed Aug 9, 2021',
+  },
+  {
+    quote: "It was absolutely wonderful!!!",
+    author: 'Janeen M.',
+    event: 'Birthday party • Club scene',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "Would definitely recommend.",
+    author: 'Cidney H.',
+    event: 'Event Bartending',
+    location: 'Reviewed Aug 10, 2021',
+  },
 ];
 
 export default function Testimonials() {
