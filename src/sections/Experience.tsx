@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Wine, Palette, ConciergeBell, Martini, PartyPopper, Sparkles } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
-import CertificationBadges from '@/components/CertificationBadges';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -177,7 +176,6 @@ export default function Experience() {
               <p className="mt-4 text-lux-muted leading-relaxed max-w-xl">
                 Exceptional customer service and awesome cocktails with a smile and swagger like no other — and we make amazing dry ice mocktails, too! Seeing people enjoy my delicious craft cocktails while having a great time always puts a smile on my face. I love the positive feedback after every sip. My team and I specialize in offering an experience and atmosphere like no other. Book us and find out what all the talk is about!
               </p>
-              <CertificationBadges compact className="mt-6" />
               <blockquote className="mt-6 text-lux-white/80 italic border-l-2 border-lux-pink/40 pl-4 max-w-xl">
                 “I don’t just pour drinks — I curate the whole bar experience so you can be the host who actually gets to enjoy the party.”
               </blockquote>

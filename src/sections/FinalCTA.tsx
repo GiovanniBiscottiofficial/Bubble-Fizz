@@ -1,5 +1,4 @@
 import { Phone, Mail } from 'lucide-react';
-import CertificationBadges from '@/components/CertificationBadges';
 import OptimizedImage from '@/components/OptimizedImage';
 import Logo from '@/components/Logo';
 
@@ -70,10 +69,6 @@ export default function FinalCTA() {
             <Mail className="w-4 h-4" />
             <span>bubble_fizzbar@yahoo.com</span>
           </a>
-        </div>
-
-        <div className="mt-6">
-          <CertificationBadges compact />
         </div>
       </div>
     </section>
