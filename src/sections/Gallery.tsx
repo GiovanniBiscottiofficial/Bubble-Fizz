@@ -89,7 +89,8 @@ export default function Gallery() {
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-lux-purple/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/30 via-lux-pink/10 to-lux-gold/5 mix-blend-overlay opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-lux-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             ))}
           </div>
@@ -105,7 +106,8 @@ export default function Gallery() {
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-lux-purple/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/30 via-lux-pink/10 to-lux-gold/5 mix-blend-overlay opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-lux-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             ))}
           </div>

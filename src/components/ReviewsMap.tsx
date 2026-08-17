@@ -93,10 +93,10 @@ export default function ReviewsMap() {
             <div className="relative flex-1 min-h-[420px] rounded-2xl overflow-hidden border border-lux-purple/10">
               <iframe
                 title="Bubble & Fizz service area map"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-84.3%2C33.8%2C-75.4%2C36.6&layer=mapnik&marker=35.7796%2C-78.6382"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-82.0%2C34.0%2C-76.0%2C36.6&layer=mapnik"
                 className="absolute inset-0 w-full h-full border-0"
                 style={{
-                  filter: 'grayscale(100%) invert(0.92) sepia(0.6) hue-rotate(250deg) saturate(1.2) brightness(0.75) contrast(1.15)',
+                  filter: 'grayscale(100%) invert(0.92) sepia(0.6) hue-rotate(260deg) saturate(1.2) brightness(0.75) contrast(1.15)',
                 }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -106,6 +106,15 @@ export default function ReviewsMap() {
                 className="absolute inset-0 pointer-events-none bg-gradient-to-br from-lux-purple/30 via-lux-pink/20 to-lux-gold/10 mix-blend-overlay"
                 aria-hidden="true"
               />
+              {/* Custom marker — Raleigh / Triangle home base */}
+              <div
+                className="absolute pointer-events-none"
+                style={{ top: '68%', left: '56%', transform: 'translate(-50%, -100%)' }}
+                aria-hidden="true"
+              >
+                <MapPin className="w-8 h-8 text-lux-pink fill-lux-pink/20 drop-shadow-[0_0_12px_rgba(236,72,153,0.8)]" />
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-lux-pink animate-ping" />
+              </div>
               {/* Interaction blocker so the map stays focused on NC */}
               <div
                 className="absolute inset-0 pointer-events-auto"
@@ -114,7 +123,7 @@ export default function ReviewsMap() {
             </div>
 
             <p className="px-2 pt-3 text-lux-muted/70 text-xs text-center">
-              Map shows the full North Carolina service region. Travel availability depends on date and event size.
+              Map centered on central North Carolina. Statewide and surrounding-state travel available upon request.
             </p>
           </div>
         </div>
