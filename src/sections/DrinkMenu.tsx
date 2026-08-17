@@ -168,7 +168,7 @@ export default function DrinkMenu() {
             Want a Custom Menu?
           </h3>
           <p className="text-lux-muted mb-6 max-w-xl mx-auto">
-            I can create a bespoke cocktail menu tailored to your event theme, colors, or personal preferences. Let's make something unique together!
+            I can create a custom cocktail menu tailored to your event theme, colors, or personal preferences. Let's make something unique together!
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button 
