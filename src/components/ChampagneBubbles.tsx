@@ -30,9 +30,18 @@ export default function ChampagneBubbles() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    let cssWidth = window.innerWidth;
+    let cssHeight = window.innerHeight;
+
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      cssWidth = window.innerWidth;
+      cssHeight = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = Math.floor(cssWidth * dpr);
+      canvas.height = Math.floor(cssHeight * dpr);
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
@@ -41,12 +50,12 @@ export default function ChampagneBubbles() {
 
     const initBubbles = () => {
       bubblesRef.current = [];
-      // Elegant density: enough to feel alive, sparse enough to stay premium
-      const count = Math.min(48, Math.floor((canvas.width * canvas.height) / 22000));
+      // Keep it elegant but lightweight on slower devices
+      const count = Math.min(28, Math.floor((cssWidth * cssHeight) / 42000));
       for (let i = 0; i < count; i++) {
         bubblesRef.current.push({
-          x: Math.random() * canvas.width,
-          y: canvas.height + Math.random() * 400,
+          x: Math.random() * cssWidth,
+          y: cssHeight + Math.random() * 400,
           size: Math.random() * 5 + 2, // 2-7px
           speed: Math.random() * 0.7 + 0.25,
           opacity: Math.random() * 0.35 + 0.25,
@@ -59,7 +68,7 @@ export default function ChampagneBubbles() {
     initBubbles();
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, cssWidth, cssHeight);
       // Overlapping bubbles lighten each other for a soft, glassy glow
       ctx.globalCompositeOperation = 'lighter';
 
@@ -69,8 +78,8 @@ export default function ChampagneBubbles() {
         bubble.x += Math.sin(bubble.wobble) * 0.35;
 
         if (bubble.y < -30) {
-          bubble.y = canvas.height + 30;
-          bubble.x = Math.random() * canvas.width;
+          bubble.y = cssHeight + 30;
+          bubble.x = Math.random() * cssWidth;
         }
 
         const palette = THEME_COLORS[bubble.color];

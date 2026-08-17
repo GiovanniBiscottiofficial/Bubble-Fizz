@@ -22,7 +22,8 @@ const OptimizedImage = forwardRef<HTMLPictureElement, OptimizedImageProps>(
           alt={alt}
           className={className}
           loading={priority ? 'eager' : 'lazy'}
-          decoding={priority ? 'auto' : 'async'}
+          decoding={priority ? 'sync' : 'async'}
+          fetchPriority={priority ? 'high' : 'low'}
           {...rest}
         />
       );
@@ -34,14 +35,15 @@ const OptimizedImage = forwardRef<HTMLPictureElement, OptimizedImageProps>(
 
     return (
       <picture ref={ref}>
-        <source srcSet={avifSrc} type="image/avif" />
-        <source srcSet={webpSrc} type="image/webp" />
+        <source srcSet={avifSrc} type="image/avif" sizes={rest.sizes} />
+        <source srcSet={webpSrc} type="image/webp" sizes={rest.sizes} />
         <img
           src={src}
           alt={alt}
           className={className}
           loading={priority ? 'eager' : 'lazy'}
-          decoding={priority ? 'auto' : 'async'}
+          decoding={priority ? 'sync' : 'async'}
+          fetchPriority={priority ? 'high' : 'low'}
           {...rest}
         />
       </picture>
