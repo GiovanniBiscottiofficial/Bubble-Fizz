@@ -155,24 +155,6 @@ export default function Credentials() {
           ))}
         </div>
 
-        {/* Trust Badges */}
-        <div className="lux-card">
-          <h3 className="font-display text-2xl text-lux-white text-center mb-8">
-            What You Can <span className="text-lux-gold">Always</span> Expect
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {['Premium Bar Setup', 'Dry-Ice Mocktails', 'Signature Cocktails', 'Professional Attire', 'Punctual & Reliable', 'Elegant Bar Styling'].map((badge) => (
-              <div 
-                key={badge}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-lux-black border border-lux-gold/30"
-              >
-                <CheckCircle className="w-4 h-4 text-lux-gold" />
-                <span className="text-lux-white text-sm">{badge}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Insurance Note */}
         <div className="mt-8 text-center">
           <p className="text-lux-muted text-sm">

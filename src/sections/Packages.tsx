@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Check, ArrowRight, Phone, Mail } from 'lucide-react';
-import CertificationBadges from '@/components/CertificationBadges';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -132,7 +131,6 @@ export default function Packages() {
           <p className="mt-6 text-lux-muted text-lg max-w-2xl mx-auto">
             Transparent, budget-friendly packages with professional, licensed & insured service from <span className="text-lux-purple font-medium">Mercedes Pettiford</span>.
           </p>
-          <CertificationBadges compact className="mt-6" />
         </div>
 
         {/* Package Cards */}
