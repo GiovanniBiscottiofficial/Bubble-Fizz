@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, Phone, MapPin, Send, Instagram, Facebook, Calendar, Loader2, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram, Facebook, ExternalLink, Calendar, Loader2, CheckCircle } from 'lucide-react';
 import Logo from '@/components/Logo';
 import CertificationBadges from '@/components/CertificationBadges';
 
@@ -405,7 +405,7 @@ ${formData.message || 'No additional message'}
                 <p className="text-lux-muted text-sm mb-4">Follow us on social media</p>
                 <div className="flex gap-4">
                   <a 
-                    href="https://facebook.com/bubbleandfizzbartending" 
+                    href="https://www.facebook.com/p/Bubble-Fizz-Bartending-100065602894921/" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-14 h-14 rounded-xl bg-gradient-to-br from-lux-purple to-lux-pink flex items-center justify-center text-white hover:shadow-[0_0_30px_rgba(236,72,153,0.5)] transition-all hover:-translate-y-1"
@@ -419,6 +419,16 @@ ${formData.message || 'No additional message'}
                     className="w-14 h-14 rounded-xl bg-gradient-to-br from-lux-pink to-lux-purple flex items-center justify-center text-white hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] transition-all hover:-translate-y-1"
                   >
                     <Instagram className="w-6 h-6" />
+                  </a>
+                  <a 
+                    href="https://www.thumbtack.com/nc/mebane/bartenders/bubble-fizz-mobile-bartending/service/296554191838363813" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Book on Thumbtack"
+                    className="px-4 h-14 rounded-xl bg-gradient-to-br from-lux-gold/20 to-lux-gold/5 border border-lux-gold/30 flex items-center gap-2 text-lux-gold hover:border-lux-gold/60 hover:shadow-[0_0_30px_rgba(250,204,21,0.2)] transition-all hover:-translate-y-1"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                    <span className="text-sm font-medium">Thumbtack</span>
                   </a>
                 </div>
               </div>

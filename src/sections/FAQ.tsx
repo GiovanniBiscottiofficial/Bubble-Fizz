@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: 'What areas do you serve?',
-    answer: 'I serve the entire state of North Carolina including Raleigh, Durham, Chapel Hill, Charlotte, Greensboro, Winston-Salem, Fayetteville, and surrounding areas. Travel fees may apply for locations outside the Triangle area.',
+    answer: 'I serve the entire state of North Carolina including the Triangle (Raleigh, Durham, Chapel Hill), Winston‑Salem, Greensboro, Charlotte, Sanford, Mebane, Fayetteville, Wilmington, and surrounding areas. Travel fees may apply for locations outside the Triangle area.',
   },
   {
     question: 'What\'s included in your packages?',
