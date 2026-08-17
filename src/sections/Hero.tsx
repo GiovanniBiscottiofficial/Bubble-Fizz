@@ -244,7 +244,7 @@ export default function Hero() {
           className="mt-4 md:mt-6 text-center text-lux-muted text-base md:text-lg max-w-2xl leading-relaxed"
           style={{ opacity: 0 }}
         >
-          Mobile champagne bars and craft cocktails for weddings, private parties, corporate events, sporting events, and pop-up bars across North Carolina.
+          Mobile champagne bars and craft cocktails for weddings, private parties, corporate events, sporting events, and pop-up bars across the Triangle, Winston‑Salem, Sanford, Mebane, and all of North Carolina.
         </p>
 
         {/* CTA Buttons */}

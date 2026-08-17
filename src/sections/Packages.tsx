@@ -130,7 +130,7 @@ export default function Packages() {
             Packages & <span className="text-lux-pink">Pricing</span>
           </h2>
           <p className="mt-6 text-lux-muted text-lg max-w-2xl mx-auto">
-            Every package includes professional, licensed & insured service from <span className="text-lux-purple font-medium">Mercedes Pettiford</span>.
+            Transparent, budget-friendly packages with professional, licensed & insured service from <span className="text-lux-purple font-medium">Mercedes Pettiford</span>.
           </p>
           <CertificationBadges compact className="mt-6" />
         </div>

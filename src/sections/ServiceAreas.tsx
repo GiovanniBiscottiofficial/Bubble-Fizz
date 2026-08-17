@@ -13,6 +13,8 @@ const serviceAreas: { name: string; distance: string }[] = [
   { name: 'Charlotte', distance: '2.5 hrs' },
   { name: 'Greensboro', distance: '1 hr' },
   { name: 'Winston-Salem', distance: '1.5 hrs' },
+  { name: 'Sanford', distance: '45 min' },
+  { name: 'Mebane', distance: '50 min' },
   { name: 'Fayetteville', distance: '1 hr' },
   { name: 'Wilmington', distance: '2 hrs' },
   { name: 'Asheville', distance: '3.5 hrs' },

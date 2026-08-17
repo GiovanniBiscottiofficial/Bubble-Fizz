@@ -17,6 +17,7 @@ const drinkCategories = [
       { name: 'Velvet Old Fashioned', desc: 'Bourbon, vanilla, burnt orange', price: '$15' },
       { name: 'Purple Reign', desc: 'Empress gin, lemon, lavender syrup', price: '$14' },
       { name: 'Bubble & Fizz Special', desc: 'Champagne, Chambord, fresh berries', price: '$16' },
+      { name: 'Shimmer Elixir', desc: 'Vodka, edible shimmer, citrus, sparkling topper', price: '$15' },
     ],
   },
   {
@@ -121,7 +122,7 @@ export default function DrinkMenu() {
             Crafted with <span className="text-lux-pink">Passion</span>
           </h2>
           <p className="mt-6 text-lux-muted text-lg max-w-2xl mx-auto">
-            From signature creations to timeless classics, every drink is crafted with premium ingredients and artistic presentation.
+            From signature creations and shimmer cocktails to timeless classics, every drink is crafted with premium ingredients, artistic presentation, and budget-friendly options.
           </p>
         </div>
 
