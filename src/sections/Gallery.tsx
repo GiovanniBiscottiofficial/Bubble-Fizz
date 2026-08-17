@@ -14,7 +14,7 @@ const galleryImages = [
   { src: '/mercedes_new_5.jpg', alt: 'Mercedes with pink cocktail', position: 'col-span-1 row-span-2' },
   { src: '/mercedes_new_3.jpg', alt: 'Mercedes at luxury bar', position: 'col-span-2 row-span-1' },
   { src: '/mercedes_new_4.jpg', alt: 'Mercedes shaking cocktail', position: 'col-span-1 row-span-1' },
-  { src: '/gallery_6.jpg', alt: 'Champagne coupe', position: 'col-span-1 row-span-1' },
+  { src: '/gallery_event_1.webp', alt: 'Real wedding reception bar by Bubble & Fizz', position: 'col-span-1 row-span-1' },
   { src: '/gallery_1.jpg', alt: 'Elegant bar setup', position: 'col-span-1 row-span-1' },
   { src: '/mercedes_new_2.jpg', alt: 'Mercedes garnishing cocktail', position: 'col-span-2 row-span-1' },
 ];
