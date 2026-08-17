@@ -8,54 +8,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote: "Mercedes made our wedding day absolutely perfect! The champagne tower was stunning and the cocktails were delicious. Our guests are still talking about it!",
-    author: 'Tasha & Marcus',
-    event: 'Wedding Reception',
-    location: 'Raleigh, NC',
-  },
-  {
-    quote: "Professional, punctual, and poured the best drinks! Bubble & Fizz elevated our corporate event to the next level. Highly recommend!",
-    author: 'Darnell J.',
-    event: 'Corporate Event',
-    location: 'Durham, NC',
-  },
-  {
-    quote: "My 40th birthday party was legendary thanks to Mercedes! The signature cocktail she created just for me was everything. Book her now!",
-    author: 'Keisha M.',
-    event: 'Birthday Celebration',
-    location: 'Charlotte, NC',
-  },
-  {
-    quote: "We hired Bubble & Fizz for our company holiday party and it was the best decision! Mercedes brought such positive energy and the drinks were top-notch.",
-    author: 'Jennifer & Team',
-    event: 'Holiday Party',
-    location: 'Greensboro, NC',
-  },
-  {
-    quote: "As a wedding planner, I've worked with many bartenders. Mercedes is hands down the best - professional, creative, and always goes above and beyond!",
-    author: 'Michelle R.',
-    event: 'Wedding Planner',
-    location: 'Chapel Hill, NC',
-  },
-  {
-    quote: "Our anniversary celebration was magical. The custom cocktail menu, the presentation, everything was perfect. Thank you Mercedes!",
-    author: 'Robert & Lisa',
-    event: 'Anniversary Party',
-    location: 'Winston-Salem, NC',
-  },
-  {
-    quote: "Mercedes brought the party to life! Our graduation celebration was unforgettable. She knows how to read a crowd and keep everyone happy.",
-    author: 'The Johnson Family',
-    event: 'Graduation Party',
-    location: 'Fayetteville, NC',
-  },
-  {
-    quote: "From the first consultation to the last pour, Mercedes was amazing. Our bridal shower was elegant and fun. Everyone loved the mimosa bar!",
-    author: 'Ashley & Bridesmaids',
-    event: 'Bridal Shower',
-    location: 'Cary, NC',
-  },
-  {
     quote: "Highly recommend!! Mercedes was incredibly professional and organized. She arrived on time, set up the bar beautifully, and kept everything running smoothly throughout the reception. She helped make our wedding day unforgettable!",
     author: 'Kristina P.',
     event: 'Wedding Reception',
@@ -217,7 +169,7 @@ export default function Testimonials() {
     <section 
       id="testimonials"
       ref={sectionRef}
-      className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-60 bg-lux-black"
+      className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 z-60 bg-lux-black"
     >
       {/* Purple glow */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-lux-purple/10 rounded-full blur-[150px] pointer-events-none" />
@@ -238,7 +190,7 @@ export default function Testimonials() {
         </div>
 
         {/* Testimonial Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.author}
@@ -256,7 +208,7 @@ export default function Testimonials() {
               </div>
 
               {/* Quote */}
-              <blockquote className="font-display text-lg text-lux-white leading-relaxed mb-6">
+              <blockquote className="text-base text-lux-white leading-relaxed mb-6">
                 "{testimonial.quote}"
               </blockquote>
 

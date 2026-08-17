@@ -340,7 +340,7 @@ ${formData.message || 'No additional message'}
           <div ref={infoRef}>
             <div className="lux-card">
               <div className="flex items-center gap-4 mb-6">
-                <Logo className="h-20 w-20" priority />
+                <Logo className="h-28 w-28" priority />
                 <div>
                   <h3 className="font-display text-xl text-lux-white font-medium">
                     Mercedes Pettiford
@@ -444,7 +444,7 @@ ${formData.message || 'No additional message'}
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Logo */}
             <div className="flex items-center gap-4">
-              <Logo className="h-16 w-16" priority />
+              <Logo className="h-24 w-24" priority />
               <div>
                 <span className="font-display text-2xl text-lux-white block">
                   Bubble <span className="text-lux-pink">&</span> Fizz

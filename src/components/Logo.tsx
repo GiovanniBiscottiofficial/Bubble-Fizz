@@ -13,7 +13,6 @@ export default function Logo({ className, priority }: LogoProps) {
         'relative inline-flex items-center justify-center rounded-full overflow-hidden',
         'bg-lux-blacklift/70 border border-lux-purple/30',
         'shadow-[0_0_30px_rgba(139,92,246,0.15),0_0_60px_rgba(236,72,153,0.08)]',
-        'p-1',
         className
       )}
     >
