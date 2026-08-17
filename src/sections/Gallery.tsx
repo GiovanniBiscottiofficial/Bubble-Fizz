@@ -9,9 +9,6 @@ const galleryImages = [
   { src: '/mercedes_new_1.jpg', alt: 'Mercedes pouring champagne' },
   { src: '/gallery_2.jpg', alt: 'Champagne tower' },
   { src: '/mercedes_new_5.jpg', alt: 'Mercedes with pink cocktail' },
-  { src: '/mercedes_new_3.jpg', alt: 'Mercedes at luxury bar' },
-  { src: '/mercedes_new_4.jpg', alt: 'Mercedes shaking cocktail' },
-  { src: '/gallery_event_1.webp', alt: 'Real wedding reception bar by Bubble & Fizz' },
   { src: '/gallery_1.jpg', alt: 'Elegant bar setup' },
   { src: '/mercedes_new_2.jpg', alt: 'Mercedes garnishing cocktail' },
 ];
@@ -79,14 +76,12 @@ export default function Gallery() {
 
         <div
           ref={gridRef}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
         >
-          {galleryImages.map((image, index) => (
+          {galleryImages.map((image) => (
             <div
               key={image.src}
-              className={`gallery-tile relative overflow-hidden rounded-2xl border border-lux-purple/10 group hover:border-lux-pink/30 transition-all duration-500 ${
-                index === 0 || index === 1 ? 'aspect-[3/4]' : 'aspect-square'
-              }`}
+              className="gallery-tile relative overflow-hidden rounded-2xl border border-lux-purple/10 group hover:border-lux-pink/30 transition-all duration-500 aspect-square"
             >
               <OptimizedImage
                 src={image.src}

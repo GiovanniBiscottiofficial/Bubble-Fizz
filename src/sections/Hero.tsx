@@ -210,7 +210,7 @@ export default function Hero() {
           className="mb-4 md:mb-6"
           style={{ opacity: 0 }}
         >
-          <Logo className="h-36 w-36 md:h-48 md:w-48 lg:h-56 lg:w-56" priority />
+          <Logo className="h-36 w-36 md:h-48 md:w-48 lg:h-56 lg:w-56 logo-dramatic" priority />
         </div>
 
         {/* Tagline */}
