@@ -143,6 +143,7 @@ export default function SignatureCocktails() {
           src="/cocktail_closeup.jpg" 
           alt="Signature cocktail"
           className="w-full h-full object-cover"
+          priority
         />
         {/* Purple/Pink gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-lux-purple/50 via-lux-black/60 to-lux-pink/30" />
