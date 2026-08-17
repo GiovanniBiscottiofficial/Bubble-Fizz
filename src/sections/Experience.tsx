@@ -191,10 +191,10 @@ export default function Experience() {
                 Professional, Licensed & Insured Mixologist
               </p>
               <p className="mt-4 text-lux-muted leading-relaxed max-w-xl">
-                Exceptional customer service and awesome cocktails — and we make amazing dry ice mocktails, too! Seeing people enjoy my delicious craft cocktails while having a great time always puts a smile on my face. I love the positive feedback after every sip. My team and I specialize in offering an experience and atmosphere like no other. Book us and find out what all the talk is about!
+                I love creating an atmosphere where guests relax, laugh, and remember the night. From dry-ice mocktails to champagne towers, every pour is designed to feel like part of the celebration.
               </p>
               <p className="mt-4 text-lux-white/90 italic leading-relaxed max-w-xl border-l-2 border-lux-gold/40 pl-4">
-                I started Bubble & Fizz because I love seeing people enjoy delicious craft cocktails while having a great time — and I wanted to bring a smile and swagger to every celebration in North Carolina.
+                Bubble & Fizz started with one idea: bring North Carolina events a bar experience that feels elevated, personal, and unforgettable.
               </p>
               <blockquote className="mt-6 text-lux-white/80 italic border-l-2 border-lux-pink/40 pl-4 max-w-xl">
                 “I don’t just pour drinks — I curate the whole bar experience so you can be the host who actually gets to enjoy the party.”
