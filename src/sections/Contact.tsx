@@ -22,6 +22,7 @@ export default function Contact() {
     eventDate: '',
     guestCount: '',
     eventType: '',
+    package: '',
     message: '',
   });
 
@@ -87,6 +88,20 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    const applySelectedPackage = (e?: Event) => {
+      const pkg = e instanceof CustomEvent ? (e.detail as string) : sessionStorage.getItem('selectedPackage');
+      if (pkg) {
+        setFormData((prev) => ({ ...prev, package: pkg }));
+        sessionStorage.removeItem('selectedPackage');
+      }
+    };
+
+    applySelectedPackage();
+    window.addEventListener('package-selected', applySelectedPackage as EventListener);
+    return () => window.removeEventListener('package-selected', applySelectedPackage as EventListener);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -116,6 +131,7 @@ export default function Contact() {
           eventDate: '',
           guestCount: '',
           eventType: '',
+          package: '',
           message: '',
         });
       } else {
@@ -128,6 +144,7 @@ Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone || 'Not provided'}
 Event Type: ${formData.eventType || 'Not specified'}
+Package Interest: ${formData.package || 'Not specified'}
 Event Date: ${formData.eventDate || 'Not specified'}
 Guest Count: ${formData.guestCount || 'Not specified'}
 
@@ -222,6 +239,23 @@ ${formData.message || 'No additional message'}
                       <option value="birthday" className="bg-lux-blacklift">Birthday Party</option>
                       <option value="holiday" className="bg-lux-blacklift">Holiday Party</option>
                       <option value="other" className="bg-lux-blacklift">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="sm:col-span-2">
+                    <label className="block text-lux-muted text-sm mb-2">Package Interest</label>
+                    <select
+                      value={formData.package}
+                      onChange={(e) => setFormData({ ...formData, package: e.target.value })}
+                      className="w-full bg-lux-blacklift border border-lux-white/10 rounded-xl px-4 py-3 text-lux-white focus:border-lux-purple focus:outline-none transition-colors"
+                    >
+                      <option value="" className="bg-lux-blacklift">No package selected</option>
+                      <option value="Essential Hour" className="bg-lux-blacklift">Essential Hour — $250</option>
+                      <option value="Signature Celebration" className="bg-lux-blacklift">Signature Celebration — $425</option>
+                      <option value="Full Experience" className="bg-lux-blacklift">Full Experience — $650</option>
+                      <option value="Custom" className="bg-lux-blacklift">Custom / Not sure yet</option>
                     </select>
                   </div>
                 </div>

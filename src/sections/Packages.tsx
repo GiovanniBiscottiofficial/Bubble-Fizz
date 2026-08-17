@@ -100,8 +100,9 @@ export default function Packages() {
     return () => ctx.revert();
   }, []);
 
-  const handleBookPackage = () => {
-    // Scroll to contact section
+  const handleBookPackage = (packageName: string) => {
+    sessionStorage.setItem('selectedPackage', packageName);
+    window.dispatchEvent(new CustomEvent('package-selected', { detail: packageName }));
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -177,7 +178,7 @@ export default function Packages() {
 
               {/* CTA */}
               <button 
-                onClick={handleBookPackage}
+                onClick={() => handleBookPackage(pkg.name)}
                 className={`mt-8 w-full lux-button group ${
                   pkg.highlighted ? 'lux-button-primary' : 'lux-button-outline'
                 }`}
