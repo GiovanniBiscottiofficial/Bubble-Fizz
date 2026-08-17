@@ -458,6 +458,12 @@ ${formData.message || 'No additional message'}
               © Bubble & Fizz. All rights reserved.
             </p>
           </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-[10px] text-lux-muted/40 font-label uppercase tracking-[0.25em]">
+              Site built by Vaultborne Group LLC
+            </p>
+          </div>
         </div>
       </div>
     </section>
