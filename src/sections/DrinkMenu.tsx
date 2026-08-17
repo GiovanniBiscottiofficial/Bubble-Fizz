@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Wine, GlassWater, Coffee, Sparkles, Download } from 'lucide-react';
+import { buildInquiryMailto } from '@/lib/utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -134,7 +135,7 @@ export default function DrinkMenu() {
               className={`flex items-center gap-2 px-6 py-3 rounded-full font-label text-sm uppercase tracking-wider transition-all duration-300 ${
                 activeCategory === category.id
                   ? `bg-gradient-to-r ${category.color} text-white shadow-lg`
-                  : 'bg-lux-blacklift border border-lux-white/10 text-lux-muted hover:border-lux-pink/30 hover:text-lux-white'
+                  : 'lux-input text-lux-muted hover:border-lux-pink/30 hover:text-lux-white'
               }`}
             >
               <category.icon className="w-4 h-4" />
@@ -187,7 +188,7 @@ export default function DrinkMenu() {
               Request Custom Menu
             </button>
             <a 
-              href="mailto:bubble_fizzbar@yahoo.com?subject=Full Menu Request"
+              href={buildInquiryMailto('Full Menu Request')}
               className="lux-button-outline"
             >
               <Download className="w-4 h-4 mr-2" />

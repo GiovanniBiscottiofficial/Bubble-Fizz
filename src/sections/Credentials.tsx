@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Award, Shield, CheckCircle, Star, FileCheck, BadgeCheck } from 'lucide-react';
-import CertificationBadges from '@/components/CertificationBadges';
+import { Award, Shield, FileCheck } from 'lucide-react';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,33 +14,15 @@ const credentials = [
     highlight: false,
   },
   {
-    icon: Star,
-    title: '50+ Events Served',
-    description: 'Successfully served over 50 events across North Carolina.',
-    highlight: false,
-  },
-  {
     icon: Shield,
-    title: 'Full Mobile Setup',
-    description: 'Premium bar, tools, glassware, and ice service delivered to your venue.',
+    title: 'Licensed, Insured & TIPS Certified',
+    description: 'Professional mobile bartending with the credentials your venue requires.',
     highlight: true,
-  },
-  {
-    icon: BadgeCheck,
-    title: 'Custom Menu Design',
-    description: 'Custom craft cocktails and mocktails built around your theme, colors, and taste.',
-    highlight: false,
   },
   {
     icon: FileCheck,
     title: 'Premium Presentation',
     description: 'Shimmer drinks, dry-ice effects, edible garnishes, and elegant bar styling.',
-    highlight: true,
-  },
-  {
-    icon: CheckCircle,
-    title: 'Personalized Event Menus',
-    description: 'Every guest list is different. Menus are tailored to your crowd and occasion.',
     highlight: false,
   },
 ];
@@ -107,9 +89,9 @@ export default function Credentials() {
       <div className="max-w-7xl mx-auto relative">
         {/* Header */}
         <div ref={headlineRef} className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lux-gold/10 border border-lux-gold/30 mb-6">
-            <Award className="w-4 h-4 text-lux-gold" />
-            <span className="text-lux-gold text-sm font-medium">Why Choose Us</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lux-white/5 border border-lux-white/10 mb-6">
+            <Award className="w-4 h-4 text-lux-pink" />
+            <span className="text-lux-white/80 text-sm font-medium">Why Choose Us</span>
           </div>
           <h2 
             className="font-display text-lux-white font-semibold leading-[1.0]"
@@ -122,11 +104,8 @@ export default function Credentials() {
           </p>
         </div>
 
-        {/* Certification Badges */}
-        <CertificationBadges className="mb-16" />
-
         {/* Credentials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6">
           {credentials.map((cred, index) => (
             <div
               key={cred.title}
