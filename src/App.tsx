@@ -1,141 +1,67 @@
-import { useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './index.css';
-
-import { useIsMobile } from '@/hooks/use-mobile';
+import { lazy } from 'react';
+import CustomCursor from './components/CustomCursor';
+import ChampagneBubbles from './components/ChampagneBubbles';
+import LazySection from './components/LazySection';
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
-import Experience from './sections/Experience';
-import SignatureCocktails from './sections/SignatureCocktails';
-import DrinkMenu from './sections/DrinkMenu';
-import Process from './sections/Process';
-import Gallery from './sections/Gallery';
-import Testimonials from './sections/Testimonials';
-import Packages from './sections/Packages';
-import Credentials from './sections/Credentials';
-import ServiceAreas from './sections/ServiceAreas';
-import FAQ from './sections/FAQ';
-import Newsletter from './sections/Newsletter';
-import FinalCTA from './sections/FinalCTA';
-import Contact from './sections/Contact';
-import ChampagneBubbles from './components/ChampagneBubbles';
-import LoadingScreen from './components/LoadingScreen';
+import NotFound from './sections/NotFound';
 
-gsap.registerPlugin(ScrollTrigger);
+const Experience = lazy(() => import('./sections/Experience'));
+const SignatureCocktails = lazy(() => import('./sections/SignatureCocktails'));
+const DrinkMenu = lazy(() => import('./sections/DrinkMenu'));
+const Process = lazy(() => import('./sections/Process'));
+const Gallery = lazy(() => import('./sections/Gallery'));
+const ThumbtackMoments = lazy(() => import('./sections/ThumbtackMoments'));
+const Testimonials = lazy(() => import('./sections/Testimonials'));
+const ReviewsMap = lazy(() => import('./components/ReviewsMap'));
+const Packages = lazy(() => import('./sections/Packages'));
+const Credentials = lazy(() => import('./sections/Credentials'));
+const FAQ = lazy(() => import('./sections/FAQ'));
+const FinalCTA = lazy(() => import('./sections/FinalCTA'));
+const Contact = lazy(() => import('./sections/Contact'));
 
 function App() {
-  const isMobile = useIsMobile();
-  useEffect(() => {
-    // Disable scroll-snap pinning system on mobile — natural scrolling works better
-    if (isMobile) return;
-
-    // Wait for all ScrollTriggers to be created
-    const timer = setTimeout(() => {
-      const pinned = ScrollTrigger.getAll()
-        .filter(st => st.vars.pin)
-        .sort((a, b) => a.start - b.start);
-      
-      const maxScroll = ScrollTrigger.maxScroll(window);
-      
-      if (!maxScroll || pinned.length === 0) return;
-
-      // Build ranges and snap targets from pinned sections
-      const pinnedRanges = pinned.map(st => ({
-        start: st.start / maxScroll,
-        end: (st.end ?? st.start) / maxScroll,
-        center: (st.start + ((st.end ?? st.start) - st.start) * 0.5) / maxScroll,
-      }));
-
-      // Global snap for pinned sections only
-      ScrollTrigger.create({
-        snap: {
-          snapTo: (value: number) => {
-            // Check if within any pinned range (with buffer)
-            const inPinned = pinnedRanges.some(
-              r => value >= r.start - 0.02 && value <= r.end + 0.02
-            );
-            
-            if (!inPinned) return value; // Flowing section: free scroll
-
-            // Find nearest pinned center
-            const target = pinnedRanges.reduce((closest, r) =>
-              Math.abs(r.center - value) < Math.abs(closest - value) ? r.center : closest,
-              pinnedRanges[0]?.center ?? 0
-            );
-            
-            return target;
-          },
-          duration: { min: 0.15, max: 0.35 },
-          delay: 0,
-          ease: 'power2.out',
-        }
-      });
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-      ScrollTrigger.getAll().forEach(st => st.kill());
-    };
-  }, [isMobile]);
+  const path = window.location.pathname;
+  if (path !== '/' && path !== '/index.html') {
+    return (
+      <>
+        <CustomCursor />
+        <NotFound />
+      </>
+    );
+  }
 
   return (
     <div className="relative bg-lux-black min-h-screen">
-      {/* Loading Screen */}
-      <LoadingScreen />
-
+      <CustomCursor />
       {/* Champagne Bubbles Animation */}
       <ChampagneBubbles />
-      
+
       {/* Grain Overlay */}
       <div className="grain-overlay" />
-      
+
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main Content */}
       <main className="relative">
         {/* Section 1: Hero - pin: true */}
         <Hero />
-        
-        {/* Section 2: Experience - pin: false */}
-        <Experience />
-        
-        {/* Section 3: Signature Cocktails - pin: true */}
-        <SignatureCocktails />
-        
-        {/* Section 4: Full Drink Menu - pin: false */}
-        <DrinkMenu />
-        
-        {/* Section 5: Process - pin: false */}
-        <Process />
-        
-        {/* Section 6: Gallery - pin: true */}
-        <Gallery />
-        
-        {/* Section 7: Testimonials - pin: false */}
-        <Testimonials />
-        
-        {/* Section 8: Packages - pin: false */}
-        <Packages />
-        
-        {/* Section 9: Credentials - pin: false */}
-        <Credentials />
-        
-        {/* Section 10: Service Areas - pin: false */}
-        <ServiceAreas />
-        
-        {/* Section 11: FAQ - pin: false */}
-        <FAQ />
-        
-        {/* Section 12: Newsletter - pin: false */}
-        <Newsletter />
-        
-        {/* Section 13: Final CTA - pin: true */}
-        <FinalCTA />
-        
-        {/* Section 14: Contact - pin: false */}
-        <Contact />
+
+        <LazySection component={Experience} id="experience" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={SignatureCocktails} id="signature-cocktails" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={DrinkMenu} id="drink-menu" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={Process} id="process" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={Gallery} id="gallery" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={ThumbtackMoments} id="thumbtack-moments" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={Testimonials} id="testimonials" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={ReviewsMap} id="service-map" placeholderClassName="min-h-[60vh] bg-lux-black" />
+        <LazySection component={Packages} id="packages" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={Credentials} id="credentials" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={FAQ} id="faq" placeholderClassName="min-h-screen bg-lux-black" />
+        <LazySection component={FinalCTA} id="final-cta" placeholderClassName="min-h-[80vh] bg-lux-black" />
+        <LazySection component={Contact} id="contact" placeholderClassName="min-h-screen bg-lux-black" />
       </main>
     </div>
   );

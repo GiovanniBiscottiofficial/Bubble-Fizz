@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Wine, GlassWater, Coffee, Sparkles, Download } from 'lucide-react';
+import { buildInquiryMailto } from '@/lib/utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,11 +13,12 @@ const drinkCategories = [
     icon: Sparkles,
     color: 'from-lux-pink to-lux-purple',
     drinks: [
-      { name: 'The Rosé Royale', desc: 'Sparkling rosé, berry reduction, gold leaf', price: '$14' },
-      { name: 'Midnight Margarita', desc: 'Mezcal, citrus, charcoal salt rim', price: '$13' },
-      { name: 'Velvet Old Fashioned', desc: 'Bourbon, vanilla, burnt orange', price: '$15' },
-      { name: 'Purple Reign', desc: 'Empress gin, lemon, lavender syrup', price: '$14' },
-      { name: 'Bubble & Fizz Special', desc: 'Champagne, Chambord, fresh berries', price: '$16' },
+      { name: 'The Rosé Royale', desc: 'Sparkling rosé, berry reduction, gold leaf', tags: ['Bubbly', 'Elegant'] },
+      { name: 'The Velvet Crown', desc: 'Bourbon, vanilla, burnt orange, golden demerara', tags: ['Bold', 'Smoked'] },
+      { name: 'Smoked Amethyst', desc: 'Mezcal, fresh citrus, charcoal-salted rim', tags: ['Smoked', 'Citrus'] },
+      { name: 'Purple Reign', desc: 'Empress gin, lemon, lavender syrup', tags: ['Floral', 'Elegant'] },
+      { name: 'Bubble & Fizz Special', desc: 'Champagne, Chambord, fresh berries', tags: ['Bubbly', 'Signature'] },
+      { name: 'Shimmer Elixir', desc: 'Vodka, edible shimmer, citrus, sparkling topper', tags: ['Shimmer', 'Citrus'] },
     ],
   },
   {
@@ -25,11 +27,11 @@ const drinkCategories = [
     icon: Wine,
     color: 'from-lux-purple to-lux-gold',
     drinks: [
-      { name: 'Mojito', desc: 'Rum, mint, lime, soda', price: '$12' },
-      { name: 'Cosmopolitan', desc: 'Vodka, cranberry, lime, Cointreau', price: '$13' },
-      { name: 'Moscow Mule', desc: 'Vodka, ginger beer, lime', price: '$12' },
-      { name: 'Margarita', desc: 'Tequila, lime, triple sec', price: '$12' },
-      { name: 'Manhattan', desc: 'Rye, sweet vermouth, bitters', price: '$14' },
+      { name: 'Mojito', desc: 'Rum, mint, lime, soda', tags: ['Classic', 'Refreshing'] },
+      { name: 'Cosmopolitan', desc: 'Vodka, cranberry, lime, Cointreau', tags: ['Classic', 'Elegant'] },
+      { name: 'Moscow Mule', desc: 'Vodka, ginger beer, lime', tags: ['Classic', 'Refreshing'] },
+      { name: 'Margarita', desc: 'Tequila, lime, triple sec', tags: ['Classic', 'Citrus'] },
+      { name: 'Manhattan', desc: 'Rye, sweet vermouth, bitters', tags: ['Classic', 'Bold'] },
     ],
   },
   {
@@ -38,11 +40,11 @@ const drinkCategories = [
     icon: GlassWater,
     color: 'from-lux-gold to-lux-pink',
     drinks: [
-      { name: 'Classic Mimosa', desc: 'Champagne, fresh orange juice', price: '$11' },
-      { name: 'Bellini', desc: 'Prosecco, peach purée', price: '$12' },
-      { name: 'French 75', desc: 'Gin, lemon, champagne', price: '$14' },
-      { name: 'Kir Royale', desc: 'Champagne, crème de cassis', price: '$13' },
-      { name: 'Champagne Tower', desc: '50+ glasses, premium champagne', price: 'Custom' },
+      { name: 'Classic Mimosa', desc: 'Champagne, fresh orange juice', tags: ['Bubbly', 'Brunch'] },
+      { name: 'Bellini', desc: 'Prosecco, peach purée', tags: ['Bubbly', 'Fruity'] },
+      { name: 'French 75', desc: 'Gin, lemon, champagne', tags: ['Bubbly', 'Citrus'] },
+      { name: 'Kir Royale', desc: 'Champagne, crème de cassis', tags: ['Bubbly', 'Elegant'] },
+      { name: 'Champagne Tower', desc: '50+ glasses, premium champagne', tags: ['Bubbly', 'Statement'] },
     ],
   },
   {
@@ -51,11 +53,11 @@ const drinkCategories = [
     icon: Coffee,
     color: 'from-lux-pink to-lux-gold',
     drinks: [
-      { name: 'Virgin Mojito', desc: 'Mint, lime, soda, simple syrup', price: '$8' },
-      { name: 'No-Groni', desc: 'Seedlip, tonic, orange', price: '$10' },
-      { name: 'Shirley Temple', desc: 'Ginger ale, grenadine, cherry', price: '$7' },
-      { name: 'Cucumber Cooler', desc: 'Cucumber, lime, mint, soda', price: '$8' },
-      { name: 'Sparkling Berry', desc: 'Berry syrup, soda, fresh fruit', price: '$9' },
+      { name: 'Minted Bubbles', desc: 'Muddled mint, lime, soda, raw sugar', tags: ['Zero-Proof', 'Refreshing'] },
+      { name: 'Citrus Shimmer', desc: 'Seedlip-style botanicals, tonic, burnt orange', tags: ['Zero-Proof', 'Citrus'] },
+      { name: 'Cherry Fizz', desc: 'Ginger ale, grenadine, luxardo cherry', tags: ['Zero-Proof', 'Sweet'] },
+      { name: 'Cucumber Mist', desc: 'Cucumber, lime, mint, soda', tags: ['Zero-Proof', 'Dry-Ice'] },
+      { name: 'Berry Sparkler', desc: 'Berry syrup, soda, fresh fruit', tags: ['Zero-Proof', 'Fruity'] },
     ],
   },
 ];
@@ -104,7 +106,6 @@ export default function DrinkMenu() {
   return (
     <section 
       ref={sectionRef}
-      id="drink-menu"
       className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-53 bg-lux-black"
     >
       {/* Pink glow */}
@@ -121,7 +122,7 @@ export default function DrinkMenu() {
             Crafted with <span className="text-lux-pink">Passion</span>
           </h2>
           <p className="mt-6 text-lux-muted text-lg max-w-2xl mx-auto">
-            From signature creations to timeless classics, every drink is crafted with premium ingredients and artistic presentation.
+            From signature creations and shimmer cocktails to timeless classics, every drink is crafted with premium ingredients, artistic presentation, and budget-friendly options.
           </p>
         </div>
 
@@ -134,7 +135,7 @@ export default function DrinkMenu() {
               className={`flex items-center gap-2 px-6 py-3 rounded-full font-label text-sm uppercase tracking-wider transition-all duration-300 ${
                 activeCategory === category.id
                   ? `bg-gradient-to-r ${category.color} text-white shadow-lg`
-                  : 'bg-lux-blacklift border border-lux-white/10 text-lux-muted hover:border-lux-pink/30 hover:text-lux-white'
+                  : 'lux-input text-lux-muted hover:border-lux-pink/30 hover:text-lux-white'
               }`}
             >
               <category.icon className="w-4 h-4" />
@@ -144,19 +145,28 @@ export default function DrinkMenu() {
         </div>
 
         {/* Drinks Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {activeDrinks.map((drink) => (
             <div
               key={drink.name}
-              className="lux-card group hover:border-lux-pink/40 transition-all duration-300 hover:-translate-y-1"
+              className="lux-card group hover:border-lux-pink/40 transition-all duration-300 hover:-translate-y-1 last:md:col-span-2 last:lg:col-span-1"
             >
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="font-display text-xl text-lux-white group-hover:text-lux-pink transition-colors">
-                  {drink.name}
-                </h3>
-                <span className="text-lux-gold font-display text-lg">{drink.price}</span>
+              <h3 className="font-display text-xl text-lux-white group-hover:text-lux-pink transition-colors mb-3">
+              {drink.name}
+            </h3>
+            <p className="text-lux-muted text-sm">{drink.desc}</p>
+            {drink.tags && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {drink.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center px-2 py-1 rounded-full text-[10px] uppercase tracking-wider font-medium bg-lux-pink/10 text-lux-pink border border-lux-pink/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <p className="text-lux-muted text-sm">{drink.desc}</p>
+            )}
             </div>
           ))}
         </div>
@@ -168,7 +178,7 @@ export default function DrinkMenu() {
             Want a Custom Menu?
           </h3>
           <p className="text-lux-muted mb-6 max-w-xl mx-auto">
-            I can create a bespoke cocktail menu tailored to your event theme, colors, or personal preferences. Let's make something unique together!
+            I can create a custom cocktail menu tailored to your event theme, colors, or personal preferences. Let's make something unique together!
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button 
@@ -178,7 +188,7 @@ export default function DrinkMenu() {
               Request Custom Menu
             </button>
             <a 
-              href="mailto:bubble_fizzbar@yahoo.com?subject=Full Menu Request"
+              href={buildInquiryMailto('Full Menu Request')}
               className="lux-button-outline"
             >
               <Download className="w-4 h-4 mr-2" />

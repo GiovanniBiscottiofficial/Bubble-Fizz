@@ -7,52 +7,100 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote: "Mercedes made our wedding day absolutely perfect! The champagne tower was stunning and the cocktails were delicious. Our guests are still talking about it!",
-    author: 'Tasha & Marcus',
+    quote: "Highly recommend!! Mercedes was incredibly professional and organized. She arrived on time, set up the bar beautifully, and kept everything running smoothly throughout the reception. She helped make our wedding day unforgettable!",
+    author: 'Kristina P.',
     event: 'Wedding Reception',
-    location: 'Raleigh, NC',
+    location: 'Reviewed Apr 5, 2025',
   },
   {
-    quote: "Professional, punctual, and poured the best drinks! Bubble & Fizz elevated our corporate event to the next level. Highly recommend!",
-    author: 'Darnell J.',
-    event: 'Corporate Event',
-    location: 'Durham, NC',
+    quote: "I used Bubble & Fizz for my birthday and trusted her to use her creativity for some drinks to fit my 3 themed party atmosphere and the drinks were absolutely amazing!! Her professionalism is Top Notch!!",
+    author: 'Tameika H.',
+    event: 'Birthday Party',
+    location: 'Reviewed Apr 5, 2025',
   },
   {
-    quote: "My 40th birthday party was legendary thanks to Mercedes! The signature cocktail she created just for me was everything. Book her now!",
-    author: 'Keisha M.',
-    event: 'Birthday Celebration',
-    location: 'Charlotte, NC',
+    quote: "We are so appreciative of Bubble and Fizz Mobile Bartending. We hired her at the last minute because me and my now husband completely forgot we needed one. She was flexible and communicated effectively. She was professional and my guests appreciated how relatable she was. I would hire her again!!",
+    author: 'Aquiel R.',
+    event: 'Wedding reception • 76-100 guests • Formal / elegant',
+    location: 'Hired on Thumbtack',
   },
   {
-    quote: "We hired Bubble & Fizz for our company holiday party and it was the best decision! Mercedes brought such positive energy and the drinks were top-notch.",
-    author: 'Jennifer & Team',
-    event: 'Holiday Party',
-    location: 'Greensboro, NC',
+    quote: "We had such a great experience with bubble and fizz. The owner Mercedes is a ball of joy to work with she really enhances the vibes of the party she offered so many creative drinks and the whole set up was super cute and classy. The drinks gives what needs to be gave!",
+    author: 'Tiondra b.',
+    event: 'Wedding',
+    location: 'Reviewed Aug 9, 2021',
   },
   {
-    quote: "As a wedding planner, I've worked with many bartenders. Mercedes is hands down the best - professional, creative, and always goes above and beyond!",
-    author: 'Michelle R.',
-    event: 'Wedding Planner',
-    location: 'Chapel Hill, NC',
+    quote: "My wedding experience was amazing and I would definitely recommend the services. She is very knowledgeable and gave me very useful tips to prepare for my guests. She showed up on time, very neat table set up, and the drinks and Jell-O shots were delicious!",
+    author: 'Tiara F.',
+    event: 'Wedding',
+    location: 'Reviewed Aug 12, 2021',
   },
   {
-    quote: "Our anniversary celebration was magical. The custom cocktail menu, the presentation, everything was perfect. Thank you Mercedes!",
-    author: 'Robert & Lisa',
-    event: 'Anniversary Party',
-    location: 'Winston-Salem, NC',
+    quote: "I recently tapped B&F for a private celebration that I hosted for my daughter. She recently received a promotion and I wanted to let her know how proud we are of her. Needless to say B&F came through and held no punches. The event was beautiful. I couldn't have been more satisfied!",
+    author: 'Danny C.',
+    event: 'Private Celebration',
+    location: 'Reviewed Aug 9, 2021',
   },
   {
-    quote: "Mercedes brought the party to life! Our graduation celebration was unforgettable. She knows how to read a crowd and keep everyone happy.",
-    author: 'The Johnson Family',
-    event: 'Graduation Party',
-    location: 'Fayetteville, NC',
+    quote: "I invited Bubble and Fizz to my vendors event and every one loved the personality, the kindness and the quality of the drinks. I would recommend this business to anyone. I will be reaching out again!",
+    author: 'Yolanda M.',
+    event: "Vendor's Event",
+    location: 'Reviewed Aug 12, 2021',
   },
   {
-    quote: "From the first consultation to the last pour, Mercedes was amazing. Our bridal shower was elegant and fun. Everyone loved the mimosa bar!",
-    author: 'Ashley & Bridesmaids',
-    event: 'Bridal Shower',
-    location: 'Cary, NC',
+    quote: "It was a pleasure working with them. Needed waitstaff for my daughter's wedding. They came in and immediately started to work with the catering team to handle the needs of the guests. They worked through a few obstacles to make the event a success. I commend them for their adaptability, professionalism, work ethic and their enthusiastic personalities. Thank you again for everything! It is very much appreciated!!!",
+    author: 'Swandya J.',
+    event: 'Wedding • 201-300 guests • Waitstaff',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "Dope Bartender!!!! Her service was great thank you for making my wedding come true!!",
+    author: 'Latrece G.',
+    event: 'Wedding reception',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "Mercedes and Ray were very helpful and kept the party going so I could focus on my guests.",
+    author: 'Andrea B.',
+    event: 'Special event / party • Waitstaff',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "Drinks were excellent and really great. Would highly recommend to anyone with a gathering or party",
+    author: 'Jason P.',
+    event: 'Wedding reception • 76-100 guests • Upbeat / lively',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "This was my second time using her and every time was nothing but amazing my people enjoy how she interacted with them and how she was very attentive and sanitary and great service. I definitely would hire her again A+A+",
+    author: 'Adrian W.',
+    event: 'Repeat client',
+    location: 'Reviewed Aug 12, 2021',
+  },
+  {
+    quote: "Mercedes was absolutely amazing to work with! Can't wait to book her again for future events!",
+    author: 'Nataleh H.',
+    event: 'Cocktail party',
+    location: 'Hired on Thumbtack',
+  },
+  {
+    quote: "Stellar customer service. Extremely friendly, personable and professional. Delivers and exceeds expectations. Excellent quality product. Would highly recommend.",
+    author: 'Gisselle C.',
+    event: 'Event Bartending',
+    location: 'Reviewed Aug 10, 2021',
+  },
+  {
+    quote: "Was a wonderful experience both times we booked we can't wait to continue business in the future",
+    author: 'Josh B.',
+    event: 'Repeat client',
+    location: 'Reviewed Aug 9, 2021',
+  },
+  {
+    quote: "It was absolutely wonderful!!!",
+    author: 'Janeen M.',
+    event: 'Birthday party • Club scene',
+    location: 'Hired on Thumbtack',
   },
 ];
 
@@ -71,9 +119,9 @@ export default function Testimonials() {
     const ctx = gsap.context(() => {
       // Headline animation
       gsap.fromTo(headline,
-        { x: '-6vw', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
           duration: 0.8,
           ease: 'power3.out',
@@ -81,7 +129,7 @@ export default function Testimonials() {
             trigger: section,
             start: 'top 80%',
             end: 'top 55%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
@@ -89,7 +137,7 @@ export default function Testimonials() {
       // Cards animation
       cards.forEach((card, index) => {
         gsap.fromTo(card,
-          { y: '8vh', opacity: 0 },
+          { y: 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -99,7 +147,7 @@ export default function Testimonials() {
               trigger: section,
               start: `top ${75 - index * 3}%`,
               end: `top ${50 - index * 3}%`,
-              scrub: 0.5,
+              scrub: 0.3,
             }
           }
         );
@@ -113,7 +161,7 @@ export default function Testimonials() {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-60 bg-lux-black"
+      className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 z-60 bg-lux-black"
     >
       {/* Purple glow */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-lux-purple/10 rounded-full blur-[150px] pointer-events-none" />
@@ -134,7 +182,7 @@ export default function Testimonials() {
         </div>
 
         {/* Testimonial Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.author}
@@ -152,7 +200,7 @@ export default function Testimonials() {
               </div>
 
               {/* Quote */}
-              <blockquote className="font-display text-lg text-lux-white leading-relaxed mb-6">
+              <blockquote className="text-base text-lux-white leading-relaxed mb-6">
                 "{testimonial.quote}"
               </blockquote>
 
@@ -166,26 +214,15 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Trust Badges */}
-        <div className="mt-16 flex flex-wrap justify-center gap-8">
-          <div className="flex items-center gap-2 text-lux-muted">
-            <div className="w-10 h-10 rounded-full bg-lux-purple/20 flex items-center justify-center">
-              <span className="text-lux-purple font-bold text-lg">50+</span>
-            </div>
-            <span className="text-sm">Events Served</span>
-          </div>
-          <div className="flex items-center gap-2 text-lux-muted">
-            <div className="w-10 h-10 rounded-full bg-lux-pink/20 flex items-center justify-center">
-              <span className="text-lux-pink font-bold text-lg">5★</span>
-            </div>
-            <span className="text-sm">Average Rating</span>
-          </div>
-          <div className="flex items-center gap-2 text-lux-muted">
-            <div className="w-10 h-10 rounded-full bg-lux-gold/20 flex items-center justify-center">
-              <span className="text-lux-gold font-bold text-lg">NC</span>
-            </div>
-            <span className="text-sm">Statewide Service</span>
-          </div>
+        {/* CTA */}
+        <div className="mt-12 text-center">
+          <p className="text-lux-muted mb-4">Ready to be the next happy host?</p>
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="lux-button-primary"
+          >
+            Book Your Event
+          </button>
         </div>
       </div>
     </section>

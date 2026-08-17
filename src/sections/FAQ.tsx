@@ -1,50 +1,67 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle, Phone, Mail } from 'lucide-react';
+import { buildInquiryMailto } from '@/lib/utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
     question: 'How far in advance should I book?',
-    answer: 'We recommend booking 2-3 months in advance for weekends, as they fill up quickly. For weekday events, 4-6 weeks notice is typically sufficient. Last-minute bookings may be accommodated depending on availability.',
+    answer: 'Weekends and wedding season dates fill up 2-3 months in advance, so book as early as possible. Weekday and off-peak events can usually be booked with 4-6 weeks notice. I do accept last-minute requests when my calendar allows, so it never hurts to ask.',
   },
   {
     question: 'Do you provide the alcohol?',
-    answer: 'No, due to North Carolina liquor laws, clients must purchase their own alcohol. However, I provide a detailed shopping list based on your guest count and menu selections, plus guidance on quantities and brands. I\'ll even recommend the best local liquor stores!',
+    answer: 'North Carolina law requires clients to purchase their own alcohol. I make this easy by providing a detailed shopping list based on your guest count, menu choices, and event duration, plus guidance on the best brands and quantities. I handle everything else — bar tools, garnishes, mixers, ice, and professional service.',
   },
   {
     question: 'What areas do you serve?',
-    answer: 'I serve the entire state of North Carolina including Raleigh, Durham, Chapel Hill, Charlotte, Greensboro, Winston-Salem, Fayetteville, and surrounding areas. Travel fees may apply for locations outside the Triangle area.',
+    answer: 'I serve the entire state of North Carolina. Most of my events are in the Triangle (Raleigh, Durham, Chapel Hill), Greensboro, Winston-Salem, Charlotte, Sanford, Mebane, Fayetteville, Wilmington, and everywhere in between. Travel fees may apply for events outside the Triangle area.',
   },
   {
-    question: 'What\'s included in your packages?',
-    answer: 'All packages include: professional bartending service, bar setup and breakdown, custom cocktail menu, all bar tools and equipment, garnishes, ice, cups/glasses (upon request), and a polished presentation. The Signature and Full Experience packages include additional premium features.',
+    question: "What's included in your packages?",
+    answer: 'Every package includes a professional bartender, custom cocktail menu, full bar setup and breakdown, bar tools, garnishes, ice, and disposable cups. The Signature Celebration adds upgraded presentation and signature drinks, while the Full Experience includes the most personalized service, premium styling, and event support details. I am happy to build a custom package if none of the standard options are a perfect fit.',
   },
   {
     question: 'Are you licensed and insured?',
-    answer: 'Absolutely! I am fully licensed and carry comprehensive liability insurance. I can provide a certificate of insurance (COI) for your venue upon request. This is required by most wedding venues and event spaces.',
+    answer: 'Yes. I carry comprehensive general liability insurance and can provide a Certificate of Insurance (COI) for your venue upon request. I am also TIPS and ServSafe certified, background checked, and trained in responsible alcohol service.',
   },
   {
     question: 'Can you create custom signature cocktails?',
-    answer: 'Yes! One of my specialties is creating custom signature cocktails that match your event theme, colors, or personal taste. During our consultation, we\'ll discuss your preferences and I\'ll craft something unique just for your event.',
+    answer: 'Absolutely. Signature cocktails are one of my favorite parts of the job. I create drinks to match your theme, colors, event vibe, or personal taste. From shimmer cocktails and dry-ice mocktails to elegant champagne toppers, I will design something unique for your celebration.',
   },
   {
     question: 'Do you offer non-alcoholic options?',
-    answer: 'Definitely! I offer a full range of mocktails and non-alcoholic beverages. From elegant sparkling mocktails to creative zero-proof cocktails, all your guests will have delicious options to enjoy.',
+    answer: 'Yes. I offer a full range of mocktails, zero-proof cocktails, sparkling refreshments, and dry-ice mocktails so every guest has a beautiful, delicious option. Non-alcoholic drinks can be styled just as elegantly as the cocktail menu.',
   },
   {
-    question: 'What\'s your cancellation policy?',
-    answer: 'Deposits are non-refundable but can be transferred to a new date within 6 months if you need to reschedule. Cancellations within 30 days of the event forfeit the full payment. I understand life happens and work with clients when possible!',
+    question: 'What types of events do you work?',
+    answer: 'I bartend weddings, birthday parties, corporate events, fundraisers, holiday parties, bachelor and bachelorette parties, sporting events, private dinners, pop-up bars, and casual get-togethers. Whether it is formal and elegant or low-key and lively, I match the energy you want.',
+  },
+  {
+    question: 'What is your cancellation and rescheduling policy?',
+    answer: 'Deposits are non-refundable, but they can be transferred to a new date within six months if you need to reschedule. Cancellations within 30 days of the event date forfeit the full payment. I understand plans change and work with clients when life happens.',
+  },
+  {
+    question: 'How do payment and deposits work?',
+    answer: 'A 50% deposit is required to secure your date. The remaining balance is due before or on the event date. I accept cash, Venmo, Cash App, and most major payment methods. Once you fill out the booking form, I will confirm availability and send the next steps.',
   },
   {
     question: 'How do I book your services?',
-    answer: 'Simply fill out the booking form on this website or call/text me at 984-385-4736. We\'ll schedule a consultation to discuss your event details, and once you\'re ready to move forward, a 50% deposit secures your date!',
+    answer: 'Fill out the contact form on this page, call or text 984-385-4736, or email bubble_fizzbar@yahoo.com. I will confirm my availability, schedule a quick consultation to learn about your event, and lock in your date with a deposit.',
   },
   {
     question: 'Can you accommodate large events?',
-    answer: 'Yes! For events over 100 guests, I bring additional trained bartending staff to ensure prompt service. We\'ll discuss staffing needs during your consultation based on your guest count and event timeline.',
+    answer: 'Yes. For events over 100 guests, I bring additional trained bartending staff so every guest is served quickly and professionally. Staffing is planned during your consultation based on guest count, bar setup, and event timeline.',
+  },
+  {
+    question: 'What if my event runs longer than planned?',
+    answer: 'No problem — I am happy to stay and keep pouring as long as you need. Overtime is billed at a simple hourly rate and is arranged in advance or during the event with the host, so there are never any surprise charges.',
+  },
+  {
+    question: 'Are there travel fees?',
+    answer: 'Events in the Raleigh / Triangle area have no travel fee. For venues outside the Triangle, a reasonable travel fee may apply depending on distance and event size. I will confirm all costs upfront during your consultation.',
   },
 ];
 
@@ -85,22 +102,19 @@ export default function FAQ() {
   };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="faq"
-      className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-55 bg-lux-black"
+      className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 z-55 bg-lux-black"
     >
-      {/* Pink glow */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-lux-pink/10 rounded-full blur-[150px] pointer-events-none" />
-      
-      <div className="max-w-4xl mx-auto relative">
-        {/* Header */}
+
+      <div className="max-w-7xl mx-auto relative">
         <div ref={headlineRef} className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lux-purple/10 border border-lux-purple/30 mb-6">
             <HelpCircle className="w-4 h-4 text-lux-purple" />
             <span className="text-lux-purple text-sm font-medium">Got Questions?</span>
           </div>
-          <h2 
+          <h2
             className="font-display text-lux-white font-semibold leading-[1.0]"
             style={{ fontSize: 'clamp(34px, 3.6vw, 52px)' }}
           >
@@ -111,8 +125,7 @@ export default function FAQ() {
           </p>
         </div>
 
-        {/* FAQ Accordion */}
-        <div className="space-y-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
@@ -122,23 +135,23 @@ export default function FAQ() {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between p-6 text-left"
+                className="w-full flex items-center justify-between p-5 text-left"
               >
-                <span className="font-display text-lg text-lux-white pr-4">
+                <span className="font-display text-base text-lux-white pr-3">
                   {faq.question}
                 </span>
-                <ChevronDown 
-                  className={`w-5 h-5 text-lux-pink flex-shrink-0 transition-transform duration-300 ${
+                <ChevronDown
+                  className={`w-4 h-4 text-lux-pink flex-shrink-0 transition-transform duration-300 ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                 />
               </button>
-              <div 
+              <div
                 className={`overflow-hidden transition-all duration-300 ${
                   openIndex === index ? 'max-h-96' : 'max-h-0'
                 }`}
               >
-                <div className="px-6 pb-6 text-lux-muted leading-relaxed">
+                <div className="px-5 pb-5 text-lux-muted text-sm leading-relaxed">
                   {faq.answer}
                 </div>
               </div>
@@ -146,18 +159,26 @@ export default function FAQ() {
           ))}
         </div>
 
-        {/* Still have questions CTA */}
         <div className="mt-12 text-center">
-          <p className="text-lux-muted mb-4">Still have questions?</p>
-          <a 
-            href="tel:+19843854736"
-            className="lux-button-primary inline-flex"
-          >
-            Call Mercedes at 984-385-4736
-          </a>
+          <p className="text-lux-muted mb-6">Still have questions? Reach out any time.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="tel:+19843854736"
+              className="lux-button-primary inline-flex"
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              Call 984-385-4736
+            </a>
+            <a
+              href={buildInquiryMailto()}
+              className="lux-button-outline inline-flex"
+            >
+              <Mail className="w-4 h-4 mr-2" />
+              Email Mercedes
+            </a>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Wine, Sparkles, Heart, Shield, Award } from 'lucide-react';
+import { Wine, Palette, ConciergeBell, Martini, PartyPopper, Sparkles } from 'lucide-react';
+import OptimizedImage from '@/components/OptimizedImage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,16 +14,61 @@ const pillars = [
     description: 'Signature cocktails and champagne service tailored to your theme and taste preferences.',
   },
   {
-    icon: Sparkles,
+    icon: Palette,
     label: 'Styling & Setup',
     title: 'Elegant Design',
     description: 'Elegant bar design that complements your venue\'s aesthetic and elevates the atmosphere.',
   },
   {
-    icon: Heart,
+    icon: ConciergeBell,
     label: 'Impeccable Service',
     title: 'Professional Team',
     description: 'Professional, warm bartenders who read the room and create memorable experiences.',
+  },
+];
+
+const serviceGroups = [
+  {
+    icon: Martini,
+    title: 'Beverage Types',
+    items: [
+      'Beer',
+      'Liquor / mixed drinks',
+      'Wine',
+      'Champagne & bubbles',
+      'Signature cocktails',
+      'Craft mocktails',
+      'Non-alcoholic beverages',
+      'House-made mixers',
+    ],
+  },
+  {
+    icon: PartyPopper,
+    title: 'Event Type',
+    items: [
+      'Wedding reception',
+      'Birthday party',
+      'Special occasion',
+      'Cocktail party',
+      'Corporate event',
+      'Fundraiser',
+      'Holiday party',
+      'Bachelor / bachelorette party',
+    ],
+  },
+  {
+    icon: Sparkles,
+    title: 'Event Vibe',
+    items: [
+      'Low key / casual',
+      'Formal / elegant',
+      'Upbeat / lively',
+      'Club scene',
+      'Upscale & refined',
+      'Festive & fun',
+      'Romantic & intimate',
+      'Glamorous',
+    ],
   },
 ];
 
@@ -45,9 +91,9 @@ export default function Experience() {
     const ctx = gsap.context(() => {
       // Headline animation
       gsap.fromTo(headline,
-        { x: '-8vw', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
           duration: 0.8,
           ease: 'power3.out',
@@ -55,14 +101,14 @@ export default function Experience() {
             trigger: section,
             start: 'top 80%',
             end: 'top 55%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
 
       // Body animation
       gsap.fromTo(body,
-        { y: '6vh', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -72,14 +118,14 @@ export default function Experience() {
             trigger: section,
             start: 'top 75%',
             end: 'top 50%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
 
       // About section animation
       gsap.fromTo(about,
-        { y: '8vh', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -89,18 +135,17 @@ export default function Experience() {
             trigger: about,
             start: 'top 85%',
             end: 'top 60%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
 
       // Cards animation with stagger
       cards.forEach((card, index) => {
-        const direction = index === 2 ? '-10vw' : '10vw';
         gsap.fromTo(card,
-          { x: direction, opacity: 0 },
+          { y: 30, opacity: 0 },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
             duration: 0.8,
             ease: 'power3.out',
@@ -108,7 +153,7 @@ export default function Experience() {
               trigger: section,
               start: `top ${75 - index * 5}%`,
               end: `top ${50 - index * 5}%`,
-              scrub: 0.5,
+              scrub: 0.3,
             }
           }
         );
@@ -120,20 +165,19 @@ export default function Experience() {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="experience"
-      className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-20 bg-lux-black"
+      className="relative w-full py-20 md:py-24 px-6 md:px-12 lg:px-20 z-20 bg-lux-black"
     >
       {/* Purple glow */}
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-lux-purple/10 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto relative">
         {/* About Mercedes - NEW PHOTO */}
-        <div ref={aboutRef} className="mb-20">
+        <div ref={aboutRef} className="mb-12">
           <div className="lux-card flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="w-44 h-44 md:w-56 md:h-56 rounded-full overflow-hidden flex-shrink-0 border-4 border-lux-pink/30 shadow-[0_0_40px_rgba(236,72,153,0.3)]">
-              <img 
+              <OptimizedImage 
                 src="/mercedes_new_3.jpg" 
                 alt="Mercedes Pettiford - Professional Mixologist"
                 className="w-full h-full object-cover"
@@ -147,25 +191,48 @@ export default function Experience() {
                 Professional, Licensed & Insured Mixologist
               </p>
               <p className="mt-4 text-lux-muted leading-relaxed max-w-xl">
-                With years of experience crafting unforgettable bar experiences, I bring passion, professionalism, and a touch of glamour to every event. From intimate gatherings to grand celebrations, Bubble & Fizz is here to elevate your special occasion.
+                I love creating an atmosphere where guests relax, laugh, and remember the night. From dry-ice mocktails to champagne towers, every pour is designed to feel like part of the celebration.
               </p>
-              <div className="mt-4 flex flex-wrap justify-center md:justify-start gap-4">
-                <div className="flex items-center gap-2 text-lux-pink text-sm">
-                  <Shield className="w-4 h-4" />
-                  <span>Fully Insured</span>
-                </div>
-                <div className="flex items-center gap-2 text-lux-purple text-sm">
-                  <Award className="w-4 h-4" />
-                  <span>Licensed Professional</span>
-                </div>
-              </div>
+              <p className="mt-4 text-lux-white/90 italic leading-relaxed max-w-xl border-l-2 border-lux-gold/40 pl-4">
+                Bubble & Fizz started with one idea: bring North Carolina events a bar experience that feels elevated, personal, and unforgettable.
+              </p>
+              <blockquote className="mt-6 text-lux-white/80 italic border-l-2 border-lux-pink/40 pl-4 max-w-xl">
+                “I don’t just pour drinks — I curate the whole bar experience so you can be the host who actually gets to enjoy the party.”
+              </blockquote>
             </div>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        {/* Services Offered */}
+        <div className="mt-12 grid md:grid-cols-3 gap-6 items-stretch">
+          {serviceGroups.map((group) => (
+            <div
+              key={group.title}
+              className="lux-card flex flex-col h-full"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-lux-purple/20 to-lux-pink/20 flex items-center justify-center">
+                  <group.icon className="w-5 h-5 text-lux-pink" />
+                </div>
+                <h4 className="font-display text-lg text-lux-white">{group.title}</h4>
+              </div>
+              <ul className="grid grid-cols-2 gap-2 mt-auto">
+                {group.items.map((item) => (
+                  <li
+                    key={item}
+                    className="px-3 py-1 rounded-full text-xs text-lux-white/90 bg-lux-white/5 border border-lux-white/10 flex items-center justify-center text-center"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 mt-12">
           {/* Left Column - Text */}
-          <div className="lg:sticky lg:top-32 lg:self-start">
+          <div className="lg:sticky lg:top-24 lg:self-start h-fit">
             <span className="section-label">OUR SERVICES</span>
             <h2 
               ref={headlineRef}
@@ -180,6 +247,12 @@ export default function Experience() {
             >
               We bring the full setup—chilled glassware, premium spirits, fresh garnishes, and a polished team—so you can host without lifting a glass.
             </p>
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="lux-button-primary mt-8"
+            >
+              Book a Free Consultation
+            </button>
           </div>
 
           {/* Right Column - Cards */}

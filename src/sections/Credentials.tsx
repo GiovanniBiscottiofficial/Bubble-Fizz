@@ -1,23 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Award, Shield, CheckCircle, Star, FileCheck, BadgeCheck } from 'lucide-react';
+import { Award, Shield, FileCheck } from 'lucide-react';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 const credentials = [
-  {
-    icon: Shield,
-    title: 'Fully Insured',
-    description: 'Comprehensive liability insurance coverage for all events. Certificate of Insurance (COI) available upon request.',
-    highlight: true,
-  },
-  {
-    icon: FileCheck,
-    title: 'Licensed Professional',
-    description: 'Licensed bartender in the state of North Carolina with all required certifications.',
-    highlight: true,
-  },
   {
     icon: Award,
     title: '5-Star Rated',
@@ -25,32 +14,17 @@ const credentials = [
     highlight: false,
   },
   {
-    icon: CheckCircle,
-    title: 'TIPS Certified',
-    description: 'Training for Intervention ProcedureS certified for responsible alcohol service.',
-    highlight: false,
+    icon: Shield,
+    title: 'Licensed, Insured & TIPS Certified',
+    description: 'Professional mobile bartending with the credentials your venue requires.',
+    highlight: true,
   },
   {
-    icon: Star,
-    title: '50+ Events Served',
-    description: 'Successfully served over 50 events across North Carolina.',
+    icon: FileCheck,
+    title: 'Premium Presentation',
+    description: 'Shimmer drinks, dry-ice effects, edible garnishes, and elegant bar styling.',
     highlight: false,
   },
-  {
-    icon: BadgeCheck,
-    title: 'Professional Mixologist',
-    description: 'Trained in classic and modern mixology techniques with years of experience.',
-    highlight: false,
-  },
-];
-
-const trustBadges = [
-  'Licensed & Insured',
-  'Background Checked',
-  'TIPS Certified',
-  'Professional Attire',
-  'Punctual & Reliable',
-  'Custom Menus',
 ];
 
 export default function Credentials() {
@@ -67,7 +41,7 @@ export default function Credentials() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(headline,
-        { y: '4vh', opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -77,14 +51,14 @@ export default function Credentials() {
             trigger: section,
             start: 'top 80%',
             end: 'top 55%',
-            scrub: 0.5,
+            scrub: 0.3,
           }
         }
       );
 
       cards.forEach((card, index) => {
         gsap.fromTo(card,
-          { y: '8vh', opacity: 0 },
+          { y: 40, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -94,7 +68,7 @@ export default function Credentials() {
               trigger: section,
               start: `top ${70 - index * 3}%`,
               end: `top ${50 - index * 3}%`,
-              scrub: 0.5,
+              scrub: 0.3,
             }
           }
         );
@@ -107,7 +81,6 @@ export default function Credentials() {
   return (
     <section 
       ref={sectionRef}
-      id="credentials"
       className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-52 bg-lux-black"
     >
       {/* Gold glow */}
@@ -116,9 +89,9 @@ export default function Credentials() {
       <div className="max-w-7xl mx-auto relative">
         {/* Header */}
         <div ref={headlineRef} className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lux-gold/10 border border-lux-gold/30 mb-6">
-            <Award className="w-4 h-4 text-lux-gold" />
-            <span className="text-lux-gold text-sm font-medium">Why Choose Us</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lux-white/5 border border-lux-white/10 mb-6">
+            <Award className="w-4 h-4 text-lux-pink" />
+            <span className="text-lux-white/80 text-sm font-medium">Why Choose Us</span>
           </div>
           <h2 
             className="font-display text-lux-white font-semibold leading-[1.0]"
@@ -132,7 +105,7 @@ export default function Credentials() {
         </div>
 
         {/* Credentials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6">
           {credentials.map((cred, index) => (
             <div
               key={cred.title}
@@ -158,24 +131,6 @@ export default function Credentials() {
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Trust Badges */}
-        <div className="lux-card">
-          <h3 className="font-display text-2xl text-lux-white text-center mb-8">
-            What You Can <span className="text-lux-gold">Always</span> Expect
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {trustBadges.map((badge) => (
-              <div 
-                key={badge}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-lux-black border border-lux-gold/30"
-              >
-                <CheckCircle className="w-4 h-4 text-lux-gold" />
-                <span className="text-lux-white text-sm">{badge}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Insurance Note */}

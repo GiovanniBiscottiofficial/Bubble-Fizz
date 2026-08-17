@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Check, ArrowRight, Phone, Mail } from 'lucide-react';
+import { buildInquiryMailto } from '@/lib/utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,7 +22,7 @@ const packages = [
   },
   {
     name: 'Signature Celebration',
-    price: '$450',
+    price: '$425',
     description: 'Our most popular choice',
     features: [
       '4-hour professional service',
@@ -34,11 +35,11 @@ const packages = [
   },
   {
     name: 'Full Experience',
-    price: '$850',
+    price: '$650',
     description: 'The ultimate luxury package',
     features: [
       'Up to 6 hours of service',
-      'Bespoke menu + signage',
+      'Custom menu + signage',
       'Champagne tower option',
       'Dedicated lead bartender',
     ],
@@ -99,8 +100,9 @@ export default function Packages() {
     return () => ctx.revert();
   }, []);
 
-  const handleBookPackage = () => {
-    // Scroll to contact section
+  const handleBookPackage = (packageName: string) => {
+    sessionStorage.setItem('selectedPackage', packageName);
+    window.dispatchEvent(new CustomEvent('package-selected', { detail: packageName }));
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -110,7 +112,6 @@ export default function Packages() {
   return (
     <section 
       ref={sectionRef}
-      id="packages"
       className="relative w-full min-h-screen py-24 md:py-32 px-6 md:px-12 lg:px-20 z-70 bg-lux-black"
     >
       {/* Purple glow */}
@@ -128,7 +129,7 @@ export default function Packages() {
             Packages & <span className="text-lux-pink">Pricing</span>
           </h2>
           <p className="mt-6 text-lux-muted text-lg max-w-2xl mx-auto">
-            Every package includes professional, licensed & insured service from <span className="text-lux-purple font-medium">Mercedes Pettiford</span>.
+            Transparent, budget-friendly packages with professional, licensed & insured service from <span className="text-lux-purple font-medium">Mercedes Pettiford</span>.
           </p>
         </div>
 
@@ -175,7 +176,7 @@ export default function Packages() {
 
               {/* CTA */}
               <button 
-                onClick={handleBookPackage}
+                onClick={() => handleBookPackage(pkg.name)}
                 className={`mt-8 w-full lux-button group ${
                   pkg.highlighted ? 'lux-button-primary' : 'lux-button-outline'
                 }`}
@@ -201,7 +202,7 @@ export default function Packages() {
               <span>Call 984-385-4736</span>
             </a>
             <a 
-              href="mailto:bubble_fizzbar@yahoo.com?subject=Booking Inquiry"
+              href={buildInquiryMailto('Booking Inquiry')}
               className="inline-flex items-center gap-2 text-lux-purple hover:text-lux-pink transition-colors"
             >
               <Mail className="w-4 h-4" />

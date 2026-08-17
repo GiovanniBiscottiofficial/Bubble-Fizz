@@ -1,268 +1,79 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronRight } from 'lucide-react';
 
-import { useIsMobile } from '@/hooks/use-mobile';
-
-gsap.registerPlugin(ScrollTrigger);
+import OptimizedImage from '@/components/OptimizedImage';
+import Logo from '@/components/Logo';
+import HeroSparkle from '@/components/HeroSparkle';
+import CertificationBadges from '@/components/CertificationBadges';
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subheadRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-  const taglineRef = useRef<HTMLParagraphElement>(null);
-  const isMobile = useIsMobile();
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const logo = logoRef.current;
-    const headline = headlineRef.current;
-    const subhead = subheadRef.current;
-    const cta = ctaRef.current;
-    const bg = bgRef.current;
-    const tagline = taglineRef.current;
-
-    if (!section || !logo || !headline || !subhead || !cta || !bg || !tagline) return;
-
-    const ctx = gsap.context(() => {
-      // On mobile, skip pinning — just play entrance animations and exit normally
-      if (isMobile) {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        tl.fromTo(bg,
-          { scale: 1.08, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 1.2 }
-        );
-        tl.fromTo(logo,
-          { y: 50, opacity: 0, scale: 0.8 },
-          { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.2)' },
-          '-=0.8'
-        );
-        tl.fromTo(tagline,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6 },
-          '-=0.5'
-        );
-        const words = headline.querySelectorAll('.word');
-        tl.fromTo(words,
-          { y: 40, opacity: 0, rotateX: 18 },
-          { y: 0, opacity: 1, rotateX: 0, duration: 0.8, stagger: 0.08 },
-          '-=0.3'
-        );
-        tl.fromTo(subhead,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6 },
-          '-=0.4'
-        );
-        tl.fromTo(cta,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6 },
-          '-=0.3'
-        );
-        return;
-      }
-
-      // Desktop: Auto-play entrance animation
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      // Background entrance
-      tl.fromTo(bg, 
-        { scale: 1.08, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.2 }
-      );
-
-      // Logo entrance - BIGGER ANIMATION
-      tl.fromTo(logo,
-        { y: 50, opacity: 0, scale: 0.8 },
-        { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.2)' },
-        '-=0.8'
-      );
-
-      // Tagline entrance
-      tl.fromTo(tagline,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 },
-        '-=0.5'
-      );
-
-      // Headline words entrance
-      const words = headline.querySelectorAll('.word');
-      tl.fromTo(words,
-        { y: 40, opacity: 0, rotateX: 18 },
-        { y: 0, opacity: 1, rotateX: 0, duration: 0.8, stagger: 0.08 },
-        '-=0.3'
-      );
-
-      // Subheadline entrance
-      tl.fromTo(subhead,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 },
-        '-=0.4'
-      );
-
-      // CTA entrance
-      tl.fromTo(cta,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 },
-        '-=0.3'
-      );
-
-      // Scroll-driven exit animation
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: '+=130%',
-          pin: true,
-          scrub: 0.6,
-          onLeaveBack: () => {
-            gsap.set([logo, headline, subhead, cta, tagline], { opacity: 1, y: 0 });
-            gsap.set(bg, { scale: 1, y: 0 });
-          }
-        }
-      });
-
-      // EXIT phase: 70% - 100%
-      scrollTl.fromTo(logo,
-        { y: 0, opacity: 1 },
-        { y: '-15vh', opacity: 0, ease: 'power2.in' },
-        0.65
-      );
-
-      scrollTl.fromTo(headline,
-        { y: 0, opacity: 1 },
-        { y: '-18vh', opacity: 0, ease: 'power2.in' },
-        0.7
-      );
-
-      scrollTl.fromTo(subhead,
-        { y: 0, opacity: 1 },
-        { y: '-14vh', opacity: 0, ease: 'power2.in' },
-        0.72
-      );
-
-      scrollTl.fromTo(cta,
-        { y: 0, opacity: 1 },
-        { y: '-10vh', opacity: 0, ease: 'power2.in' },
-        0.74
-      );
-
-      scrollTl.fromTo(tagline,
-        { y: 0, opacity: 1 },
-        { y: '-10vh', opacity: 0, ease: 'power2.in' },
-        0.7
-      );
-
-      scrollTl.fromTo(bg,
-        { scale: 1, y: 0 },
-        { scale: 1.06, y: '-6vh', ease: 'none' },
-        0.7
-      );
-
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
-
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section 
-      ref={sectionRef}
-      className="relative w-full h-screen overflow-hidden z-10"
-    >
-      {/* Background Image - MERCEDES */}
-      <div 
-        ref={bgRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ opacity: 0 }}
+    <section className="relative w-full h-screen overflow-hidden z-10">
+      <div
+        className="absolute inset-0 w-full h-full animate-hero-bg"
       >
-        <img 
-          src="/mercedes_new_1.jpg" 
+        <OptimizedImage
+          src="/mercedes_new_1.jpg"
           alt="Mercedes Pettiford - Professional Mixologist pouring champagne"
           className="w-full h-full object-cover object-top"
+          priority
         />
-        {/* Purple/Pink gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-lux-purple/30 via-transparent to-lux-pink/20" />
-        {/* Vignette overlay */}
         <div className="absolute inset-0 vignette-overlay" />
-        {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-lux-black/70 via-lux-black/40 to-lux-black/80" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
-        {/* Logo - MUCH BIGGER */}
-        <div 
-          ref={logoRef}
-          className="mb-4 md:mb-6"
-          style={{ opacity: 0 }}
-        >
-          <img 
-            src="/logo.png" 
-            alt="Bubble & Fizz Logo"
-            className="h-40 md:h-52 lg:h-64 w-auto drop-shadow-[0_0_30px_rgba(236,72,153,0.6)]"
-          />
+        <div className="relative mb-4 md:mb-6">
+          <Logo className="h-28 w-28 sm:h-32 sm:w-32 md:h-40 md:w-40 lg:h-48 lg:w-48 logo-dramatic" priority />
+          <HeroSparkle />
         </div>
 
-        {/* Tagline */}
-        <p 
-          ref={taglineRef}
-          className="text-gradient-purple font-label text-sm md:text-base uppercase tracking-[0.25em] mb-6 md:mb-8"
-          style={{ opacity: 0 }}
+        <p
+          className="text-gradient-purple font-label text-sm md:text-base uppercase tracking-[0.25em] mb-6 md:mb-8 animate-hero-fade-up"
+          style={{ animationDelay: '0.4s' }}
         >
           BOOK US FOR ANY AND ALL EVENTS
         </p>
 
-        {/* Headline */}
-        <h1 
-          ref={headlineRef}
+        <h1
           className="font-display text-center text-lux-white font-semibold leading-[0.95] tracking-[-0.02em]"
-          style={{ 
-            fontSize: 'clamp(32px, 4vw, 60px)',
-            opacity: 0
-          }}
+          style={{ fontSize: 'clamp(32px, 4vw, 60px)' }}
         >
-          <span className="word inline-block">Luxury</span>{' '}
-          <span className="word inline-block text-lux-pink">pours.</span>
+          <span className="animate-hero-word" style={{ animationDelay: '0.55s' }}>Luxury</span>{' '}
+          <span className="animate-hero-word text-lux-pink" style={{ animationDelay: '0.63s' }}>pours.</span>
           <br />
-          <span className="word inline-block">Curated</span>{' '}
-          <span className="word inline-block text-lux-purple">moments.</span>
+          <span className="animate-hero-word" style={{ animationDelay: '0.71s' }}>Curated</span>{' '}
+          <span className="animate-hero-word text-lux-purple" style={{ animationDelay: '0.79s' }}>moments.</span>
         </h1>
 
-        {/* Subheadline */}
-        <p 
-          ref={subheadRef}
-          className="mt-4 md:mt-6 text-center text-lux-muted text-base md:text-lg max-w-2xl leading-relaxed"
-          style={{ opacity: 0 }}
+        <p
+          className="mt-4 md:mt-6 text-center text-lux-muted text-base md:text-lg max-w-2xl leading-relaxed animate-hero-fade-up"
+          style={{ animationDelay: '0.95s' }}
         >
-          Mobile champagne bars and craft cocktails for weddings, celebrations, and corporate events across North Carolina.
+          Mobile champagne bars and craft cocktails for weddings, private parties, corporate events, sporting events, and pop-up bars across the Triangle, Winston‑Salem, Sanford, Mebane, and all of North Carolina.
         </p>
 
-        {/* CTA Buttons */}
-        <div 
-          ref={ctaRef}
-          className="mt-6 md:mt-8 flex flex-col sm:flex-row items-center gap-4"
-          style={{ opacity: 0 }}
+        <div
+          className="mt-6 md:mt-8 flex flex-col items-center gap-4 animate-hero-fade-up"
+          style={{ animationDelay: '1.1s' }}
         >
-          <button 
-            onClick={scrollToContact}
-            className="lux-button-primary"
-          >
-            Book Your Event
-          </button>
-          <a href="#packages" className="lux-button-outline group">
-            View Packages
-            <ChevronRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <button
+              onClick={scrollToContact}
+              className="lux-button-primary"
+            >
+              Book Your Event
+            </button>
+            <a href="#packages" className="lux-button-outline group">
+              View Packages
+              <ChevronRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
+          <CertificationBadges compact />
         </div>
       </div>
     </section>
