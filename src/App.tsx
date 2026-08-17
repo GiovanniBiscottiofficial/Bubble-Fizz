@@ -15,7 +15,6 @@ import Packages from './sections/Packages';
 import Credentials from './sections/Credentials';
 import ServiceAreas from './sections/ServiceAreas';
 import FAQ from './sections/FAQ';
-import Newsletter from './sections/Newsletter';
 import FinalCTA from './sections/FinalCTA';
 import Contact from './sections/Contact';
 import ChampagneBubbles from './components/ChampagneBubbles';
@@ -78,11 +77,8 @@ function App() {
         
         {/* Section 11: FAQ - pin: false */}
         <FAQ />
-        
-        {/* Section 12: Newsletter - pin: false */}
-        <Newsletter />
-        
-        {/* Section 13: Final CTA - pin: true */}
+
+        {/* Section 12: Final CTA - pin: true */}
         <FinalCTA />
         
         {/* Section 14: Contact - pin: false */}
