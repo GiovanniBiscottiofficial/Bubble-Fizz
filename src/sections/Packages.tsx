@@ -22,7 +22,7 @@ const packages = [
   },
   {
     name: 'Signature Celebration',
-    price: '$450',
+    price: '$425',
     description: 'Our most popular choice',
     features: [
       '4-hour professional service',
@@ -35,7 +35,7 @@ const packages = [
   },
   {
     name: 'Full Experience',
-    price: '$850',
+    price: '$650',
     description: 'The ultimate luxury package',
     features: [
       'Up to 6 hours of service',
