@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bubbleandfizz.co/sitemap.xml
-Host: https://bubbleandfizz.co
+Sitemap: https://bubble-fizz-app-42.web.app/sitemap.xml
+Host: https://bubble-fizz-app-42.web.app

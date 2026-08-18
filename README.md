@@ -76,7 +76,7 @@ Contact Mercedes Pettiford directly:
 
 - **Phone**: [984-385-4736](tel:+19843854736)
 - **Email**: bubble_fizzbar@yahoo.com
-- **Website**: https://bubbleandfizz.co
+- **Website**: https://bubble-fizz-app-42.web.app
 
 ## Credits
 

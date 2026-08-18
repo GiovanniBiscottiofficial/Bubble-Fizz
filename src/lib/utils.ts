@@ -28,6 +28,6 @@ I look forward to hearing from you!
 —
 Bubble & Fizz Mobile Bartending
 Luxury champagne bars & craft cocktails
-https://bubbleandfizz.co`
+https://bubble-fizz-app-42.web.app`
   return `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
